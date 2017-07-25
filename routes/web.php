@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'CobaController@index');
+
+Route::resource('admin/pegawai', 'Admin\\Pegawai\\PegawaiController');

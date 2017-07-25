@@ -22,6 +22,8 @@
 <link rel="stylesheet" href="/theme/assets/css/fontawesome/font-awesome-ie7.min.css">
 <![endif]-->
 
+@yield('css')
+
 <!--[if IE 8]>
 <link href="/theme/assets/css/ie8.css" rel="stylesheet" type="text/css" />
 <![endif]-->
