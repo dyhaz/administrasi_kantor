@@ -24,3 +24,6 @@ Route::get('/home', function() {
 
 Route::resource('admin/pegawai', 'Admin\\Pegawai\\PegawaiController');
 Route::resource('surat-masuk', 'SuratMasuk\\SuratMasukController');
+Route::resource('admin/sifat-surat', 'Admin\SifatSurat\\SifatSuratController');
+Route::resource('admin/kota', 'Admin\Kota\\KotaController');
+Route::resource('admin/instansi', 'Admin\Instansi\\InstansiController');

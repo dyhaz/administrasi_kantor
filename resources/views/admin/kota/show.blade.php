@@ -5,22 +5,22 @@
 
         <div class="col-md-12">
             <div class="widget body">
-                <div class="widget-header">Pegawai {{ $pegawai->id }}</div>
+                <div class="widget-header">Kotum {{ $kotum->id }}</div>
                 <div class="widget-content">
 
-                    <a href="{{ url('/admin/pegawai') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                    <a href="{{ url('/admin/pegawai/' . $pegawai->id . '/edit') }}" title="Edit Pegawai"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                    <a href="{{ url('/admin/kota') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                    <a href="{{ url('/admin/kota/' . $kotum->id . '/edit') }}" title="Edit Kotum"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
                     {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
                             'type' => 'submit',
                             'class' => 'btn btn-danger btn-xs',
-                            'title' => 'Delete Pegawai',
-                            'onclick'=>'bootbox.confirm("Confirm delete?", function(result){ if(result) $("#delete-' . $pegawai->id . '").submit() })'
+                            'title' => 'Delete Kotum',
+                            'onclick'=>'bootbox.confirm("Confirm delete?", function(result){ if(result) $("#delete-' . $kotum->id . '").submit() })'
                     ))!!}
                     {!! Form::open([
                         'method'=>'DELETE',
-                        'url' => ['admin/pegawai', $pegawai->id],
+                        'url' => ['admin/kota', $kotum->id],
                         'style' => 'display:inline',
-                        'id' => 'delete-' . $pegawai->id
+                        'id' => 'delete-' . $kotum->id
                     ]) !!}
                     {!! Form::close() !!}
                     <br/>
@@ -30,9 +30,9 @@
                         <table class="table table-borderless">
                             <tbody>
                             <tr>
-                                <th>ID</th><td>{{ $pegawai->id }}</td>
+                                <th>ID</th><td>{{ $kotum->id }}</td>
                             </tr>
-                            <tr><th> Nip </th><td> {{ $pegawai->nip }} </td></tr><tr><th> Nama </th><td> {{ $pegawai->nama }} </td></tr><tr><th> Alamat </th><td> {{ $pegawai->alamat }} </td></tr>
+                            <tr><th> Nama </th><td> {{ $kotum->nama }} </td></tr>
                             </tbody>
                         </table>
                     </div>

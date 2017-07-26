@@ -1,17 +1,17 @@
 <?php
 
-namespace DummyNamespace;
+namespace App\Http\Controllers\Admin\Kota;
 
-use DummyRootNamespaceHttp\Requests;
-use DummyRootNamespaceHttp\Controllers\Controller;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
-use DummyRootNamespace{{modelNamespace}}{{modelName}};
+use App\Kota;
 use Illuminate\Http\Request;
 use Session;
 
-class DummyClass extends Controller
+class KotaController extends Controller
 {
-    const MODEL = {{modelName}}::class;
+    const MODEL = Kota::class;
     /**
      * Display a listing of the resource.
      *
@@ -20,15 +20,16 @@ class DummyClass extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = {{pagination}};
+        $perPage = 25;
 
         if (!empty($keyword)) {
-            ${{crudName}} = {{modelName}}::{{whereSnippet}}paginate($perPage);
+            $kota = Kota::where('nama', 'LIKE', "%$keyword%")
+				->paginate($perPage);
         } else {
-            ${{crudName}} = {{modelName}}::paginate($perPage);
+            $kota = Kota::paginate($perPage);
         }
 
-        return view('{{viewPath}}{{viewName}}.index', compact('{{crudName}}'));
+        return view('admin.kota.index', compact('kota'));
     }
 
     /**
@@ -38,7 +39,7 @@ class DummyClass extends Controller
      */
     public function create()
     {
-        return view('{{viewPath}}{{viewName}}.create');
+        return view('admin.kota.create');
     }
 
     /**
@@ -50,14 +51,14 @@ class DummyClass extends Controller
      */
     public function store(Request $request)
     {
-        {{validationRules}}
+        
         $requestData = $request->all();
-        {{fileSnippet}}
-        {{modelName}}::create($requestData);
+        
+        Kota::create($requestData);
 
-        Session::flash('flash_message', '{{modelName}} added!');
+        Session::flash('flash_message', 'Kotum added!');
 
-        return redirect('{{routeGroup}}{{viewName}}');
+        return redirect('admin/kota');
     }
 
     /**
@@ -69,9 +70,9 @@ class DummyClass extends Controller
      */
     public function show($id)
     {
-        ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
+        $kotum = Kota::findOrFail($id);
 
-        return view('{{viewPath}}{{viewName}}.show', compact('{{crudNameSingular}}'));
+        return view('admin.kota.show', compact('kotum'));
     }
 
     /**
@@ -83,9 +84,9 @@ class DummyClass extends Controller
      */
     public function edit($id)
     {
-        ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
+        $kotum = Kota::findOrFail($id);
 
-        return view('{{viewPath}}{{viewName}}.edit', compact('{{crudNameSingular}}'));
+        return view('admin.kota.edit', compact('kotum'));
     }
 
     /**
@@ -98,15 +99,15 @@ class DummyClass extends Controller
      */
     public function update($id, Request $request)
     {
-        {{validationRules}}
+        
         $requestData = $request->all();
-        {{fileSnippet}}
-        ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
-        ${{crudNameSingular}}->update($requestData);
+        
+        $kotum = Kota::findOrFail($id);
+        $kotum->update($requestData);
 
-        Session::flash('flash_message', '{{modelName}} updated!');
+        Session::flash('flash_message', 'Kotum updated!');
 
-        return redirect('{{routeGroup}}{{viewName}}');
+        return redirect('admin/kota');
     }
 
     /**
@@ -118,10 +119,10 @@ class DummyClass extends Controller
      */
     public function destroy($id)
     {
-        {{modelName}}::destroy($id);
+        Kota::destroy($id);
 
-        Session::flash('flash_message', '{{modelName}} deleted!');
+        Session::flash('flash_message', 'Kotum deleted!');
 
-        return redirect('{{routeGroup}}{{viewName}}');
+        return redirect('admin/kota');
     }
 }

@@ -1,17 +1,17 @@
 <?php
 
-namespace DummyNamespace;
+namespace App\Http\Controllers\Admin\Instansi;
 
-use DummyRootNamespaceHttp\Requests;
-use DummyRootNamespaceHttp\Controllers\Controller;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
-use DummyRootNamespace{{modelNamespace}}{{modelName}};
+use App\Instansi;
 use Illuminate\Http\Request;
 use Session;
 
-class DummyClass extends Controller
+class InstansiController extends Controller
 {
-    const MODEL = {{modelName}}::class;
+    const MODEL = Instansi::class;
     /**
      * Display a listing of the resource.
      *
@@ -20,15 +20,18 @@ class DummyClass extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = {{pagination}};
+        $perPage = 25;
 
         if (!empty($keyword)) {
-            ${{crudName}} = {{modelName}}::{{whereSnippet}}paginate($perPage);
+            $instansi = Instansi::where('nama', 'LIKE', "%$keyword%")
+				->orWhere('id_kota', 'LIKE', "%$keyword%")
+				->orWhere('no_telp', 'LIKE', "%$keyword%")
+				->paginate($perPage);
         } else {
-            ${{crudName}} = {{modelName}}::paginate($perPage);
+            $instansi = Instansi::paginate($perPage);
         }
 
-        return view('{{viewPath}}{{viewName}}.index', compact('{{crudName}}'));
+        return view('admin.instansi.index', compact('instansi'));
     }
 
     /**
@@ -38,7 +41,7 @@ class DummyClass extends Controller
      */
     public function create()
     {
-        return view('{{viewPath}}{{viewName}}.create');
+        return view('admin.instansi.create');
     }
 
     /**
@@ -50,14 +53,14 @@ class DummyClass extends Controller
      */
     public function store(Request $request)
     {
-        {{validationRules}}
+        
         $requestData = $request->all();
-        {{fileSnippet}}
-        {{modelName}}::create($requestData);
+        
+        Instansi::create($requestData);
 
-        Session::flash('flash_message', '{{modelName}} added!');
+        Session::flash('flash_message', 'Instansi added!');
 
-        return redirect('{{routeGroup}}{{viewName}}');
+        return redirect('admin/instansi');
     }
 
     /**
@@ -69,9 +72,9 @@ class DummyClass extends Controller
      */
     public function show($id)
     {
-        ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
+        $instansi = Instansi::findOrFail($id);
 
-        return view('{{viewPath}}{{viewName}}.show', compact('{{crudNameSingular}}'));
+        return view('admin.instansi.show', compact('instansi'));
     }
 
     /**
@@ -83,9 +86,9 @@ class DummyClass extends Controller
      */
     public function edit($id)
     {
-        ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
+        $instansi = Instansi::findOrFail($id);
 
-        return view('{{viewPath}}{{viewName}}.edit', compact('{{crudNameSingular}}'));
+        return view('admin.instansi.edit', compact('instansi'));
     }
 
     /**
@@ -98,15 +101,15 @@ class DummyClass extends Controller
      */
     public function update($id, Request $request)
     {
-        {{validationRules}}
+        
         $requestData = $request->all();
-        {{fileSnippet}}
-        ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
-        ${{crudNameSingular}}->update($requestData);
+        
+        $instansi = Instansi::findOrFail($id);
+        $instansi->update($requestData);
 
-        Session::flash('flash_message', '{{modelName}} updated!');
+        Session::flash('flash_message', 'Instansi updated!');
 
-        return redirect('{{routeGroup}}{{viewName}}');
+        return redirect('admin/instansi');
     }
 
     /**
@@ -118,10 +121,10 @@ class DummyClass extends Controller
      */
     public function destroy($id)
     {
-        {{modelName}}::destroy($id);
+        Instansi::destroy($id);
 
-        Session::flash('flash_message', '{{modelName}} deleted!');
+        Session::flash('flash_message', 'Instansi deleted!');
 
-        return redirect('{{routeGroup}}{{viewName}}');
+        return redirect('admin/instansi');
     }
 }

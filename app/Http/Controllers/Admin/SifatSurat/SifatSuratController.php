@@ -1,17 +1,17 @@
 <?php
 
-namespace DummyNamespace;
+namespace App\Http\Controllers\Admin\SifatSurat;
 
-use DummyRootNamespaceHttp\Requests;
-use DummyRootNamespaceHttp\Controllers\Controller;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
-use DummyRootNamespace{{modelNamespace}}{{modelName}};
+use App\SifatSurat;
 use Illuminate\Http\Request;
 use Session;
 
-class DummyClass extends Controller
+class SifatSuratController extends Controller
 {
-    const MODEL = {{modelName}}::class;
+    const MODEL = SifatSurat::class;
     /**
      * Display a listing of the resource.
      *
@@ -20,15 +20,16 @@ class DummyClass extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = {{pagination}};
+        $perPage = 25;
 
         if (!empty($keyword)) {
-            ${{crudName}} = {{modelName}}::{{whereSnippet}}paginate($perPage);
+            $sifatsurat = SifatSurat::where('nama', 'LIKE', "%$keyword%")
+				->paginate($perPage);
         } else {
-            ${{crudName}} = {{modelName}}::paginate($perPage);
+            $sifatsurat = SifatSurat::paginate($perPage);
         }
 
-        return view('{{viewPath}}{{viewName}}.index', compact('{{crudName}}'));
+        return view('admin.sifat-surat.index', compact('sifatsurat'));
     }
 
     /**
@@ -38,7 +39,7 @@ class DummyClass extends Controller
      */
     public function create()
     {
-        return view('{{viewPath}}{{viewName}}.create');
+        return view('admin.sifat-surat.create');
     }
 
     /**
@@ -50,14 +51,14 @@ class DummyClass extends Controller
      */
     public function store(Request $request)
     {
-        {{validationRules}}
+        
         $requestData = $request->all();
-        {{fileSnippet}}
-        {{modelName}}::create($requestData);
+        
+        SifatSurat::create($requestData);
 
-        Session::flash('flash_message', '{{modelName}} added!');
+        Session::flash('flash_message', 'SifatSurat added!');
 
-        return redirect('{{routeGroup}}{{viewName}}');
+        return redirect('admin/sifat-surat');
     }
 
     /**
@@ -69,9 +70,9 @@ class DummyClass extends Controller
      */
     public function show($id)
     {
-        ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
+        $sifatsurat = SifatSurat::findOrFail($id);
 
-        return view('{{viewPath}}{{viewName}}.show', compact('{{crudNameSingular}}'));
+        return view('admin.sifat-surat.show', compact('sifatsurat'));
     }
 
     /**
@@ -83,9 +84,9 @@ class DummyClass extends Controller
      */
     public function edit($id)
     {
-        ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
+        $sifatsurat = SifatSurat::findOrFail($id);
 
-        return view('{{viewPath}}{{viewName}}.edit', compact('{{crudNameSingular}}'));
+        return view('admin.sifat-surat.edit', compact('sifatsurat'));
     }
 
     /**
@@ -98,15 +99,15 @@ class DummyClass extends Controller
      */
     public function update($id, Request $request)
     {
-        {{validationRules}}
+        
         $requestData = $request->all();
-        {{fileSnippet}}
-        ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
-        ${{crudNameSingular}}->update($requestData);
+        
+        $sifatsurat = SifatSurat::findOrFail($id);
+        $sifatsurat->update($requestData);
 
-        Session::flash('flash_message', '{{modelName}} updated!');
+        Session::flash('flash_message', 'SifatSurat updated!');
 
-        return redirect('{{routeGroup}}{{viewName}}');
+        return redirect('admin/sifat-surat');
     }
 
     /**
@@ -118,10 +119,10 @@ class DummyClass extends Controller
      */
     public function destroy($id)
     {
-        {{modelName}}::destroy($id);
+        SifatSurat::destroy($id);
 
-        Session::flash('flash_message', '{{modelName}} deleted!');
+        Session::flash('flash_message', 'SifatSurat deleted!');
 
-        return redirect('{{routeGroup}}{{viewName}}');
+        return redirect('admin/sifat-surat');
     }
 }

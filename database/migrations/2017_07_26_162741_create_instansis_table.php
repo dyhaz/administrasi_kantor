@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatePegawaisTable extends Migration
+class CreateInstansisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,13 @@ class CreatePegawaisTable extends Migration
      */
     public function up()
     {
-        Schema::create('pegawais', function(Blueprint $table) {
+        Schema::create('instansi', function(Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('nip');
             $table->string('nama');
-            $table->text('alamat');
-            $table->integer('id_divisi');
-            $table->integer('id_jabatan');
-            $table->string('jenis_kelamin');
+            $table->unsignedInteger('id_kota');
             $table->string('no_telp');
-            $table->date('tanggal_lahir');
+            $table->foreign('id_kota')->references('id')->on('kota')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ class CreatePegawaisTable extends Migration
      */
     public function down()
     {
-        Schema::drop('pegawais');
+        Schema::drop('instansi');
     }
 }

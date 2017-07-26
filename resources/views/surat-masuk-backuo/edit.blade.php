@@ -1,12 +1,5 @@
 @extends('layouts.master')
 
-@section('js')
-    <script>
-        $('#nomor').attr('disabled', 'disabled');
-    </script>
-@endsection
-
-
 @section('content')
 
     <div class="row">

@@ -44,7 +44,7 @@
                                                         'type' => 'submit',
                                                         'class' => 'btn btn-danger btn-xs',
                                                         'title' => 'Delete Pegawai',
-                                                        'onclick'=>'if(confirm("Confirm delete?")) $("#delete-'.$item->id.'").submit()'
+                                                        'onclick'=>'bootbox.confirm("Confirm delete?", function(result){ if(result) $("#delete-'.$item->id.'").submit() })'
                                                 )) !!}
                                                 {!! Form::open([
                                                     'method'=>'DELETE',

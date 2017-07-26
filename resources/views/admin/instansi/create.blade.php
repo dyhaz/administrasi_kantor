@@ -4,9 +4,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Create New SuratMasuk</div>
+                    <div class="panel-heading">Create New Instansi</div>
                     <div class="panel-body">
-                        <a href="{{ url('/surat-masuk') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/admin/instansi') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -19,9 +19,9 @@
                             @endforeach
                         @endif
 
-                        {!! Form::open(['url' => '/surat-masuk', 'class' => 'form-horizontal', 'files' => true]) !!}
+                        {!! Form::open(['url' => '/admin/instansi', 'class' => 'form-horizontal', 'files' => true]) !!}
 
-                        @include ('surat-masuk.form')
+                        @include ('admin.instansi.form')
 
                         {!! Form::close() !!}
 

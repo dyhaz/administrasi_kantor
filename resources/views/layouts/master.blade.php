@@ -26,5 +26,12 @@
     </div>
 </div>
 @yield('js')
+@if(Session::has('flash_message'))
+    <script type="text/javascript">
+        bootbox.alert('{{ Session::get('flash_message') }}', function() {
+            console.log("Alert Callback");
+        });
+    </script>
+@endif
 </body>
 </html>

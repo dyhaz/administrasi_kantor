@@ -12,7 +12,6 @@ class CreatePegawaisTable extends Migration
      */
     public function up()
     {
-        Schema::drop('pegawai');
         Schema::create('pegawai', function(Blueprint $table) {
             $table->increments('id');
             $table->string('nip');
@@ -34,6 +33,6 @@ class CreatePegawaisTable extends Migration
      */
     public function down()
     {
-        Schema::drop('pegawais');
+        Schema::drop('pegawai');
     }
 }

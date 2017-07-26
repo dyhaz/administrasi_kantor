@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatePegawaisTable extends Migration
+class CreateSifatSuratsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,9 @@ class CreatePegawaisTable extends Migration
      */
     public function up()
     {
-        Schema::create('pegawais', function(Blueprint $table) {
+        Schema::create('sifat_surat', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('nip');
             $table->string('nama');
-            $table->text('alamat');
-            $table->integer('id_divisi');
-            $table->integer('id_jabatan');
-            $table->string('jenis_kelamin');
-            $table->string('no_telp');
-            $table->date('tanggal_lahir');
             $table->timestamps();
         });
     }
@@ -33,6 +26,6 @@ class CreatePegawaisTable extends Migration
      */
     public function down()
     {
-        Schema::drop('pegawais');
+        Schema::drop('sifat_surat');
     }
 }

@@ -11,6 +11,7 @@ use Session;
 
 class SuratMasukController extends Controller
 {
+
     const MODEL = SuratMasuk::class;
 
     protected $validation = [
@@ -18,10 +19,9 @@ class SuratMasukController extends Controller
         'tanggal_terima' => 'required|date',
         'nomor_naskah_dinas' => 'required|max:255',
         'nomor_naskah_dinas' => 'required|max:255',
-        'id_sifat' => 'numeric',
-        'id_instansi' => 'numeric',
         'file' => 'required|file',
     ];
+
     /**
      * Display a listing of the resource.
      *
@@ -68,16 +68,15 @@ class SuratMasukController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, $this->validation);
+
+        $file = $request->file('file')->store('uploads');
+
         $requestData = $request->all();
+
+        $requestData['file'] = $file;
         
-
-        if ($request->file('file')) {
-            $uploadPath = 'uploads/file';
-            $fileName = $request->file('file')->store($uploadPath);
-            $requestData['file'] = $fileName;
-        }
-
         SuratMasuk::create($requestData);
 
         Session::flash('flash_message', 'SuratMasuk added!');
@@ -123,16 +122,14 @@ class SuratMasukController extends Controller
      */
     public function update($id, Request $request)
     {
-        $this->validation['nomor'] = '';
+
         $this->validate($request, $this->validation);
+
+        $file = $request->file('file')->store('uploads');
+
         $requestData = $request->all();
 
-
-        if ($request->file('file')) {
-            $uploadPath = 'uploads/file';
-            $fileName = $request->file('file')->store($uploadPath);
-            $requestData['file'] = $fileName;
-        }
+        $requestData['file'] = $file;
 
         $suratmasuk = SuratMasuk::findOrFail($id);
         $suratmasuk->update($requestData);

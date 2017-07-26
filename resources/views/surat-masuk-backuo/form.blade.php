@@ -7,7 +7,7 @@
 </div><div class="form-group {{ $errors->has('tanggal_terima') ? 'has-error' : ''}}">
     {!! Form::label('tanggal_terima', 'Tanggal Terima', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::date('tanggal_terima', date('Y-m-d'), ['class' => 'form-control', 'data-mask' => "9999-99-99"]) !!}
+        {!! Form::date('tanggal_terima', null, ['class' => 'form-control']) !!}
         {!! $errors->first('tanggal_terima', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('nomor_naskah_dinas') ? 'has-error' : ''}}">

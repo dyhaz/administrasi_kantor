@@ -89,6 +89,9 @@
 
 <script type="text/javascript" src="/theme/plugins/fullcalendar/fullcalendar.min.js"></script>
 
+<!-- Bootbox -->
+<script type="text/javascript" src="/theme/plugins/bootbox/bootbox.min.js"></script>
+
 <!-- Noty -->
 <script type="text/javascript" src="/theme/plugins/noty/jquery.noty.js"></script>
 <script type="text/javascript" src="/theme/plugins/noty/layouts/top.js"></script>

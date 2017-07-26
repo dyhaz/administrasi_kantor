@@ -4,13 +4,13 @@
     <div class="row">
         <div class="col-md-12">
             <div class="widget box">
-                <div class="widget-header">%%crudNameCap%%</div>
+                <div class="widget-header">Instansi</div>
                 <div class="widget-content">
-                    <a href="{{ url('/%%routeGroup%%%%viewName%%/create') }}" class="btn btn-success btn-sm" title="Add New %%modelName%%">
+                    <a href="{{ url('/admin/instansi/create') }}" class="btn btn-success btn-sm" title="Add New Instansi">
                         <i class="icon-plus" aria-hidden="true"></i> Add New
                     </a>
 
-                    {!! Form::open(['method' => 'GET', 'url' => '/%%routeGroup%%%%viewName%%', 'class' => 'navbar-form navbar-right', 'role' => 'search'])  !!}
+                    {!! Form::open(['method' => 'GET', 'url' => '/admin/instansi', 'class' => 'navbar-form navbar-right', 'role' => 'search'])  !!}
                     <div class="input-group">
                         <input type="text" class="form-control" name="search" placeholder="Search...">
                             <span class="input-group-btn">
@@ -27,30 +27,30 @@
                         <table class="table table-borderless">
                             <thead>
                             <tr>
-                                <th>ID</th>%%formHeadingHtml%%<th>Actions</th>
+                                <th>ID</th><th>Nama</th><th>Id Kota</th><th>No Telp</th><th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($%%crudName%% as $item)
+                            @foreach($instansi as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    %%formBodyHtml%%
+                                    <td>{{ $item->nama }}</td><td>{{ $item->id_kota }}</td><td>{{ $item->no_telp }}</td>
                                     <td>
                                         <div class="btn-toolbar">
                                             <div class="btn-group">
-                                                <button onclick="window.location = '{{ url('/%%routeGroup%%%%viewName%%/' . $item->%%primaryKey%%) }}'" title="View %%modelName%%" class="btn btn-info btn-xs"><i class="icon-eye-open" aria-hidden="true"></i> View</button>
-                                                <button onclick="window.location = '{{ url('/%%routeGroup%%%%viewName%%/' . $item->%%primaryKey%% . '/edit') }}'" title="Edit %%modelName%%" class="btn btn-primary btn-xs"><i class="icon-edit" aria-hidden="true"></i> Edit</button>
+                                                <button onclick="window.location = '{{ url('/admin/instansi/' . $item->id) }}'" title="View Instansi" class="btn btn-info btn-xs"><i class="icon-eye-open" aria-hidden="true"></i> View</button>
+                                                <button onclick="window.location = '{{ url('/admin/instansi/' . $item->id . '/edit') }}'" title="Edit Instansi" class="btn btn-primary btn-xs"><i class="icon-edit" aria-hidden="true"></i> Edit</button>
                                                 {!! Form::button('<i class="icon-trash" aria-hidden="true"></i> Delete', array(
                                                         'type' => 'submit',
                                                         'class' => 'btn btn-danger btn-xs',
-                                                        'title' => 'Delete %%modelName%%',
-                                                        'onclick'=>'bootbox.confirm("Confirm delete?", function(result){ if(result) $("#delete-'.$item->%%primaryKey%%.'").submit() })'
+                                                        'title' => 'Delete Instansi',
+                                                        'onclick'=>'bootbox.confirm("Confirm delete?", function(result){ if(result) $("#delete-'.$item->id.'").submit() })'
                                                 )) !!}
                                                 {!! Form::open([
                                                     'method'=>'DELETE',
-                                                    'url' => ['/%%routeGroup%%%%viewName%%', $item->%%primaryKey%%],
+                                                    'url' => ['/admin/instansi', $item->id],
                                                     'style' => 'display:inline',
-                                                    'id' => 'delete-'.$item->%%primaryKey%%,
+                                                    'id' => 'delete-'.$item->id,
                                                 ]) !!}
                                                 {!! Form::close() !!}
                                             </div>
@@ -60,7 +60,7 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <div class="pagination-wrapper"> {!! $%%crudName%%->appends(['search' => Request::get('search')])->render() !!} </div>
+                        <div class="pagination-wrapper"> {!! $instansi->appends(['search' => Request::get('search')])->render() !!} </div>
                     </div>
 
                 </div>

@@ -75,8 +75,8 @@
             </li>
             <li>
                 <a href="javascript:void(0);">
-                    <i class="icon-desktop"></i>
-                    UI Features
+                    <i class="icon-user-md"></i>
+                    KA UPT
                     <span class="label label-info pull-right">6</span>
                 </a>
                 <ul class="sub-menu">
@@ -132,40 +132,46 @@
             </li>
             <li>
                 <a href="javascript:void(0);">
-                    <i class="icon-edit"></i>
-                    Form Elements
+                    <i class="icon-user-md"></i>
+                    KA Subbag TU
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="form_components.html">
-                            <i class="icon-angle-right"></i>
-                            Form Components
+                        <a href="/admin/pegawai">
+                            <i class="icon-user"></i>
+                            Data Pegawai
                         </a>
                     </li>
                     <li>
-                        <a href="form_layouts.html">
-                            <i class="icon-angle-right"></i>
-                            Form Layouts
+                        <a href="/admin/kota">
+                            <i class="icon-building"></i>
+                            Kota
                         </a>
                     </li>
                     <li>
-                        <a href="form_validation.html">
-                            <i class="icon-angle-right"></i>
-                            Form Validation
+                        <a href="/admin/instansi">
+                            <i class="icon-certificate"></i>
+                            Instansi
                         </a>
                     </li>
                     <li>
-                        <a href="form_wizard.html">
-                            <i class="icon-angle-right"></i>
-                            Form Wizard
+                        <a href="/admin/sifat-surat">
+                            <i class="icon-envelope-alt"></i>
+                            Sifat Surat
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/surat-masuk">
+                            <i class="icon-envelope"></i>
+                            Surat Masuk
                         </a>
                     </li>
                 </ul>
             </li>
             <li>
                 <a href="javascript:void(0);">
-                    <i class="icon-table"></i>
-                    Tables
+                    <i class="icon-user-md"></i>
+                    KA Seksi Pengujian dan Pengendalian Mutu
                 </a>
                 <ul class="sub-menu">
                     <li>
@@ -190,8 +196,8 @@
             </li>
             <li>
                 <a href="charts.html">
-                    <i class="icon-bar-chart"></i>
-                    Charts &amp; Statistics
+                    <i class="icon-user-md"></i>
+                    Staff Seksi Pengujian &amp; Pengendalian Mutu
                 </a>
             </li>
             <li>
