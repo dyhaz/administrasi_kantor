@@ -8,7 +8,7 @@
                 <div class="widget-header">Suratmasuk</div>
                 <div class="widget-content">
                     <a href="{{ url('/surat-masuk/create') }}" class="btn btn-success btn-sm" title="Add New SuratMasuk">
-                        <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                        <i class="icon-plus" aria-hidden="true"></i> Add New
                     </a>
 
                     {!! Form::open(['method' => 'GET', 'url' => 'surat-masuk', 'class' => 'navbar-form navbar-right', 'role' => 'search'])  !!}
@@ -16,7 +16,7 @@
                         <input type="text" class="form-control" name="search" placeholder="Search...">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="submit">
-                                    <i class="fa fa-search"></i>
+                                    <i class="icon-search"></i>
                                 </button>
                             </span>
                     </div>
@@ -37,20 +37,25 @@
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->nomor }}</td><td>{{ $item->tanggal_terima }}</td><td>{{ $item->nomor_naskah_dinas }}</td>
                                     <td>
-                                        <a href="{{ url('/surat-masuk/' . $item->id) }}" title="View SuratMasuk"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                        <a href="{{ url('/surat-masuk/' . $item->id . '/edit') }}" title="Edit SuratMasuk"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-                                        {!! Form::open([
-                                            'method'=>'DELETE',
-                                            'url' => ['/surat-masuk', $item->id],
-                                            'style' => 'display:inline'
-                                        ]) !!}
-                                        {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
-                                                'type' => 'submit',
-                                                'class' => 'btn btn-danger btn-xs',
-                                                'title' => 'Delete SuratMasuk',
-                                                'onclick'=>'return confirm("Confirm delete?")'
-                                        )) !!}
-                                        {!! Form::close() !!}
+                                        <div class="btn-toolbar">
+                                            <div class="btn-group">
+                                                <button onclick="window.location='{{ url('/surat-masuk/' . $item->id) }}'" title="View SuratMasuk" class="btn btn-info btn-xs"><i class="icon-eye-open" aria-hidden="true"></i> View</button>
+                                                <button onclick="window.location='{{ url('/surat-masuk/' . $item->id . '/edit') }}'" title="Edit SuratMasuk" class="btn btn-primary btn-xs"><i class="icon-edit" aria-hidden="true"></i> Edit</button>
+                                                {!! Form::button('<i class="icon-trash" aria-hidden="true"></i> Delete', array(
+                                                        'type' => 'submit',
+                                                        'class' => 'btn btn-danger btn-xs',
+                                                        'title' => 'Delete SuratMasuk',
+                                                        'onclick'=>'if(confirm("Confirm delete?")) $("#delete-'.$item->id.'").submit()'
+                                                )) !!}
+                                                {!! Form::open([
+                                                    'method'=>'DELETE',
+                                                    'url' => ['/surat-masuk', $item->id],
+                                                    'style' => 'display:inline',
+                                                    'id' => 'delete-'.$item->id
+                                                ]) !!}
+                                                {!! Form::close() !!}
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

@@ -12,11 +12,12 @@
                         <br />
 
                         @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
+                            @foreach ($errors->all() as $error)
+                                <div class="alert alert-danger fade in">
+                                    <i class="icon-remove close" data-dismiss="alert"></i>
+                                    <strong>Error!</strong> {{ $error }}
+                                </div>
+                            @endforeach
                         @endif
 
                         {!! Form::open(['url' => 'surat-masuk', 'class' => 'form-horizontal', 'files' => true]) !!}

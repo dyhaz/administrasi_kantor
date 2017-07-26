@@ -1,11 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
-    <div class="container">
         <div class="row">
-            @include('admin.sidebar')
-
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">Create New %%modelName%%</div>
                     <div class="panel-body">
@@ -14,11 +11,12 @@
                         <br />
 
                         @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
+                            @foreach ($errors->all() as $error)
+                                <div class="alert alert-danger fade in">
+                                    <i class="icon-remove close" data-dismiss="alert"></i>
+                                    <strong>Error!</strong> {{ $error }}
+                                </div>
+                            @endforeach
                         @endif
 
                         {!! Form::open(['url' => '/%%routeGroup%%%%viewName%%', 'class' => 'form-horizontal', 'files' => true]) !!}
@@ -31,5 +29,4 @@
                 </div>
             </div>
         </div>
-    </div>
 @endsection

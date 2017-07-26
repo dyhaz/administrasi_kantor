@@ -19,6 +19,7 @@ class SuratMasukController extends Controller
         'tanggal_terima' => 'required|date',
         'nomor_naskah_dinas' => 'required|max:255',
         'nomor_naskah_dinas' => 'required|max:255',
+        'file' => 'required|file',
     ];
 
     /**

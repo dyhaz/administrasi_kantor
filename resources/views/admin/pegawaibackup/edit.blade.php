@@ -2,11 +2,12 @@
 
 @section('content')
         <div class="row">
+
             <div class="col-md-12">
                 <div class="widget box">
-                    <div class="widget-header">Edit SuratMasuk #{{ $suratmasuk->id }}</div>
+                    <div class="widget-header">Edit Pegawai #{{ $pegawai->id }}</div>
                     <div class="widget-content">
-                        <a href="{{ url('/surat-masuk') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/admin/pegawai') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -19,14 +20,14 @@
                             @endforeach
                         @endif
 
-                        {!! Form::model($suratmasuk, [
+                        {!! Form::model($pegawai, [
                             'method' => 'PATCH',
-                            'url' => ['/surat-masuk', $suratmasuk->id],
+                            'url' => ['/admin/pegawai', $pegawai->id],
                             'class' => 'form-horizontal',
                             'files' => true
                         ]) !!}
 
-                        @include ('surat-masuk.form', ['submitButtonText' => 'Update'])
+                        @include ('admin.pegawaibackup.form', ['submitButtonText' => 'Update'])
 
                         {!! Form::close() !!}
 

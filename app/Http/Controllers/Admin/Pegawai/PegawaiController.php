@@ -11,6 +11,16 @@ use Session;
 
 class PegawaiController extends Controller
 {
+
+    const MODEL = Pegawai::class;
+
+    protected $validation = [
+        'nip' => 'bail|required|unique:pegawai|max:255',
+        'nama' => 'required|max:100',
+        'jenis_kelamin' => 'required|max:1',
+        'tanggal_lahir' => 'date',
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -57,7 +67,8 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $this->validate($request, $this->validation);
+
         $requestData = $request->all();
         
         Pegawai::create($requestData);
@@ -105,7 +116,10 @@ class PegawaiController extends Controller
      */
     public function update($id, Request $request)
     {
-        
+        $validation = $this->validation;
+        $validation['nip'] = 'required';
+        $this->validate($request, $validation);
+
         $requestData = $request->all();
         
         $pegawai = Pegawai::findOrFail($id);
