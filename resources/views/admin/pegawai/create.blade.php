@@ -1,14 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            @include('admin.sidebar')
 
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Create New Pegawai</div>
-                    <div class="panel-body">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">Create New Pegawai</div>
+                    <div class="widget-content">
                         <a href="{{ url('/admin/pegawai') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
@@ -31,5 +30,4 @@
                 </div>
             </div>
         </div>
-    </div>
 @endsection

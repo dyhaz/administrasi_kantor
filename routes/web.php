@@ -10,7 +10,17 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/', 'CobaController@index');
+Route::post('/login', 'Auth\LoginController@login');
+Route::get('/login', 'Auth\LoginController@index');
+
+Route::get('/home', function() {
+    return view('welcome');
+});
+
 
 Route::resource('admin/pegawai', 'Admin\\Pegawai\\PegawaiController');
+Route::resource('surat-masuk', 'SuratMasuk\\SuratMasukController');

@@ -19,6 +19,7 @@
 
     <div id="content">
         <div class="container">
+            @include('includes.page-header')
             @yield('content')
         </div>
         <!-- /.container -->

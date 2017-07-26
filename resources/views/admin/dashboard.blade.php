@@ -6,10 +6,10 @@
         @include('admin.sidebar')
 
         <div class="col-md-9">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+            <div class="widget box">
+                <div class="widget-header">Dashboard</div>
 
-                <div class="panel-body">
+                <div class="widget-content">
                     Your application's dashboard.
                 </div>
             </div>

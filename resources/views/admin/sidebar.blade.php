@@ -1,10 +1,10 @@
 <div class="col-md-3">
-    <div class="panel panel-default panel-flush">
-        <div class="panel-heading">
+    <div class="widget box panel-flush">
+        <div class="widget-header">
             Sidebar
         </div>
 
-        <div class="panel-body">
+        <div class="widget-content">
             <ul class="nav" role="tablist">
                 <li role="presentation">
                     <a href="{{ url('/admin') }}">

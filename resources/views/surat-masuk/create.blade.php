@@ -5,9 +5,9 @@
 
             <div class="col-md-12">
                 <div class="widget box">
-                    <div class="widget-header">Edit Pegawai #{{ $pegawai->id }}</div>
+                    <div class="widget-header">Create New SuratMasuk</div>
                     <div class="widget-content">
-                        <a href="{{ url('/admin/pegawai') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/surat-masuk') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -19,14 +19,9 @@
                             </ul>
                         @endif
 
-                        {!! Form::model($pegawai, [
-                            'method' => 'PATCH',
-                            'url' => ['/admin/pegawai', $pegawai->id],
-                            'class' => 'form-horizontal',
-                            'files' => true
-                        ]) !!}
+                        {!! Form::open(['url' => 'surat-masuk', 'class' => 'form-horizontal', 'files' => true]) !!}
 
-                        @include ('admin.pegawai.form', ['submitButtonText' => 'Update'])
+                        @include ('surat-masuk.form')
 
                         {!! Form::close() !!}
 

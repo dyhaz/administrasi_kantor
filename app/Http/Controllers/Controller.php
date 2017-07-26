@@ -10,4 +10,16 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    protected $model;
+
+    protected $validation;
+
+    public function __construct() {
+        if(defined('static::MODEL')) {
+            $modelClass = static::MODEL;
+            $this->model = new $modelClass;
+
+        }
+    }
 }
