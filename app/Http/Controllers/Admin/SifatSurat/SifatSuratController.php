@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\SifatSurat;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\SifatSurat;
+use App\Models\SifatSurat;
 use Illuminate\Http\Request;
 use Session;
 

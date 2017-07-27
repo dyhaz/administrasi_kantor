@@ -1,17 +1,17 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SifatSurat extends Model
+class Kota extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'sifat_surat';
+    protected $table = 'kota';
 
     /**
     * The database primary key value.

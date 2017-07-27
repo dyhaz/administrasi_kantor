@@ -32,7 +32,30 @@
                             <tr>
                                 <th>ID</th><td>{{ $suratmasuk->id }}</td>
                             </tr>
-                            <tr><th> Nomor </th><td> {{ $suratmasuk->nomor }} </td></tr><tr><th> Tanggal Terima </th><td> {{ $suratmasuk->tanggal_terima }} </td></tr><tr><th> Nomor Naskah Dinas </th><td> {{ $suratmasuk->nomor_naskah_dinas }} </td></tr>
+                            <tr>
+                                <th> Nomor </th><td> {{ $suratmasuk->nomor }} </td>
+                            </tr>
+                            <tr>
+                                <th> Tanggal Terima </th><td> {{ $suratmasuk->tanggal_terima }} </td>
+                            </tr>
+                            <tr>
+                                <th> Nomor Naskah Dinas </th><td> {{ $suratmasuk->nomor_naskah_dinas }} </td>
+                            </tr>
+                            <tr>
+                                <th> Sifat </th><td> {{ @$suratmasuk->sifat_surat->nama }} </td>
+                            </tr>
+                            <tr>
+                                <th> Perihal </th><td> {{ $suratmasuk->perihal }} </td>
+                            </tr>
+                            <tr>
+                                <th> Isi Ringkas </th><td> {{ $suratmasuk->isi_ringkas }} </td>
+                            </tr>
+                            <tr>
+                                <th> Instansi </th><td> {{ @$suratmasuk->instansi->nama }} </td>
+                            </tr>
+                            <tr>
+                                <th> File Surat </th><td> <button class="btn btn-primary" onclick="window.location='{{ route('file', ['id' => $suratmasuk->id]) }}'"><i class="icon-download"></i> Download</button> </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

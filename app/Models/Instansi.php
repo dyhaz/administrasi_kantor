@@ -1,17 +1,19 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\Relationship\InstansiRelationship;
 
-class Pegawai extends Model
+class Instansi extends Model
 {
+    use InstansiRelationship;
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'pegawai';
+    protected $table = 'instansi';
 
     /**
     * The database primary key value.
@@ -25,7 +27,7 @@ class Pegawai extends Model
      *
      * @var array
      */
-    protected $fillable = ['nip', 'nama', 'alamat', 'id_divisi', 'id_jabatan', 'jenis_kelamin', 'no_telp', 'tanggal_lahir'];
+    protected $fillable = ['nama', 'id_kota', 'no_telp'];
 
     
 }

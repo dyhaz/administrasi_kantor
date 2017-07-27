@@ -4,10 +4,14 @@ namespace App\Http\Controllers\SuratMasuk;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\SifatSurat;
+use Illuminate\Support\Facades\Response;
 
-use App\SuratMasuk;
+use App\Models\SuratMasuk;
 use Illuminate\Http\Request;
 use Session;
+use GrahamCampbell\Flysystem\Facades\Flysystem;
+use Illuminate\Support\Facades\Storage;
 
 class SuratMasukController extends Controller
 {
@@ -56,7 +60,8 @@ class SuratMasukController extends Controller
      */
     public function create()
     {
-        return view('surat-masuk.create');
+        $sifatsurat = SifatSurat::orderBy('id')->pluck('nama','id');
+        return view('surat-masuk.create')->with(compact('sifatsurat'));
     }
 
     /**
@@ -94,9 +99,31 @@ class SuratMasukController extends Controller
      */
     public function show($id)
     {
-        $suratmasuk = SuratMasuk::findOrFail($id);
-
+        $suratmasuk = SuratMasuk::with('instansi')->with('sifat_surat')->findOrFail($id);
+        Flysystem::read($suratmasuk->file);
         return view('surat-masuk.show', compact('suratmasuk'));
+    }
+
+    /**
+     * Download SuratMasuk.
+     *
+     * @param  int  $id
+     *
+     * @return \Illuminate\Support\Facades\Response
+     */
+    public function download_file($id)
+    {
+        $suratmasuk = SuratMasuk::findOrFail($id);
+        $fs = Storage::disk('local')->getDriver();
+        $stream = $fs->readStream($suratmasuk->file);
+
+        return Response::stream(function() use($stream) {
+            fpassthru($stream);
+        }, 200, [
+            "Content-Type" => $fs->getMimetype($suratmasuk->file),
+            "Content-Length" => $fs->getSize($suratmasuk->file),
+            "Content-disposition" => "attachment; filename=\"" . basename($suratmasuk->file) . "\"",
+        ]);
     }
 
     /**
@@ -109,8 +136,8 @@ class SuratMasukController extends Controller
     public function edit($id)
     {
         $suratmasuk = SuratMasuk::findOrFail($id);
-
-        return view('surat-masuk.edit', compact('suratmasuk'));
+        $sifatsurat = SifatSurat::orderBy('id')->pluck('nama','id');
+        return view('surat-masuk.edit', compact('suratmasuk', 'sifatsurat'));
     }
 
     /**

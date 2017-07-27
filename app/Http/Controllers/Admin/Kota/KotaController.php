@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\Kota;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Kota;
+use App\Models\Kota;
 use Illuminate\Http\Request;
 use Session;
 

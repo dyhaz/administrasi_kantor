@@ -1,17 +1,17 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Instansi extends Model
+class SifatSurat extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'instansi';
+    protected $table = 'sifat_surat';
 
     /**
     * The database primary key value.
@@ -25,7 +25,7 @@ class Instansi extends Model
      *
      * @var array
      */
-    protected $fillable = ['nama', 'id_kota', 'no_telp'];
+    protected $fillable = ['nama'];
 
     
 }

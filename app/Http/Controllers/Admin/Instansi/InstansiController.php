@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\Instansi;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Instansi;
+use App\Models\Instansi;
 use Illuminate\Http\Request;
 use Session;
 
@@ -72,7 +72,7 @@ class InstansiController extends Controller
      */
     public function show($id)
     {
-        $instansi = Instansi::findOrFail($id);
+        $instansi = Instansi::with('kota')->findOrFail($id);
 
         return view('admin.instansi.show', compact('instansi'));
     }
@@ -86,7 +86,7 @@ class InstansiController extends Controller
      */
     public function edit($id)
     {
-        $instansi = Instansi::findOrFail($id);
+        $instansi = Instansi::with('kota')->findOrFail($id);
 
         return view('admin.instansi.edit', compact('instansi'));
     }

@@ -19,13 +19,14 @@
 </div><div class="form-group {{ $errors->has('id_sifat') ? 'has-error' : ''}}">
     {!! Form::label('id_sifat', 'Id Sifat', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::number('id_sifat', null, ['class' => 'form-control']) !!}
+        {!! Form::select('id_sifat', $sifatsurat, null, ['id' => 'id_sifat', 'class' => 'form-control']) !!}
         {!! $errors->first('id_sifat', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('id_instansi') ? 'has-error' : ''}}">
-    {!! Form::label('id_instansi', 'Id Instansi', ['class' => 'col-md-4 control-label']) !!}
+    {!! Form::label('id_instansi', 'Pengirim Surat', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::number('id_instansi', null, ['class' => 'form-control']) !!}
+        {!! Form::hidden('id_instansi', null) !!}
+        {!! Form::text('search_text', null, array('placeholder' => 'Search Text','class' => 'form-control','id'=>'search_text')) !!}
         {!! $errors->first('id_instansi', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('perihal') ? 'has-error' : ''}}">
@@ -53,3 +54,37 @@
         {!! Form::submit(isset($submitButtonText) ? $submitButtonText : 'Create', ['class' => 'btn btn-primary']) !!}
     </div>
 </div>
+
+@section('js')
+<script type="text/javascript">
+
+    var url = "{{ route('searchInstansi') }}?term=%QUERY%";
+
+    $('#search_text').typeahead({
+        remote:  {
+            url: url,
+            filter: function (data) {
+                // Map the remote source JSON array to a JavaScript object array
+                return $.map(data, function (data) {
+                    return {
+                        value: data.value
+                    };
+                });
+            },
+            ajax:{
+                type:"GET",
+                cache:false,
+                data:{
+                    limit:5
+                },
+                complete:function(jqXHR,textStatus){
+                    alert('OK!');
+                }
+            }
+        }
+    }).on('typeahead:selected',function(evt,datum){
+        alert(datum.id);
+        $('#id_instansi').val(datum.id); //Select a user from the drop-down in an item, refresh the read-only personId value
+    });
+</script>
+@endsection

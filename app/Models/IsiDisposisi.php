@@ -1,17 +1,18 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Kota extends Model
+class IsiDisposisi extends Model
 {
+
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'kota';
+    protected $table = 'isi_disposisi';
 
     /**
     * The database primary key value.
@@ -25,7 +26,7 @@ class Kota extends Model
      *
      * @var array
      */
-    protected $fillable = ['nama'];
+    protected $fillable = ['isi'];
 
     
 }

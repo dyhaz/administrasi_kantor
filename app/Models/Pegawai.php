@@ -1,17 +1,17 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SuratMasuk extends Model
+class Pegawai extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'surat_masuk';
+    protected $table = 'pegawai';
 
     /**
     * The database primary key value.
@@ -25,7 +25,7 @@ class SuratMasuk extends Model
      *
      * @var array
      */
-    protected $fillable = ['nomor', 'tanggal_terima', 'nomor_naskah_dinas', 'id_sifat', 'id_instansi', 'perihal', 'isi_ringkas', 'file'];
+    protected $fillable = ['nip', 'nama', 'alamat', 'id_divisi', 'id_jabatan', 'jenis_kelamin', 'no_telp', 'tanggal_lahir'];
 
     
 }

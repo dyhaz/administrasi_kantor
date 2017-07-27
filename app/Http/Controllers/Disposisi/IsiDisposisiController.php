@@ -1,26 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Pegawai;
+namespace App\Http\Controllers\Disposisi;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\Pegawai;
+use App\Models\IsiDisposisi;
 use Illuminate\Http\Request;
 use Session;
 
-class PegawaiController extends Controller
+class IsiDisposisiController extends Controller
 {
-
-    const MODEL = Pegawai::class;
-
-    protected $validation = [
-        'nip' => 'bail|required|unique:pegawai|max:255',
-        'nama' => 'required|max:100',
-        'jenis_kelamin' => 'required|max:1',
-        'tanggal_lahir' => 'date',
-    ];
-
+    const MODEL = IsiDisposisi::class;
     /**
      * Display a listing of the resource.
      *
@@ -32,20 +23,13 @@ class PegawaiController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $pegawai = Pegawai::where('nip', 'LIKE', "%$keyword%")
-				->orWhere('nama', 'LIKE', "%$keyword%")
-				->orWhere('alamat', 'LIKE', "%$keyword%")
-				->orWhere('id_divisi', 'LIKE', "%$keyword%")
-				->orWhere('id_jabatan', 'LIKE', "%$keyword%")
-				->orWhere('jenis_kelamin', 'LIKE', "%$keyword%")
-				->orWhere('no_telp', 'LIKE', "%$keyword%")
-				->orWhere('tanggal_lahir', 'LIKE', "%$keyword%")
+            $isidisposisi = IsiDisposisi::where('isi', 'LIKE', "%$keyword%")
 				->paginate($perPage);
         } else {
-            $pegawai = Pegawai::paginate($perPage);
+            $isidisposisi = IsiDisposisi::paginate($perPage);
         }
 
-        return view('admin/pegawai.index', compact('pegawai'));
+        return view('admin.isi-disposisi.index', compact('isidisposisi'));
     }
 
     /**
@@ -55,7 +39,7 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        return view('admin/pegawai.create');
+        return view('admin.isi-disposisi.create');
     }
 
     /**
@@ -67,15 +51,14 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, $this->validation);
-
+        
         $requestData = $request->all();
         
-        Pegawai::create($requestData);
+        IsiDisposisi::create($requestData);
 
-        Session::flash('flash_message', 'Pegawai added!');
+        Session::flash('flash_message', 'IsiDisposisi added!');
 
-        return redirect('admin/pegawai');
+        return redirect('disposisi/isi-disposisi');
     }
 
     /**
@@ -87,9 +70,9 @@ class PegawaiController extends Controller
      */
     public function show($id)
     {
-        $pegawai = Pegawai::findOrFail($id);
+        $isidisposisi = IsiDisposisi::findOrFail($id);
 
-        return view('admin/pegawai.show', compact('pegawai'));
+        return view('admin.isi-disposisi.show', compact('isidisposisi'));
     }
 
     /**
@@ -101,9 +84,9 @@ class PegawaiController extends Controller
      */
     public function edit($id)
     {
-        $pegawai = Pegawai::findOrFail($id);
+        $isidisposisi = IsiDisposisi::findOrFail($id);
 
-        return view('admin/pegawai.edit', compact('pegawai'));
+        return view('admin.isi-disposisi.edit', compact('isidisposisi'));
     }
 
     /**
@@ -116,18 +99,15 @@ class PegawaiController extends Controller
      */
     public function update($id, Request $request)
     {
-        $validation = $this->validation;
-        $validation['nip'] = 'required';
-        $this->validate($request, $validation);
-
+        
         $requestData = $request->all();
         
-        $pegawai = Pegawai::findOrFail($id);
-        $pegawai->update($requestData);
+        $isidisposisi = IsiDisposisi::findOrFail($id);
+        $isidisposisi->update($requestData);
 
-        Session::flash('flash_message', 'Pegawai updated!');
+        Session::flash('flash_message', 'IsiDisposisi updated!');
 
-        return redirect('admin/pegawai');
+        return redirect('disposisi/isi-disposisi');
     }
 
     /**
@@ -139,10 +119,10 @@ class PegawaiController extends Controller
      */
     public function destroy($id)
     {
-        Pegawai::destroy($id);
+        IsiDisposisi::destroy($id);
 
-        Session::flash('flash_message', 'Pegawai deleted!');
+        Session::flash('flash_message', 'IsiDisposisi deleted!');
 
-        return redirect('admin/pegawai');
+        return redirect('disposisi/isi-disposisi');
     }
 }

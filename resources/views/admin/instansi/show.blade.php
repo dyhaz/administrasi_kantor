@@ -32,7 +32,7 @@
                             <tr>
                                 <th>ID</th><td>{{ $instansi->id }}</td>
                             </tr>
-                            <tr><th> Nama </th><td> {{ $instansi->nama }} </td></tr><tr><th> Id Kota </th><td> {{ $instansi->id_kota }} </td></tr><tr><th> No Telp </th><td> {{ $instansi->no_telp }} </td></tr>
+                            <tr><th> Nama </th><td> {{ $instansi->nama }} </td></tr><tr><th> Kota </th><td> {{ $instansi->kota->nama }} </td></tr><tr><th> No Telp </th><td> {{ $instansi->no_telp }} </td></tr>
                             </tbody>
                         </table>
                     </div>
