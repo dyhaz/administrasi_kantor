@@ -1,20 +1,13 @@
 @extends('layouts.master')
 
-@section('js')
-    <script>
-        $('#nomor').attr('disabled', 'disabled');
-    </script>
-@append
-
-
 @section('content')
 
     <div class="row">
         <div class="col-md-12">
             <div class="widget box">
-                <div class="widget-header">Edit SuratMasuk #{{ $suratmasuk->id }}</div>
+                <div class="widget-header">Edit Disposisi #{{ $disposisi->id }}</div>
                 <div class="widget-content">
-                    <a href="{{ url('/surat-masuk') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                    <a href="{{ url('/disposisi') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                     <br />
                     <br />
 
@@ -27,14 +20,14 @@
                         @endforeach
                     @endif
 
-                    {!! Form::model($suratmasuk, [
+                    {!! Form::model($disposisi, [
                         'method' => 'PATCH',
-                        'url' => ['/surat-masuk', $suratmasuk->id],
+                        'url' => ['/disposisi', $disposisi->id],
                         'class' => 'form-horizontal',
                         'files' => true
                     ]) !!}
 
-                    @include ('surat-masuk.form', ['submitButtonText' => 'Update'])
+                    @include ('disposisi.form', ['submitButtonText' => 'Update'])
 
                     {!! Form::close() !!}
 

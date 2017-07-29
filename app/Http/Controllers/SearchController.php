@@ -59,8 +59,32 @@ class SearchController extends BaseController
         foreach ($queries as $query)
         {
             $results[] = [ 'id' => $query->id, 'value' => $query->nama ];
-            $names[] = $query->nama;
         }
+
+        if(sizeof($queries) == 0) {
+            $results[] = [ 'id' => 0, 'value' => '<b>Buat "' . str_replace('%','',htmlentities($term)) . '"</b>'];
+        }
+
+        return Response::json($results);
+    }
+
+    public function searchSuratMasuk(){
+        $term = Input::get('term');
+
+        $results = array();
+
+        $queries = DB::table('surat_masuk')
+            ->where('nomor', 'LIKE', '%'.$term.'%')
+            ->orWhere('nomor_naskah_dinas', 'LIKE', '%'.$term.'%')
+            ->orWhere('perihal', 'LIKE', '%'.$term.'%')
+            ->orWhere('isi_ringkas', 'LIKE', '%'.$term.'%')
+            ->take(5)->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => $query->nomor ];
+        }
+
         return Response::json($results);
     }
 

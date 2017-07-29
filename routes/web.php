@@ -27,6 +27,7 @@ Route::get('/home', function() {
 Route::get('user/search/autocomplete', 'SearchController@searchUser')->name('searchUser');
 Route::get('kota/search/autocomplete', 'SearchController@searchKota')->name('searchKota');
 Route::get('instansi/search/autocomplete', 'SearchController@searchInstansi')->name('searchInstansi');
+Route::get('surat-masuk/search/autocomplete', 'SearchController@searchSuratMasuk')->name('searchSuratMasuk');
 
 Route::get('surat-masuk/file/{id}', 'SuratMasuk\\SuratMasukController@download_file')->name('file');
 
@@ -38,3 +39,5 @@ Route::resource('admin/kota', 'Admin\Kota\\KotaController');
 Route::resource('admin/instansi', 'Admin\Instansi\\InstansiController');
 Route::resource('admin/instansi', 'Admin\Instansi\\InstansiController');
 Route::resource('disposisi/isi-disposisi', 'Disposisi\\IsiDisposisiController');
+Route::resource('disposisi', 'Disposisi\\DisposisiController');
+Route::resource('tes/test', 'Test\\TestController');

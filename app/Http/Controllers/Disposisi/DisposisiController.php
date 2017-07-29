@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Instansi;
+namespace App\Http\Controllers\Disposisi;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\Instansi;
+use App\Models\Disposisi;
+use App\Models\SuratMasuk;
 use Illuminate\Http\Request;
 use Session;
 
-class InstansiController extends Controller
+class DisposisiController extends Controller
 {
-    const MODEL = Instansi::class;
+    const MODEL = Disposisi::class;
     /**
      * Display a listing of the resource.
      *
@@ -23,15 +24,15 @@ class InstansiController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $instansi = Instansi::with('kota')->where('nama', 'LIKE', "%$keyword%")
-				->orWhere('id_kota', 'LIKE', "%$keyword%")
-				->orWhere('no_telp', 'LIKE', "%$keyword%")
+            $disposisi = Disposisi::with('surat_masuk')->where('nomor', 'LIKE', "%$keyword%")
+				->orWhere('id_surat_masuk', 'LIKE', "%$keyword%")
+				->orWhere('keterangan', 'LIKE', "%$keyword%")
 				->paginate($perPage);
         } else {
-            $instansi = Instansi::with('kota')->paginate($perPage);
+            $disposisi = Disposisi::with('surat_masuk')->paginate($perPage);
         }
 
-        return view('admin.instansi.index', compact('instansi'));
+        return view('disposisi.index', compact('disposisi'));
     }
 
     /**
@@ -39,9 +40,14 @@ class InstansiController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('admin.instansi.create');
+        if($request->get('sm')) {
+            $suratmasuk = SuratMasuk::findOrFail($request->get('sm'));
+            return view('disposisi.create', compact('suratmasuk'));
+        }
+
+        return view('disposisi.create');
     }
 
     /**
@@ -56,11 +62,11 @@ class InstansiController extends Controller
         
         $requestData = $request->all();
         
-        Instansi::create($requestData);
+        Disposisi::create($requestData);
 
-        Session::flash('flash_message', 'Instansi added!');
+        Session::flash('flash_message', 'Disposisi added!');
 
-        return redirect('admin/instansi');
+        return redirect('disposisi');
     }
 
     /**
@@ -72,9 +78,9 @@ class InstansiController extends Controller
      */
     public function show($id)
     {
-        $instansi = Instansi::with('kota')->findOrFail($id);
+        $disposisi = Disposisi::with('surat_masuk')->findOrFail($id);
 
-        return view('admin.instansi.show', compact('instansi'));
+        return view('disposisi.show', compact('disposisi'));
     }
 
     /**
@@ -86,9 +92,9 @@ class InstansiController extends Controller
      */
     public function edit($id)
     {
-        $instansi = Instansi::with('kota')->findOrFail($id);
+        $disposisi = Disposisi::with('surat_masuk')->findOrFail($id);
 
-        return view('admin.instansi.edit', compact('instansi'));
+        return view('disposisi.edit', compact('disposisi'));
     }
 
     /**
@@ -104,12 +110,12 @@ class InstansiController extends Controller
         
         $requestData = $request->all();
         
-        $instansi = Instansi::with('kota')->findOrFail($id);
-        $instansi->update($requestData);
+        $disposisi = Disposisi::with('surat_masuk')->findOrFail($id);
+        $disposisi->update($requestData);
 
-        Session::flash('flash_message', 'Instansi updated!');
+        Session::flash('flash_message', 'Disposisi updated!');
 
-        return redirect('admin/instansi');
+        return redirect('disposisi');
     }
 
     /**
@@ -121,10 +127,10 @@ class InstansiController extends Controller
      */
     public function destroy($id)
     {
-        Instansi::destroy($id);
+        Disposisi::destroy($id);
 
-        Session::flash('flash_message', 'Instansi deleted!');
+        Session::flash('flash_message', 'Disposisi deleted!');
 
-        return redirect('admin/instansi');
+        return redirect('disposisi/disposisi');
     }
 }

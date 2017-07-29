@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Instansi;
+namespace App\Http\Controllers\Test;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\Instansi;
+use App\Test;
 use Illuminate\Http\Request;
 use Session;
 
-class InstansiController extends Controller
+class TestController extends Controller
 {
-    const MODEL = Instansi::class;
+    const MODEL = Test::class;
     /**
      * Display a listing of the resource.
      *
@@ -23,15 +23,13 @@ class InstansiController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $instansi = Instansi::with('kota')->where('nama', 'LIKE', "%$keyword%")
-				->orWhere('id_kota', 'LIKE', "%$keyword%")
-				->orWhere('no_telp', 'LIKE', "%$keyword%")
+            $test = Test::where('status', 'LIKE', "%$keyword%")
 				->paginate($perPage);
         } else {
-            $instansi = Instansi::with('kota')->paginate($perPage);
+            $test = Test::paginate($perPage);
         }
 
-        return view('admin.instansi.index', compact('instansi'));
+        return view('test.index', compact('test'));
     }
 
     /**
@@ -41,7 +39,7 @@ class InstansiController extends Controller
      */
     public function create()
     {
-        return view('admin.instansi.create');
+        return view('test.create');
     }
 
     /**
@@ -56,11 +54,11 @@ class InstansiController extends Controller
         
         $requestData = $request->all();
         
-        Instansi::create($requestData);
+        Test::create($requestData);
 
-        Session::flash('flash_message', 'Instansi added!');
+        Session::flash('flash_message', 'Test added!');
 
-        return redirect('admin/instansi');
+        return redirect('tes/test');
     }
 
     /**
@@ -72,9 +70,9 @@ class InstansiController extends Controller
      */
     public function show($id)
     {
-        $instansi = Instansi::with('kota')->findOrFail($id);
+        $test = Test::findOrFail($id);
 
-        return view('admin.instansi.show', compact('instansi'));
+        return view('test.show', compact('test'));
     }
 
     /**
@@ -86,9 +84,9 @@ class InstansiController extends Controller
      */
     public function edit($id)
     {
-        $instansi = Instansi::with('kota')->findOrFail($id);
+        $test = Test::findOrFail($id);
 
-        return view('admin.instansi.edit', compact('instansi'));
+        return view('test.edit', compact('test'));
     }
 
     /**
@@ -104,12 +102,12 @@ class InstansiController extends Controller
         
         $requestData = $request->all();
         
-        $instansi = Instansi::with('kota')->findOrFail($id);
-        $instansi->update($requestData);
+        $test = Test::findOrFail($id);
+        $test->update($requestData);
 
-        Session::flash('flash_message', 'Instansi updated!');
+        Session::flash('flash_message', 'Test updated!');
 
-        return redirect('admin/instansi');
+        return redirect('tes/test');
     }
 
     /**
@@ -121,10 +119,10 @@ class InstansiController extends Controller
      */
     public function destroy($id)
     {
-        Instansi::destroy($id);
+        Test::destroy($id);
 
-        Session::flash('flash_message', 'Instansi deleted!');
+        Session::flash('flash_message', 'Test deleted!');
 
-        return redirect('admin/instansi');
+        return redirect('tes/test');
     }
 }

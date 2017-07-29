@@ -135,7 +135,7 @@ class SuratMasukController extends Controller
      */
     public function edit($id)
     {
-        $suratmasuk = SuratMasuk::findOrFail($id);
+        $suratmasuk = SuratMasuk::with('instansi')->findOrFail($id);
         $sifatsurat = SifatSurat::orderBy('id')->pluck('nama','id');
         return view('surat-masuk.edit', compact('suratmasuk', 'sifatsurat'));
     }
