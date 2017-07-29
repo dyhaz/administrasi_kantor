@@ -12,6 +12,10 @@ use Session;
 class IsiDisposisiController extends Controller
 {
     const MODEL = IsiDisposisi::class;
+
+    protected $validation = [
+        'isi' => 'bail|required|max:255',
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -51,7 +55,7 @@ class IsiDisposisiController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $this->validate($request, $this->validation);
         $requestData = $request->all();
         
         IsiDisposisi::create($requestData);
@@ -99,7 +103,7 @@ class IsiDisposisiController extends Controller
      */
     public function update($id, Request $request)
     {
-        
+        $this->validate($request, $this->validation);
         $requestData = $request->all();
         
         $isidisposisi = IsiDisposisi::findOrFail($id);

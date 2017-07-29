@@ -18,4 +18,9 @@ trait DisposisiRelationship
     {
         return $this->hasOne(SuratMasuk::class, 'id', 'id_surat_masuk');
     }
+
+    public function isi_disposisi()
+    {
+        return $this->belongsToMany('App\Models\IsiDisposisi');
+    }
 }

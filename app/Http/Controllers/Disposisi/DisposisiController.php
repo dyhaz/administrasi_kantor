@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\Disposisi;
+use App\Models\IsiDisposisi;
 use App\Models\SuratMasuk;
 use Illuminate\Http\Request;
 use Session;
@@ -13,6 +14,12 @@ use Session;
 class DisposisiController extends Controller
 {
     const MODEL = Disposisi::class;
+
+    protected $validation = [
+        'keterangan' => 'bail|required',
+        'id_surat_masuk' => 'required|numeric',
+        'status' => 'required|numeric',
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -42,12 +49,13 @@ class DisposisiController extends Controller
      */
     public function create(Request $request)
     {
+        $isidisposisi = IsiDisposisi::orderBy('isi')->pluck('isi','id');
+
         if($request->get('sm')) {
             $suratmasuk = SuratMasuk::findOrFail($request->get('sm'));
-            return view('disposisi.create', compact('suratmasuk'));
+            return view('disposisi.create', compact('suratmasuk'))->with(compact('isidisposisi'));
         }
-
-        return view('disposisi.create');
+        return view('disposisi.create')->with(compact('isidisposisi'));
     }
 
     /**
@@ -59,10 +67,14 @@ class DisposisiController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $this->validate($request, $this->validation);
         $requestData = $request->all();
-        
-        Disposisi::create($requestData);
+
+        $disposisi = Disposisi::create($requestData);
+
+        foreach($requestData['isi_disposisi'] as $id_isi_diposisi) {
+            $disposisi->isi_disposisi()->attach($id_isi_diposisi);
+        }
 
         Session::flash('flash_message', 'Disposisi added!');
 
@@ -78,7 +90,7 @@ class DisposisiController extends Controller
      */
     public function show($id)
     {
-        $disposisi = Disposisi::with('surat_masuk')->findOrFail($id);
+        $disposisi = Disposisi::with('surat_masuk')->with('isi_disposisi')->findOrFail($id);
 
         return view('disposisi.show', compact('disposisi'));
     }
@@ -92,9 +104,16 @@ class DisposisiController extends Controller
      */
     public function edit($id)
     {
-        $disposisi = Disposisi::with('surat_masuk')->findOrFail($id);
+        $disposisi = Disposisi::with('surat_masuk')->with('isi_disposisi')->findOrFail($id);
 
-        return view('disposisi.edit', compact('disposisi'));
+        $disposisi_isi = [];
+        foreach($disposisi['isi_disposisi'] as $isi) {
+            $disposisi_isi[] = $isi['id'];
+        }
+
+        $isidisposisi = IsiDisposisi::orderBy('isi')->pluck('isi','id');
+
+        return view('disposisi.edit', compact('disposisi'))->with(compact('isidisposisi'))->with('disposisi_isi', $disposisi_isi);
     }
 
     /**
@@ -107,11 +126,17 @@ class DisposisiController extends Controller
      */
     public function update($id, Request $request)
     {
-        
+        $this->validate($request, $this->validation);
         $requestData = $request->all();
         
         $disposisi = Disposisi::with('surat_masuk')->findOrFail($id);
         $disposisi->update($requestData);
+
+        $disposisi->isi_disposisi()->detach();
+
+        foreach($requestData['isi_disposisi'] as $id_isi_diposisi) {
+            $disposisi->isi_disposisi()->attach($id_isi_diposisi);
+        }
 
         Session::flash('flash_message', 'Disposisi updated!');
 

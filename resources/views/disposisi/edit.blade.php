@@ -36,3 +36,15 @@
         </div>
     </div>
 @endsection
+
+@section('js')
+    @parent
+    <script type="text/javascript">
+    @if($disposisi)
+        @foreach($disposisi_isi as $id_isi_disposisi)
+            var id_isi = '{{ $id_isi_disposisi }}';
+            $('option[value='+id_isi+']').attr('selected', 'selected');
+        @endforeach
+    @endif
+    </script>
+@append

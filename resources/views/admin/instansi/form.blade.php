@@ -5,7 +5,7 @@
         {!! $errors->first('nama', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('id_kota') ? 'has-error' : ''}}">
-    {!! Form::label('id_kota', 'Id Kota', ['class' => 'col-md-4 control-label']) !!}
+    {!! Form::label('id_kota', 'Kota', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::hidden('id_kota', null) !!}
         {!! Form::hidden('nama_kota', null) !!}

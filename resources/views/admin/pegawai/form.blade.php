@@ -43,7 +43,7 @@
 </div><div class="form-group {{ $errors->has('tanggal_lahir') ? 'has-error' : ''}}">
     {!! Form::label('tanggal_lahir', 'Tanggal Lahir', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::date('tanggal_lahir', null, ['class' => 'form-control']) !!}
+        {!! Form::text('tanggal_lahir', null, ['class' => 'form-control datepicker']) !!}
         {!! $errors->first('tanggal_lahir', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -53,3 +53,20 @@
         {!! Form::submit(isset($submitButtonText) ? $submitButtonText : 'Create', ['class' => 'btn btn-primary']) !!}
     </div>
 </div>
+
+
+@section('js')
+    @parent
+    <script type="text/javascript">
+        var date = new Date("{{ date('Y-m-d') }}");
+        var currentMonth = date.getMonth();
+        var currentDate = date.getDate();
+        var currentYear = date.getFullYear();
+        var maxDate = new Date(currentYear, currentMonth, currentDate);
+
+        $('.datepicker').datepicker({
+            dateFormat: 'yy-mm-dd',
+            maxDate: maxDate
+        });
+    </script>
+@append

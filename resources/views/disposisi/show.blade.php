@@ -32,7 +32,30 @@
                             <tr>
                                 <th>ID</th><td>{{ $disposisi->id }}</td>
                             </tr>
-                            <tr><th> Nomor </th><td> {{ $disposisi->nomor }} </td></tr><tr><th> Id Surat Masuk </th><td> {{ $disposisi->id_surat_masuk }} </td></tr><tr><th> Keterangan </th><td> {{ $disposisi->keterangan }} </td></tr>
+                            <tr>
+                                <th> Nomor </th>
+                                <td> {{ $disposisi->nomor }} </td>
+                            </tr>
+                            <tr>
+                                <th> Nomor Surat Masuk </th>
+                                <td> {{ @$disposisi->surat_masuk->nomor }} </td>
+                            </tr>
+                            <tr>
+                                <th> Isi Disposisi </th>
+                                <td>
+                                    {{ $disposisi->__isi_disposisi() }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th> Status </th>
+                                <td>
+                                    {{ $disposisi->__status() }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th> Keterangan </th>
+                                <td> {{ $disposisi->keterangan }} </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

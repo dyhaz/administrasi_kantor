@@ -29,5 +29,16 @@ class Disposisi extends Model
      */
     protected $fillable = ['nomor', 'id_surat_masuk', 'keterangan', 'status'];
 
-    
+    public function __status() {
+        $status = ['Balasan', 'Tidak perlu balasan'];
+        return @$status[$this->status];
+    }
+
+    public function __isi_disposisi() {
+        $isi_disposisi = [];
+        foreach($this->isi_disposisi as $isi) {
+            $isi_disposisi[] = $isi->isi;
+        }
+        return implode(', ', $isi_disposisi);
+    }
 }

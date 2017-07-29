@@ -75,13 +75,7 @@
 <!--[if lt IE 9]>
 <script type="text/javascript" src="/theme/plugins/flot/excanvas.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="/theme/plugins/sparkline/jquery.sparkline.min.js"></script>
-<script type="text/javascript" src="/theme/plugins/flot/jquery.flot.min.js"></script>
-<script type="text/javascript" src="/theme/plugins/flot/jquery.flot.tooltip.min.js"></script>
-<script type="text/javascript" src="/theme/plugins/flot/jquery.flot.resize.min.js"></script>
-<script type="text/javascript" src="/theme/plugins/flot/jquery.flot.time.min.js"></script>
-<script type="text/javascript" src="/theme/plugins/flot/jquery.flot.growraf.min.js"></script>
-<script type="text/javascript" src="/theme/plugins/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+<!-- @include('includes.assets.js-charts') -->
 
 <script type="text/javascript" src="/theme/plugins/daterangepicker/moment.min.js"></script>
 <script type="text/javascript" src="/theme/plugins/daterangepicker/daterangepicker.js"></script>
@@ -113,6 +107,8 @@
         App.init(); // Init layout and core plugins
         Plugins.init(); // Init all plugins
         FormComponents.init(); // Init all form-specific plugins
+
+        $('.select2-multiple').select2();
     });
 </script>
 

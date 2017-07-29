@@ -81,51 +81,15 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="ui_general.html">
+                        <a href="/disposisi">
                             <i class="icon-angle-right"></i>
-                            General
+                            Disposisi Surat
                         </a>
                     </li>
                     <li>
-                        <a href="ui_buttons.html">
+                        <a href="/disposisi/isi-disposisi">
                             <i class="icon-angle-right"></i>
-                            Buttons
-                        </a>
-                    </li>
-                    <li>
-                        <a href="ui_tabs_accordions.html">
-                            <i class="icon-angle-right"></i>
-                            Tabs &amp; Accordions
-                        </a>
-                    </li>
-                    <li>
-                        <a href="ui_sliders.html">
-                            <i class="icon-angle-right"></i>
-                            Sliders
-                        </a>
-                    </li>
-                    <li>
-                        <a href="ui_nestable_list.html">
-                            <i class="icon-angle-right"></i>
-                            Nestable List
-                        </a>
-                    </li>
-                    <li>
-                        <a href="ui_typography.html">
-                            <i class="icon-angle-right"></i>
-                            Typography / Icons
-                        </a>
-                    </li>
-                    <li>
-                        <a href="ui_google_maps.html">
-                            <i class="icon-angle-right"></i>
-                            Google Maps
-                        </a>
-                    </li>
-                    <li>
-                        <a href="ui_grid.html">
-                            <i class="icon-angle-right"></i>
-                            Grid
+                            Isi Disposisi
                         </a>
                     </li>
                 </ul>

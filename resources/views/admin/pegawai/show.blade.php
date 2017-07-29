@@ -32,7 +32,22 @@
                             <tr>
                                 <th>ID</th><td>{{ $pegawai->id }}</td>
                             </tr>
-                            <tr><th> Nip </th><td> {{ $pegawai->nip }} </td></tr><tr><th> Nama </th><td> {{ $pegawai->nama }} </td></tr><tr><th> Alamat </th><td> {{ $pegawai->alamat }} </td></tr>
+                            <tr>
+                                <th> Nip </th>
+                                <td> {{ $pegawai->nip }} </td>
+                            </tr>
+                            <tr>
+                                <th> Nama </th>
+                                <td> {{ $pegawai->nama }} </td>
+                            </tr>
+                            <tr>
+                                <th> Alamat </th>
+                                <td> {{ $pegawai->alamat }} </td>
+                            </tr>
+                            <tr>
+                                <th> Jenis Kelamin </th>
+                                <td> {{ $pegawai->__jenis_kelamin() }} </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

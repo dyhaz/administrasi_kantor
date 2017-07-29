@@ -27,5 +27,8 @@ class Pegawai extends Model
      */
     protected $fillable = ['nip', 'nama', 'alamat', 'id_divisi', 'id_jabatan', 'jenis_kelamin', 'no_telp', 'tanggal_lahir'];
 
-    
+    public function __jenis_kelamin() {
+        $status = ['Laki-laki', 'Perempuan'];
+        return @$status[$this->jenis_kelamin];
+    }
 }

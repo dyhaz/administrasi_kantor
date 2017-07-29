@@ -12,6 +12,12 @@ use Session;
 class InstansiController extends Controller
 {
     const MODEL = Instansi::class;
+
+    protected $validation = [
+        'nama' => 'bail|required|max:50',
+        'no_telp' => 'required|max:20',
+        'id_kota' => 'required|numeric',
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -53,7 +59,7 @@ class InstansiController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $this->validate($request, $this->validation);
         $requestData = $request->all();
         
         Instansi::create($requestData);
@@ -101,7 +107,7 @@ class InstansiController extends Controller
      */
     public function update($id, Request $request)
     {
-        
+        $this->validate($request, $this->validation);
         $requestData = $request->all();
         
         $instansi = Instansi::with('kota')->findOrFail($id);
