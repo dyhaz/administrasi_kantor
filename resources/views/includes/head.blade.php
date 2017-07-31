@@ -83,6 +83,8 @@
 
 <script type="text/javascript" src="/theme/plugins/fullcalendar/fullcalendar.min.js"></script>
 
+<script type="text/javascript" src="/js/waitingfor.js"></script>
+
 <!-- Bootbox -->
 <script type="text/javascript" src="/theme/plugins/bootbox/bootbox.min.js"></script>
 
@@ -94,6 +96,8 @@
 <!-- Forms -->
 <script type="text/javascript" src="/theme/plugins/uniform/jquery.uniform.min.js"></script>
 <script type="text/javascript" src="/theme/plugins/select2/select2.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/form.js"></script>
 
 <!-- App -->
 <script type="text/javascript" src="/theme/assets/js/app.js"></script>
@@ -107,7 +111,7 @@
         App.init(); // Init layout and core plugins
         Plugins.init(); // Init all plugins
         FormComponents.init(); // Init all form-specific plugins
-
+        Form.init();
         $('.select2-multiple').select2();
     });
 </script>

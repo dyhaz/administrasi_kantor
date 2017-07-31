@@ -14,9 +14,9 @@ var Form = function() {
                 submitHandler: function (form) {
                     waitingDialog.show();
 
-                    var table = $('table[name=table-checkable]').DataTable();
+                    //var table = $('table[name=table-checkable]').DataTable();
                     var deleted_indexes = [];
-                    if(table) {
+                    /*if(table) {
                         var rows_selected = table.column(0).checkboxes.selected();
 
                         // Iterate over all selected checkboxes
@@ -42,7 +42,7 @@ var Form = function() {
                                 );
                             }
                         }
-                    }
+                    }*/
 
                     $.ajax({
                         type: $(form).attr('method'),
@@ -51,15 +51,17 @@ var Form = function() {
                         cache: false,
                         processData: false,
                         success: function (data) {
+                            alert('Submission was successful.');
                             console.log('Submission was successful.');
                             console.log(data);
-                            for(var i = deleted_indexes.length-1 ; i >= 0 ; i--) {
+                            console.log($(form).attr('action'));
+                            /*for(var i = deleted_indexes.length-1 ; i >= 0 ; i--) {
                                 table.row(deleted_indexes[i]).remove();
-                            }
-                            table.draw();
+                            }*/
+                            //table.draw();
 
-                            var table2 = $('#tab-penerimaan').DataTable();
-                            if(table2) table2.ajax.reload();
+                            //var table2 = $('#tab-penerimaan').DataTable();
+                            //if(table2) table2.ajax.reload();
 
                             waitingDialog.hide();
                         },
@@ -75,13 +77,12 @@ var Form = function() {
                 }
             });
         }
-    }
+    };
 
     return {
         // main function to initiate all plugins
         init: function () {
             initAjaxFormValidation();
-        },
-
+        }
     };
 }();

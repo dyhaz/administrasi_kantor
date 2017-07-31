@@ -88,4 +88,38 @@ class SearchController extends BaseController
         return Response::json($results);
     }
 
+    public function searchDivisi(){
+        $term = Input::get('term');
+
+        $results = array();
+
+        $queries = DB::table('divisi')
+            ->where('nama', 'LIKE', '%'.$term.'%')
+            ->take(5)->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => $query->nama ];
+        }
+
+        return Response::json($results);
+    }
+
+    public function searchJabatan(){
+        $term = Input::get('term');
+
+        $results = array();
+
+        $queries = DB::table('jabatan')
+            ->where('nama', 'LIKE', '%'.$term.'%')
+            ->take(5)->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => $query->nama ];
+        }
+
+        return Response::json($results);
+    }
+
 }

@@ -10,6 +10,8 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+use App\DataTables\DisposisiTujuanDataTable;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -28,16 +30,32 @@ Route::get('user/search/autocomplete', 'SearchController@searchUser')->name('sea
 Route::get('kota/search/autocomplete', 'SearchController@searchKota')->name('searchKota');
 Route::get('instansi/search/autocomplete', 'SearchController@searchInstansi')->name('searchInstansi');
 Route::get('surat-masuk/search/autocomplete', 'SearchController@searchSuratMasuk')->name('searchSuratMasuk');
+Route::get('jabatan/search/autocomplete', 'SearchController@searchJabatan')->name('searchJabatan');
+Route::get('divisi/search/autocomplete', 'SearchController@searchDivisi')->name('searchDivisi');
 
+/**
+ * Datatables
+ */
+Route::get('disposisi-tujuan', function(DisposisiTujuanDataTable $dataTable)
+{
+    return $dataTable->render('disposisi.disposisi-tujuan.input-tujuan');
+});
+
+/**
+ * Others
+ */
 Route::get('surat-masuk/file/{id}', 'SuratMasuk\\SuratMasukController@download_file')->name('file');
+Route::get('surat-keluar/pdf/{id}', 'SuratKeluar\\SuratKeluarController@generate_pdf')->name('pdf');
 
-
-Route::resource('admin/pegawai', 'Admin\\Pegawai\\PegawaiController');
 Route::resource('surat-masuk', 'SuratMasuk\\SuratMasukController');
+Route::resource('surat-keluar', 'SuratKeluar\\SuratKeluarController');
+Route::resource('admin/pegawai', 'Admin\\Pegawai\\PegawaiController');
 Route::resource('admin/sifat-surat', 'Admin\SifatSurat\\SifatSuratController');
 Route::resource('admin/kota', 'Admin\Kota\\KotaController');
 Route::resource('admin/instansi', 'Admin\Instansi\\InstansiController');
-Route::resource('admin/instansi', 'Admin\Instansi\\InstansiController');
+Route::resource('admin/divisi', 'Admin\Divisi\\DivisiController');
+Route::resource('admin/jabatan', 'Admin\Jabatan\\JabatanController');
 Route::resource('disposisi/isi-disposisi', 'Disposisi\\IsiDisposisiController');
+Route::resource('disposisi/disposisi-tujuan', 'Disposisi\\DisposisiTujuanController');
 Route::resource('disposisi', 'Disposisi\\DisposisiController');
 Route::resource('tes/test', 'Test\\TestController');

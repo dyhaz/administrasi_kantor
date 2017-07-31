@@ -130,6 +130,12 @@
                             Surat Masuk
                         </a>
                     </li>
+                    <li>
+                        <a href="/surat-keluar">
+                            <i class="icon-envelope"></i>
+                            Surat Keluar
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li>

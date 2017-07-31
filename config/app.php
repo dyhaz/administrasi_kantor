@@ -179,7 +179,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         GrahamCampbell\Flysystem\FlysystemServiceProvider::class,
-
+        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
+        Yajra\Datatables\ButtonsServiceProvider::class,
     ],
 
     /*
@@ -230,6 +232,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
         'Flysystem' => GrahamCampbell\Flysystem\Facades\Flysystem::class,
+        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
     ],
 
 ];
