@@ -14,7 +14,7 @@ class InstansiController extends Controller
     const MODEL = Instansi::class;
 
     protected $validation = [
-        'nama' => 'bail|required|max:50',
+        'nama' => 'bail|required|unique:instansi|max:50',
         'no_telp' => 'required|max:20',
         'id_kota' => 'required|numeric',
     ];

@@ -122,4 +122,61 @@ class SearchController extends BaseController
         return Response::json($results);
     }
 
+    public function searchKegiatan(){
+        $term = Input::get('term');
+
+        $results = array();
+
+        $queries = DB::table('kegiatan')
+            ->where('nama', 'LIKE', '%'.$term.'%')
+            ->take(5)->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => $query->nama ];
+        }
+
+        return Response::json($results);
+    }
+
+    public function searchKlasifikasiArsip(){
+        $term = Input::get('term');
+
+        $results = array();
+
+        $queries = DB::table('klasifikasi_arsip')
+            ->where('nama', 'LIKE', '%'.$term.'%')
+            ->orWhere('nomor', 'LIKE', $term)
+            ->take(5)->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => $query->nama ];
+        }
+
+        return Response::json($results);
+    }
+
+    public function searchKegiatanSurat(){
+        $term = Input::get('term');
+
+        $results = array();
+
+        $queries = DB::table('kegiatan_surat')
+            ->join('kegiatan', 'kegiatan.id', '=', 'kegiatan_surat.id_kegiatan')
+            ->join('klasifikasi_arsip', 'klasifikasi_arsip.id', '=', 'kegiatan_surat.id_klasifikasi_arsip')
+            ->where('kegiatan_surat.nomor', 'LIKE', '%'.$term.'%')
+            ->orWhere('klasifikasi_arsip.nama', 'LIKE', '%'.$term.'%')
+            ->orWhere('kegiatan.nama', 'LIKE', '%'.$term.'%')
+            ->select(['kegiatan_surat.id','kegiatan_surat.nomor','klasifikasi_arsip.nama as klasifikasi_arsip','kegiatan.nama as kegiatan'])
+            ->take(5)->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => $query->nomor.' '.$query->klasifikasi_arsip.' '.$query->kegiatan ];
+        }
+
+        return Response::json($results);
+    }
+
 }

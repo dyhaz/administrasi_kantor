@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Divisi;
+namespace App\Http\Controllers\Admin\KlasifikasiArsip;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\Divisi;
+use App\Models\KlasifikasiArsip;
 use Illuminate\Http\Request;
 use Session;
 
-class DivisiController extends Controller
+class KlasifikasiArsipController extends Controller
 {
-    const MODEL = Divisi::class;
+    const MODEL = KlasifikasiArsip::class;
 
     protected $validation = [
-        'nama' => 'bail|required|unique:divisi|max:50',
+        'nama' => 'bail|required|unique:klasifikasi_arsip|max:255',
+        'nomor' => 'required|unique:klasifikasi_arsip|max:5',
     ];
     /**
      * Display a listing of the resource.
@@ -27,13 +28,14 @@ class DivisiController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $divisi = Divisi::where('nama', 'LIKE', "%$keyword%")
+            $klasifikasiarsip = KlasifikasiArsip::where('nomor', 'LIKE', "%$keyword%")
+				->orWhere('nama', 'LIKE', "%$keyword%")
 				->paginate($perPage);
         } else {
-            $divisi = Divisi::paginate($perPage);
+            $klasifikasiarsip = KlasifikasiArsip::paginate($perPage);
         }
 
-        return view('admin.divisi.index', compact('divisi'));
+        return view('admin.klasifikasi-arsip.index', compact('klasifikasiarsip'));
     }
 
     /**
@@ -43,7 +45,7 @@ class DivisiController extends Controller
      */
     public function create()
     {
-        return view('admin.divisi.create');
+        return view('admin.klasifikasi-arsip.create');
     }
 
     /**
@@ -58,11 +60,11 @@ class DivisiController extends Controller
         $this->validate($request, $this->validation);
         $requestData = $request->all();
         
-        Divisi::create($requestData);
+        KlasifikasiArsip::create($requestData);
 
-        Session::flash('flash_message', 'Divisi added!');
+        Session::flash('flash_message', 'KlasifikasiArsip added!');
 
-        return redirect('admin/divisi');
+        return redirect('admin/klasifikasi-arsip');
     }
 
     /**
@@ -74,9 +76,9 @@ class DivisiController extends Controller
      */
     public function show($id)
     {
-        $divisi = Divisi::findOrFail($id);
+        $klasifikasiarsip = KlasifikasiArsip::findOrFail($id);
 
-        return view('admin.divisi.show', compact('divisi'));
+        return view('admin.klasifikasi-arsip.show', compact('klasifikasiarsip'));
     }
 
     /**
@@ -88,9 +90,9 @@ class DivisiController extends Controller
      */
     public function edit($id)
     {
-        $divisi = Divisi::findOrFail($id);
+        $klasifikasiarsip = KlasifikasiArsip::findOrFail($id);
 
-        return view('admin.divisi.edit', compact('divisi'));
+        return view('admin.klasifikasi-arsip.edit', compact('klasifikasiarsip'));
     }
 
     /**
@@ -103,15 +105,16 @@ class DivisiController extends Controller
      */
     public function update($id, Request $request)
     {
+        $this->validation['nomor'] = '';
         $this->validate($request, $this->validation);
         $requestData = $request->all();
         
-        $divisi = Divisi::findOrFail($id);
-        $divisi->update($requestData);
+        $klasifikasiarsip = KlasifikasiArsip::findOrFail($id);
+        $klasifikasiarsip->update($requestData);
 
-        Session::flash('flash_message', 'Divisi updated!');
+        Session::flash('flash_message', 'KlasifikasiArsip updated!');
 
-        return redirect('admin/divisi');
+        return redirect('admin/klasifikasi-arsip');
     }
 
     /**
@@ -123,10 +126,10 @@ class DivisiController extends Controller
      */
     public function destroy($id)
     {
-        Divisi::destroy($id);
+        KlasifikasiArsip::destroy($id);
 
-        Session::flash('flash_message', 'Divisi deleted!');
+        Session::flash('flash_message', 'KlasifikasiArsip deleted!');
 
-        return redirect('admin/divisi');
+        return redirect('admin/klasifikasi-arsip');
     }
 }

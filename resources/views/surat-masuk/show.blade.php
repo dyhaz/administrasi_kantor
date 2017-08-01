@@ -57,7 +57,7 @@
                                 <th> Status </th><td> {{ $suratmasuk->__status() }} </td>
                             </tr>
                             <tr>
-                                <th> File Surat </th><td> <button class="btn btn-primary" onclick="window.location='{{ route('file', ['id' => $suratmasuk->id]) }}'"><i class="icon-download"></i> Download</button> </td>
+                                <th> File Surat </th><td> <button class="btn btn-primary btn-sm" onclick="window.location='{{ route('file', ['id' => $suratmasuk->id]) }}'"><i class="icon-download"></i> Download</button> </td>
                             </tr>
                             </tbody>
                         </table>

@@ -59,9 +59,29 @@
                             </tbody>
                         </table>
                     </div>
-
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="widget body">
+                <div class="widget-header">Tujuan Disposisi</div>
+                <div class="widget-content">
+                    {!! $dataTable->table() !!}
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+@section('js')
+    @parent
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
+    <script src="/vendor/datatables/buttons.server-side.js"></script>
+    <script type="text/javascript" src="/theme/plugins/nprogress/nprogress.js"></script>
+    {!! $dataTable->scripts() !!}
+@append

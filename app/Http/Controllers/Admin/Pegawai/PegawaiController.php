@@ -19,6 +19,9 @@ class PegawaiController extends Controller
         'nama' => 'required|max:100',
         'jenis_kelamin' => 'required|max:1',
         'tanggal_lahir' => 'date',
+        'id_divisi' => 'numeric',
+        'id_jabatan' => 'numeric',
+        'id_kota' => 'numeric',
     ];
 
     /**
@@ -32,7 +35,7 @@ class PegawaiController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $pegawai = Pegawai::where('nip', 'LIKE', "%$keyword%")
+            $pegawai = Pegawai::with('kota')->where('nip', 'LIKE', "%$keyword%")
 				->orWhere('nama', 'LIKE', "%$keyword%")
 				->orWhere('alamat', 'LIKE', "%$keyword%")
 				->orWhere('id_divisi', 'LIKE', "%$keyword%")
@@ -42,7 +45,7 @@ class PegawaiController extends Controller
 				->orWhere('tanggal_lahir', 'LIKE', "%$keyword%")
 				->paginate($perPage);
         } else {
-            $pegawai = Pegawai::paginate($perPage);
+            $pegawai = Pegawai::with('kota')->paginate($perPage);
         }
 
         return view('admin/pegawai.index', compact('pegawai'));
@@ -87,7 +90,7 @@ class PegawaiController extends Controller
      */
     public function show($id)
     {
-        $pegawai = Pegawai::findOrFail($id);
+        $pegawai = Pegawai::with('kota')->with('jabatan')->with('divisi')->findOrFail($id);
 
         return view('admin/pegawai.show', compact('pegawai'));
     }
@@ -122,7 +125,7 @@ class PegawaiController extends Controller
 
         $requestData = $request->all();
         
-        $pegawai = Pegawai::findOrFail($id);
+        $pegawai = Pegawai::with('kota')->with('jabatan')->with('divisi')->findOrFail($id);
         $pegawai->update($requestData);
 
         Session::flash('flash_message', 'Pegawai updated!');

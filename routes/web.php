@@ -32,6 +32,9 @@ Route::get('instansi/search/autocomplete', 'SearchController@searchInstansi')->n
 Route::get('surat-masuk/search/autocomplete', 'SearchController@searchSuratMasuk')->name('searchSuratMasuk');
 Route::get('jabatan/search/autocomplete', 'SearchController@searchJabatan')->name('searchJabatan');
 Route::get('divisi/search/autocomplete', 'SearchController@searchDivisi')->name('searchDivisi');
+Route::get('kegiatan/search/autocomplete', 'SearchController@searchKegiatan')->name('searchKegiatan');
+Route::get('klasifikasi-arsip/search/autocomplete', 'SearchController@searchKlasifikasiArsip')->name('searchKlasifikasiArsip');
+Route::get('kegiatan-surat/search/autocomplete', 'SearchController@searchKegiatanSurat')->name('searchKegiatanSurat');
 
 /**
  * Datatables
@@ -55,6 +58,9 @@ Route::resource('admin/kota', 'Admin\Kota\\KotaController');
 Route::resource('admin/instansi', 'Admin\Instansi\\InstansiController');
 Route::resource('admin/divisi', 'Admin\Divisi\\DivisiController');
 Route::resource('admin/jabatan', 'Admin\Jabatan\\JabatanController');
+Route::resource('admin/klasifikasi-arsip', 'Admin\KlasifikasiArsip\\KlasifikasiArsipController');
+Route::resource('admin/kegiatan-surat', 'Admin\KegiatanSurat\\KegiatanSuratController');
+Route::resource('admin/kegiatan', 'Admin\Kegiatan\\KegiatanController');
 Route::resource('disposisi/isi-disposisi', 'Disposisi\\IsiDisposisiController');
 Route::resource('disposisi/disposisi-tujuan', 'Disposisi\\DisposisiTujuanController');
 Route::resource('disposisi', 'Disposisi\\DisposisiController');

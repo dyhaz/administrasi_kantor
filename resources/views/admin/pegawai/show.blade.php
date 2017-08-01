@@ -45,8 +45,20 @@
                                 <td> {{ $pegawai->alamat }} </td>
                             </tr>
                             <tr>
+                                <th> Kota </th>
+                                <td> {{ @$pegawai->kota->nama }} </td>
+                            </tr>
+                            <tr>
                                 <th> Jenis Kelamin </th>
                                 <td> {{ $pegawai->__jenis_kelamin() }} </td>
+                            </tr>
+                            <tr>
+                                <th> Jabatan </th>
+                                <td> {{ @$pegawai->jabatan->nama }} </td>
+                            </tr>
+                            <tr>
+                                <th> Divisi </th>
+                                <td> {{ @$pegawai->divisi->nama }} </td>
                             </tr>
                             </tbody>
                         </table>

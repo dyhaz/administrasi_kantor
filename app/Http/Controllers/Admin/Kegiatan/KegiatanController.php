@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Divisi;
+namespace App\Http\Controllers\Admin\Kegiatan;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\Divisi;
+use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 use Session;
 
-class DivisiController extends Controller
+class KegiatanController extends Controller
 {
-    const MODEL = Divisi::class;
+    const MODEL = Kegiatan::class;
 
     protected $validation = [
-        'nama' => 'bail|required|unique:divisi|max:50',
+        'nama' => 'bail|required|unique:kegiatan|max:100',
     ];
     /**
      * Display a listing of the resource.
@@ -27,13 +27,13 @@ class DivisiController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $divisi = Divisi::where('nama', 'LIKE', "%$keyword%")
+            $kegiatan = Kegiatan::where('nama', 'LIKE', "%$keyword%")
 				->paginate($perPage);
         } else {
-            $divisi = Divisi::paginate($perPage);
+            $kegiatan = Kegiatan::paginate($perPage);
         }
 
-        return view('admin.divisi.index', compact('divisi'));
+        return view('admin.kegiatan.index', compact('kegiatan'));
     }
 
     /**
@@ -43,7 +43,7 @@ class DivisiController extends Controller
      */
     public function create()
     {
-        return view('admin.divisi.create');
+        return view('admin.kegiatan.create');
     }
 
     /**
@@ -58,11 +58,11 @@ class DivisiController extends Controller
         $this->validate($request, $this->validation);
         $requestData = $request->all();
         
-        Divisi::create($requestData);
+        Kegiatan::create($requestData);
 
-        Session::flash('flash_message', 'Divisi added!');
+        Session::flash('flash_message', 'Kegiatan added!');
 
-        return redirect('admin/divisi');
+        return redirect('admin/kegiatan');
     }
 
     /**
@@ -74,9 +74,9 @@ class DivisiController extends Controller
      */
     public function show($id)
     {
-        $divisi = Divisi::findOrFail($id);
+        $kegiatan = Kegiatan::findOrFail($id);
 
-        return view('admin.divisi.show', compact('divisi'));
+        return view('admin.kegiatan.show', compact('kegiatan'));
     }
 
     /**
@@ -88,9 +88,9 @@ class DivisiController extends Controller
      */
     public function edit($id)
     {
-        $divisi = Divisi::findOrFail($id);
+        $kegiatan = Kegiatan::findOrFail($id);
 
-        return view('admin.divisi.edit', compact('divisi'));
+        return view('admin.kegiatan.edit', compact('kegiatan'));
     }
 
     /**
@@ -106,12 +106,12 @@ class DivisiController extends Controller
         $this->validate($request, $this->validation);
         $requestData = $request->all();
         
-        $divisi = Divisi::findOrFail($id);
-        $divisi->update($requestData);
+        $kegiatan = Kegiatan::findOrFail($id);
+        $kegiatan->update($requestData);
 
-        Session::flash('flash_message', 'Divisi updated!');
+        Session::flash('flash_message', 'Kegiatan updated!');
 
-        return redirect('admin/divisi');
+        return redirect('admin/kegiatan');
     }
 
     /**
@@ -123,10 +123,10 @@ class DivisiController extends Controller
      */
     public function destroy($id)
     {
-        Divisi::destroy($id);
+        Kegiatan::destroy($id);
 
-        Session::flash('flash_message', 'Divisi deleted!');
+        Session::flash('flash_message', 'Kegiatan deleted!');
 
-        return redirect('admin/divisi');
+        return redirect('admin/kegiatan');
     }
 }

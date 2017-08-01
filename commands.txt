@@ -6,3 +6,6 @@ php artisan crud:generate SuratKeluar --fields="nomor#string#unique;id_instansi#
 php artisan crud:generate Divisi --fields="nama#string#unique;" --view-path=admin --controller-namespace=Admin\\Divisi --route-group=admin
 php artisan crud:generate Jabatan --fields="nama#string#unique;" --view-path=admin --controller-namespace=Admin\\Jabatan --route-group=admin
 php artisan crud:generate DisposisiTujuan --fields="id_disposisi#integer#unsigned#required;id_divisi#integer#unsigned#required;id_jabatan#integer#unsigned#required;" --view-path=disposisi --controller-namespace=Disposisi --foreign-keys="id_jabatan#id#jabatan#cascade;id_divisi#id#divisi#cascade;" --route-group=disposisi
+php artisan crud:generate KlasifikasiArsip --fields="nomor#string#unique;nama#string#unique;" --view-path=admin --controller-namespace=Admin\\KlasifikasiArsip --route-group=admin
+php artisan crud:generate Kegiatan --fields="nama#string#unique;" --view-path=admin --controller-namespace=Admin\\Kegiatan --route-group=admin
+php artisan crud:generate KegiatanSurat --fields="id_klasifikasi_arsip#integer#unsigned;id_kegiatan#integer#unsigned" --view-path=surat-keluar --controller-namespace=SuratKeluar\\KegiatanSurat --route-group=surat-keluar

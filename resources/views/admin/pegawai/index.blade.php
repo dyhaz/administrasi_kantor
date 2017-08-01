@@ -27,14 +27,14 @@
                         <table class="table table-borderless">
                             <thead>
                             <tr>
-                                <th>ID</th><th>Nip</th><th>Nama</th><th>Alamat</th><th>Actions</th>
+                                <th>ID</th><th>Nip</th><th>Nama</th><th>Kota</th><th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($pegawai as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->nip }}</td><td>{{ $item->nama }}</td><td>{{ $item->alamat }}</td>
+                                    <td>{{ $item->nip }}</td><td>{{ $item->nama }}</td><td>{{ @$item->kota->nama }}</td>
                                     <td>
                                         <div class="btn-toolbar">
                                             <div class="btn-group">

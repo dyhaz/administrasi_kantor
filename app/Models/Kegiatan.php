@@ -1,19 +1,19 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Traits\Relationship\SuratKeluarRelationship;
+use App\Models\Traits\Relationship\KegiatanRelationship;
 
-class SuratKeluar extends Model
+class Kegiatan extends Model
 {
-    use SuratKeluarRelationship;
+    use KegiatanRelationship;
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'surat_keluar';
+    protected $table = 'kegiatan';
 
     /**
     * The database primary key value.
@@ -27,7 +27,7 @@ class SuratKeluar extends Model
      *
      * @var array
      */
-    protected $fillable = ['nomor', 'id_instansi', 'perihal', 'id_sifat', 'isi', 'id_pegawai', 'status'];
+    protected $fillable = ['nama'];
 
     
 }

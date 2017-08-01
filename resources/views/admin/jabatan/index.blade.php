@@ -38,7 +38,7 @@
                                     <td>
                                         <div class="btn-toolbar">
                                             <div class="btn-group">
-                                                <button onclick="window.location = '{{ url('/admin/jabatan/' . $item->id) }}'" title="View Jabatan" class="btn btn-info btn-xs"><i class="icon-eye-open" aria-hidden="true"></i> View</button>
+                                                <!--<button onclick="window.location = '{{ url('/admin/jabatan/' . $item->id) }}'" title="View Jabatan" class="btn btn-info btn-xs"><i class="icon-eye-open" aria-hidden="true"></i> View</button>-->
                                                 <button onclick="window.location = '{{ url('/admin/jabatan/' . $item->id . '/edit') }}'" title="Edit Jabatan" class="btn btn-primary btn-xs"><i class="icon-edit" aria-hidden="true"></i> Edit</button>
                                                 {!! Form::button('<i class="icon-trash" aria-hidden="true"></i> Delete', array(
                                                         'type' => 'submit',

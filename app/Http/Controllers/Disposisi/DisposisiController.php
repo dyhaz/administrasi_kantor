@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Disposisi;
 
+use App\DataTables\DisposisiTujuanDataTable;
+use Yajra\Datatables\Datatables;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\Disposisi;
+use App\Models\DisposisiTujuan;
 use App\Models\IsiDisposisi;
 use App\Models\SuratMasuk;
 use Illuminate\Http\Request;
@@ -89,11 +92,15 @@ class DisposisiController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function show($id, DisposisiTujuanDataTable $dataTable)
     {
         $disposisi = Disposisi::with('surat_masuk')->with('isi_disposisi')->findOrFail($id);
 
-        return view('disposisi.show', compact('disposisi'));
+        $disposisitujuan = DisposisiTujuan::with('disposisi')->where(['id_disposisi' => $disposisi->id])->get();
+
+        return $dataTable->forIdDisposisi($disposisi->id)->render('disposisi.show', compact('disposisi'));
+
+        //return view('disposisi.show', compact('disposisi'))->with(compact('disposisitujuan'));
     }
 
     /**
@@ -135,8 +142,10 @@ class DisposisiController extends Controller
 
         $disposisi->isi_disposisi()->detach();
 
-        foreach($requestData['isi_disposisi'] as $id_isi_diposisi) {
-            $disposisi->isi_disposisi()->attach($id_isi_diposisi);
+        if(is_array(@$requestData['isi_disposisi'])) {
+            foreach(@$requestData['isi_disposisi'] as $id_isi_diposisi) {
+                $disposisi->isi_disposisi()->attach($id_isi_diposisi);
+            }
         }
 
         Session::flash('flash_message', 'Disposisi updated!');

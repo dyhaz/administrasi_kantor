@@ -5,7 +5,7 @@ namespace App\Http\Controllers\SuratKeluar;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\SuratKeluar;
+use App\Models\SuratKeluar;
 use App\Models\SifatSurat;
 use Illuminate\Http\Request;
 use Session;
@@ -14,6 +14,14 @@ use PDF;
 class SuratKeluarController extends Controller
 {
     const MODEL = SuratKeluar::class;
+
+    protected $validation = [
+        'nomor' => 'bail|required|unique:surat_keluar|max:255',
+        'perihal' => 'required|max:255',
+        'id_sifat' => 'required|numeric',
+        'isi' => 'required',
+        'id_instansi' => 'required|numeric',
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -60,7 +68,7 @@ class SuratKeluarController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $this->validate($request, $this->validation);
         $requestData = $request->all();
         
         SuratKeluar::create($requestData);
@@ -108,7 +116,8 @@ class SuratKeluarController extends Controller
      */
     public function update($id, Request $request)
     {
-        
+        $this->validation['nomor'] = '';
+        $this->validate($request, $this->validation);
         $requestData = $request->all();
         
         $suratkeluar = SuratKeluar::findOrFail($id);

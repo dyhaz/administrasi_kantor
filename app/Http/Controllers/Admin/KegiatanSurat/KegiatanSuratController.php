@@ -1,20 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Divisi;
+namespace App\Http\Controllers\Admin\KegiatanSurat;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\Divisi;
+use App\Models\KegiatanSurat;
 use Illuminate\Http\Request;
 use Session;
 
-class DivisiController extends Controller
+class KegiatanSuratController extends Controller
 {
-    const MODEL = Divisi::class;
+    const MODEL = KegiatanSurat::class;
 
     protected $validation = [
-        'nama' => 'bail|required|unique:divisi|max:50',
+        'nomor' => 'max:5',
+        'id_kegiatan' => 'required|numeric',
+        'id_klasifikasi_arsip' => 'required|numeric',
     ];
     /**
      * Display a listing of the resource.
@@ -27,13 +29,14 @@ class DivisiController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $divisi = Divisi::where('nama', 'LIKE', "%$keyword%")
+            $kegiatansurat = KegiatanSurat::with('kegiatan')->with('klasifikasi_arsip')->where('id_klasifikasi_arsip', 'LIKE', "%$keyword%")
+				->orWhere('id_kegiatan', 'LIKE', "%$keyword%")
 				->paginate($perPage);
         } else {
-            $divisi = Divisi::paginate($perPage);
+            $kegiatansurat = KegiatanSurat::with('kegiatan')->with('klasifikasi_arsip')->paginate($perPage);
         }
 
-        return view('admin.divisi.index', compact('divisi'));
+        return view('admin.kegiatan-surat.index', compact('kegiatansurat'));
     }
 
     /**
@@ -43,7 +46,7 @@ class DivisiController extends Controller
      */
     public function create()
     {
-        return view('admin.divisi.create');
+        return view('admin.kegiatan-surat.create');
     }
 
     /**
@@ -58,11 +61,11 @@ class DivisiController extends Controller
         $this->validate($request, $this->validation);
         $requestData = $request->all();
         
-        Divisi::create($requestData);
+        KegiatanSurat::create($requestData);
 
-        Session::flash('flash_message', 'Divisi added!');
+        Session::flash('flash_message', 'KegiatanSurat added!');
 
-        return redirect('admin/divisi');
+        return redirect('admin/kegiatan-surat');
     }
 
     /**
@@ -74,9 +77,9 @@ class DivisiController extends Controller
      */
     public function show($id)
     {
-        $divisi = Divisi::findOrFail($id);
+        $kegiatansurat = KegiatanSurat::with('kegiatan')->with('klasifikasi_arsip')->findOrFail($id);
 
-        return view('admin.divisi.show', compact('divisi'));
+        return view('admin.kegiatan-surat.show', compact('kegiatansurat'));
     }
 
     /**
@@ -88,9 +91,9 @@ class DivisiController extends Controller
      */
     public function edit($id)
     {
-        $divisi = Divisi::findOrFail($id);
+        $kegiatansurat = KegiatanSurat::with('kegiatan')->with('klasifikasi_arsip')->findOrFail($id);
 
-        return view('admin.divisi.edit', compact('divisi'));
+        return view('admin.kegiatan-surat.edit', compact('kegiatansurat'));
     }
 
     /**
@@ -106,12 +109,12 @@ class DivisiController extends Controller
         $this->validate($request, $this->validation);
         $requestData = $request->all();
         
-        $divisi = Divisi::findOrFail($id);
-        $divisi->update($requestData);
+        $kegiatansurat = KegiatanSurat::findOrFail($id);
+        $kegiatansurat->update($requestData);
 
-        Session::flash('flash_message', 'Divisi updated!');
+        Session::flash('flash_message', 'KegiatanSurat updated!');
 
-        return redirect('admin/divisi');
+        return redirect('admin/kegiatan-surat');
     }
 
     /**
@@ -123,10 +126,10 @@ class DivisiController extends Controller
      */
     public function destroy($id)
     {
-        Divisi::destroy($id);
+        KegiatanSurat::destroy($id);
 
-        Session::flash('flash_message', 'Divisi deleted!');
+        Session::flash('flash_message', 'KegiatanSurat deleted!');
 
-        return redirect('admin/divisi');
+        return redirect('admin/kegiatan-surat');
     }
 }

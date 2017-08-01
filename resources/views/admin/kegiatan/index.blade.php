@@ -4,13 +4,13 @@
     <div class="row">
         <div class="col-md-12">
             <div class="widget box">
-                <div class="widget-header">Sifatsurat</div>
+                <div class="widget-header">Kegiatan</div>
                 <div class="widget-content">
-                    <a href="{{ url('/admin/sifat-surat/create') }}" class="btn btn-success btn-sm" title="Add New SifatSurat">
+                    <a href="{{ url('/admin/kegiatan/create') }}" class="btn btn-success btn-sm" title="Add New Kegiatan">
                         <i class="icon-plus" aria-hidden="true"></i> Add New
                     </a>
 
-                    {!! Form::open(['method' => 'GET', 'url' => '/admin/sifat-surat', 'class' => 'navbar-form navbar-right', 'role' => 'search'])  !!}
+                    {!! Form::open(['method' => 'GET', 'url' => '/admin/kegiatan', 'class' => 'navbar-form navbar-right', 'role' => 'search'])  !!}
                     <div class="input-group">
                         <input type="text" class="form-control" name="search" placeholder="Search...">
                             <span class="input-group-btn">
@@ -31,24 +31,24 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($sifatsurat as $item)
+                            @foreach($kegiatan as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->nama }}</td>
                                     <td>
                                         <div class="btn-toolbar">
                                             <div class="btn-group">
-                                                <!--<button onclick="window.location = '{{ url('/admin/sifat-surat/' . $item->id) }}'" title="View SifatSurat" class="btn btn-info btn-xs"><i class="icon-eye-open" aria-hidden="true"></i> View</button>-->
-                                                <button onclick="window.location = '{{ url('/admin/sifat-surat/' . $item->id . '/edit') }}'" title="Edit SifatSurat" class="btn btn-primary btn-xs"><i class="icon-edit" aria-hidden="true"></i> Edit</button>
+                                                <!--<button onclick="window.location = '{{ url('/admin/kegiatan/' . $item->id) }}'" title="View Kegiatan" class="btn btn-info btn-xs"><i class="icon-eye-open" aria-hidden="true"></i> View</button>-->
+                                                <button onclick="window.location = '{{ url('/admin/kegiatan/' . $item->id . '/edit') }}'" title="Edit Kegiatan" class="btn btn-primary btn-xs"><i class="icon-edit" aria-hidden="true"></i> Edit</button>
                                                 {!! Form::button('<i class="icon-trash" aria-hidden="true"></i> Delete', array(
                                                         'type' => 'submit',
                                                         'class' => 'btn btn-danger btn-xs',
-                                                        'title' => 'Delete SifatSurat',
+                                                        'title' => 'Delete Kegiatan',
                                                         'onclick'=>'bootbox.confirm("Confirm delete?", function(result){ if(result) $("#delete-'.$item->id.'").submit() })'
                                                 )) !!}
                                                 {!! Form::open([
                                                     'method'=>'DELETE',
-                                                    'url' => ['/admin/sifat-surat', $item->id],
+                                                    'url' => ['/admin/kegiatan', $item->id],
                                                     'style' => 'display:inline',
                                                     'id' => 'delete-'.$item->id,
                                                 ]) !!}
@@ -60,7 +60,7 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <div class="pagination-wrapper"> {!! $sifatsurat->appends(['search' => Request::get('search')])->render() !!} </div>
+                        <div class="pagination-wrapper"> {!! $kegiatan->appends(['search' => Request::get('search')])->render() !!} </div>
                     </div>
 
                 </div>
