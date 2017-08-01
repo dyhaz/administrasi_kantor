@@ -6,14 +6,14 @@
         {!! $errors->first('id_disposisi', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('id_divisi') ? 'has-error' : ''}}">
-    {!! Form::label('id_divisi', 'Id Divisi', ['class' => 'col-md-4 control-label']) !!}
+    {!! Form::label('id_divisi', 'Divisi', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::hidden('id_divisi', null) !!}
         {!! Form::text('search_text_divisi', null, array('placeholder' => 'Search Text','class' => 'form-control','id'=>'search_text_divisi')) !!}
         {!! $errors->first('id_divisi', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('id_jabatan') ? 'has-error' : ''}}">
-    {!! Form::label('id_jabatan', 'Id Jabatan', ['class' => 'col-md-4 control-label']) !!}
+    {!! Form::label('id_jabatan', 'Jabatan', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::hidden('id_jabatan', null) !!}
         {!! Form::text('search_text_jabatan', null, array('placeholder' => 'Search Text','class' => 'form-control','id'=>'search_text_jabatan')) !!}

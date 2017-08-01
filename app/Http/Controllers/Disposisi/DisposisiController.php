@@ -78,7 +78,8 @@ class DisposisiController extends Controller
 
         Session::flash('flash_message', 'Disposisi added!');
 
-        return redirect('disposisi');
+        return redirect('/disposisi-tujuan/'.$disposisi->id);
+        //return redirect('disposisi');
     }
 
     /**
@@ -140,7 +141,8 @@ class DisposisiController extends Controller
 
         Session::flash('flash_message', 'Disposisi updated!');
 
-        return redirect('disposisi');
+        return redirect('/disposisi-tujuan/'.$disposisi->id);
+        //return redirect('disposisi');
     }
 
     /**

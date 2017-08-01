@@ -43,8 +43,14 @@
                     $('#nprogress-info-msg').slideUp(200);
                     $('#dataTableBuilder').DataTable().draw(false);
                     bootbox.alert('Data dihapus');
+                },
+                error: function(msg) {
+                    NProgress.done();
+                    alert("Error!");
                 }
             });
         }
+        $('input[name=id_disposisi]').val('{{ $id }}');
+        $('input[name=nomor_disposisi]').val('{{ $id }}');
     </script>
 @append

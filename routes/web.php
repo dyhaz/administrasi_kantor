@@ -36,9 +36,9 @@ Route::get('divisi/search/autocomplete', 'SearchController@searchDivisi')->name(
 /**
  * Datatables
  */
-Route::get('disposisi-tujuan', function(DisposisiTujuanDataTable $dataTable)
+Route::get('disposisi-tujuan/{id}', function($id, DisposisiTujuanDataTable $dataTable)
 {
-    return $dataTable->render('disposisi.disposisi-tujuan.input-tujuan');
+    return $dataTable->forIdDisposisi($id)->render('disposisi.disposisi-tujuan.input-tujuan', ['id' => $id]);
 });
 
 /**

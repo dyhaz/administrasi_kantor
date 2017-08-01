@@ -7,6 +7,8 @@ use Yajra\Datatables\Services\DataTable;
 
 class DisposisiTujuanDataTable extends DataTable
 {
+    protected $id_disposisi;
+
     /**
      * Build DataTable class.
      *
@@ -32,6 +34,7 @@ class DisposisiTujuanDataTable extends DataTable
         $query = DisposisiTujuan::query()->join('disposisi', 'disposisi_tujuan.id_disposisi', '=', 'disposisi.id')
             ->join('jabatan', 'disposisi_tujuan.id_jabatan', '=', 'jabatan.id')
             ->join('divisi', 'disposisi_tujuan.id_divisi', '=', 'divisi.id')
+            ->where(['disposisi.id' => $this->id_disposisi])
             ->select($this->getColumns());
 
         return $this->applyScopes($query);
@@ -98,5 +101,10 @@ class DisposisiTujuanDataTable extends DataTable
     protected function filename()
     {
         return 'disposisitujuan_' . time();
+    }
+
+    public function forIdDisposisi($id) {
+        $this->id_disposisi = $id;
+        return $this;
     }
 }
