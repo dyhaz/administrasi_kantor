@@ -71,8 +71,12 @@ class SuratKeluarController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, $this->validation);
         $requestData = $request->all();
+
+        if(empty(@$requestData['id_kegiatan_surat']))
+            unset($requestData['id_kegiatan_surat']);
+
+        $this->validate($request, $this->validation);
         
         SuratKeluar::create($requestData);
 
@@ -94,7 +98,7 @@ class SuratKeluarController extends Controller
 
         $kegiatansurat = KegiatanSurat::with('kegiatan')->with('klasifikasi_arsip')->find(@$suratkeluar->kegiatan_surat->id);
 
-        return view('surat-keluar.show', compact('suratkeluar', 'kegiatansurat'));
+        return view('surat-keluar.show', compact('suratkeluar', 'kegiatansurat'))->with('persetujuan', $suratkeluar->__persetujuan());
     }
 
     /**
@@ -122,9 +126,13 @@ class SuratKeluarController extends Controller
     public function update($id, Request $request)
     {
         $this->validation['nomor'] = '';
-        $this->validate($request, $this->validation);
+
         $requestData = $request->all();
-        
+        if(empty(@$requestData['id_kegiatan_surat']))
+            unset($requestData['id_kegiatan_surat']);
+
+        $this->validate($request, $this->validation);
+
         $suratkeluar = SuratKeluar::findOrFail($id);
         $suratkeluar->update($requestData);
 

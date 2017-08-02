@@ -53,6 +53,10 @@
                                 <td> {{ $suratkeluar->perihal }} </td>
                             </tr>
                             <tr>
+                                <th> Persetujuan </th>
+                                <td> {{ $persetujuan }} </td>
+                            </tr>
+                            <tr>
                                 <th> Isi </th>
                                 <td> <button onclick="window.location='/surat-keluar/pdf/{{ $suratkeluar->id }}'" class="btn btn-sm"><i class="icol-doc-pdf"></i> Download</button> </td>
                             </tr>

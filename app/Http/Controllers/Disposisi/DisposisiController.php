@@ -42,7 +42,9 @@ class DisposisiController extends Controller
             $disposisi = Disposisi::with('surat_masuk')->paginate($perPage);
         }
 
-        return view('disposisi.index', compact('disposisi'));
+        $suratmasuk = SuratMasuk::where('status', '!=', 2)->get();
+
+        return view('disposisi.index', compact('disposisi','suratmasuk'));
     }
 
     /**

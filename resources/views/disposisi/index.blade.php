@@ -6,7 +6,7 @@
             <div class="widget box">
                 <div class="widget-header">Disposisi</div>
                 <div class="widget-content">
-                    <a href="{{ url('/disposisi/create') }}" class="btn btn-success btn-sm" title="Add New Disposisi">
+                    <a data-toggle="modal" data-target="#suratMasukModal" href="#" class="btn btn-success btn-sm" title="Add New Disposisi">
                         <i class="icon-plus" aria-hidden="true"></i> Add New
                     </a>
 
@@ -65,6 +65,13 @@
 
                 </div>
             </div>
+        </div>
+    </div>
+    <div id="suratMasukModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            @include("disposisi.modal_tabel_surat_masuk", [
+                "suratmasuk" => $suratmasuk,
+            ])
         </div>
     </div>
 @endsection

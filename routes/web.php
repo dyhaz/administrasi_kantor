@@ -55,7 +55,10 @@ Route::resource('surat-masuk', 'SuratMasuk\\SuratMasukController');
  * Surat Keluar
  */
 Route::get('surat-keluar/pdf/{id}', 'SuratKeluar\\SuratKeluarController@generate_pdf')->name('pdf');
+Route::get('surat-keluar/draft', 'SuratKeluar\\PengirimanSuratKeluarController@draft');
 Route::get('surat-keluar/persetujuan/{id}', 'SuratKeluar\\PersetujuanSuratKeluarController@acc');
+Route::get('surat-keluar/terkirim', 'SuratKeluar\\PengirimanSuratKeluarController@terkirim');
+Route::get('surat-keluar/kirim/{id}', 'SuratKeluar\\PengirimanSuratKeluarController@kirim');
 Route::get('persetujuan-surat-keluar/{id}', 'SuratKeluar\\PersetujuanSuratKeluarController@acc');
 Route::resource('surat-keluar', 'SuratKeluar\\SuratKeluarController');
 Route::resource('persetujuan-surat-keluar', 'SuratKeluar\\PersetujuanSuratKeluarController');
