@@ -68,7 +68,7 @@
         <!--=== Navigation ===-->
         <ul id="nav">
             <li class="current">
-                <a href="index.html">
+                <a href="/">
                     <i class="icon-dashboard"></i>
                     Dashboard
                 </a>
@@ -92,6 +92,12 @@
                             Isi Disposisi
                         </a>
                     </li>
+                    <li>
+                        <a href="/persetujuan-surat-keluar">
+                            <i class="icon-angle-right"></i>
+                            Persetujuan Surat Keluar
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li>
@@ -104,6 +110,18 @@
                         <a href="/admin/pegawai">
                             <i class="icon-user"></i>
                             Data Pegawai
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/divisi">
+                            <i class="icon-user"></i>
+                            Divisi
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/jabatan">
+                            <i class="icon-user"></i>
+                            Jabatan
                         </a>
                     </li>
                     <li>
@@ -122,6 +140,24 @@
                         <a href="/admin/sifat-surat">
                             <i class="icon-envelope-alt"></i>
                             Sifat Surat
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/kegiatan">
+                            <i class="icon-angle-right"></i>
+                            Kegiatan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/klasifikasi-arsip">
+                            <i class="icon-angle-right"></i>
+                            Klasifikasi Kearsipan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/kegiatan-surat">
+                            <i class="icon-angle-right"></i>
+                            Kegiatan Surat
                         </a>
                     </li>
                     <li>

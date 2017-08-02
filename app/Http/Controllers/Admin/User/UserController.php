@@ -1,20 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Jabatan;
+namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\Jabatan;
+use App\User;
+use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use Session;
 
-class JabatanController extends Controller
+class UserController extends Controller
 {
-    const MODEL = Jabatan::class;
+    const MODEL = User::class;
 
     protected $validation = [
-        'nama' => 'bail|required|unique:jabatan|max:255',
+        'email' => 'bail|required|max:100',
+        'id_pegawai' => 'required|numeric',
+        'password' => 'required|max:50|min:8',
     ];
     /**
      * Display a listing of the resource.
@@ -27,13 +30,16 @@ class JabatanController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $jabatan = Jabatan::where('nama', 'LIKE', "%$keyword%")
+            $user = User::where('email', 'LIKE', "%$keyword%")
+                ->join('pegawai', 'pegawai.id_user', '=', 'user.id')
+				->orWhere('password', 'LIKE', "%$keyword%")
+				->orWhere('pegawai.nama', 'LIKE', "%$keyword%")
 				->paginate($perPage);
         } else {
-            $jabatan = Jabatan::paginate($perPage);
+            $user = User::paginate($perPage);
         }
 
-        return view('admin.jabatan.index', compact('jabatan'));
+        return view('admin.user.index', compact('user'));
     }
 
     /**
@@ -43,7 +49,7 @@ class JabatanController extends Controller
      */
     public function create()
     {
-        return view('admin.jabatan.create');
+        return view('admin.user.create');
     }
 
     /**
@@ -57,12 +63,18 @@ class JabatanController extends Controller
     {
         $this->validate($request, $this->validation);
         $requestData = $request->all();
-        
-        Jabatan::create($requestData);
+        $pegawai = Pegawai::find($requestData['id_pegawai']);
+        $requestData['name'] = $pegawai->nama;
+        $requestData['password'] = bcrypt($requestData['password']);
 
-        Session::flash('flash_message', 'Jabatan added!');
+        $user = User::create($requestData);
 
-        return redirect('admin/jabatan');
+        $pegawai->id_user = $user->id;
+        $pegawai->update();
+
+        Session::flash('flash_message', 'User added!');
+
+        return redirect('admin/user');
     }
 
     /**
@@ -74,9 +86,9 @@ class JabatanController extends Controller
      */
     public function show($id)
     {
-        $jabatan = Jabatan::findOrFail($id);
+        $user = User::findOrFail($id);
 
-        return view('admin.jabatan.show', compact('jabatan'));
+        return view('admin.user.show', compact('user'));
     }
 
     /**
@@ -88,9 +100,10 @@ class JabatanController extends Controller
      */
     public function edit($id)
     {
-        $jabatan = Jabatan::findOrFail($id);
+        $user = User::findOrFail($id);
+        $pegawai = Pegawai::where(['id_user' => $user->id])->first();
 
-        return view('admin.jabatan.edit', compact('jabatan'));
+        return view('admin.user.edit', compact('user'))->with('pegawai', $pegawai);
     }
 
     /**
@@ -106,12 +119,19 @@ class JabatanController extends Controller
         $this->validate($request, $this->validation);
         $requestData = $request->all();
         
-        $jabatan = Jabatan::findOrFail($id);
-        $jabatan->update($requestData);
+        $user = User::findOrFail($id);
+        $pegawai = Pegawai::find($requestData['id_pegawai']);
+        $requestData['name'] = $pegawai->nama;
+        $requestData['password'] = bcrypt($requestData['password']);
 
-        Session::flash('flash_message', 'Jabatan updated!');
+        $user->update($requestData);
 
-        return redirect('admin/jabatan');
+        $pegawai->id_user = $user->id;
+        $pegawai->update();
+
+        Session::flash('flash_message', 'User updated!');
+
+        return redirect('admin/user');
     }
 
     /**
@@ -123,10 +143,10 @@ class JabatanController extends Controller
      */
     public function destroy($id)
     {
-        Jabatan::destroy($id);
+        User::destroy($id);
 
-        Session::flash('flash_message', 'Jabatan deleted!');
+        Session::flash('flash_message', 'User deleted!');
 
-        return redirect('admin/jabatan');
+        return redirect('admin/user');
     }
 }

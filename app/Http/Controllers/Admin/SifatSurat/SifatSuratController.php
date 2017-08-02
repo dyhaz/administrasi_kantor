@@ -12,6 +12,10 @@ use Session;
 class SifatSuratController extends Controller
 {
     const MODEL = SifatSurat::class;
+
+    protected $validation = [
+        'nama' => 'bail|required|unique:sifat_surat|max:255',
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -51,7 +55,7 @@ class SifatSuratController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $this->validate($request, $this->validation);
         $requestData = $request->all();
         
         SifatSurat::create($requestData);
@@ -99,7 +103,7 @@ class SifatSuratController extends Controller
      */
     public function update($id, Request $request)
     {
-        
+        $this->validate($request, $this->validation);
         $requestData = $request->all();
         
         $sifatsurat = SifatSurat::findOrFail($id);

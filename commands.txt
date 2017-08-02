@@ -9,3 +9,4 @@ php artisan crud:generate DisposisiTujuan --fields="id_disposisi#integer#unsigne
 php artisan crud:generate KlasifikasiArsip --fields="nomor#string#unique;nama#string#unique;" --view-path=admin --controller-namespace=Admin\\KlasifikasiArsip --route-group=admin
 php artisan crud:generate Kegiatan --fields="nama#string#unique;" --view-path=admin --controller-namespace=Admin\\Kegiatan --route-group=admin
 php artisan crud:generate KegiatanSurat --fields="id_klasifikasi_arsip#integer#unsigned;id_kegiatan#integer#unsigned" --view-path=surat-keluar --controller-namespace=SuratKeluar\\KegiatanSurat --route-group=surat-keluar
+php artisan crud:generate User --fields="email#string#unique;password#string;id_pegawai#integer" --view-path=admin --controller-namespace=Admin\\User --route-group=admin

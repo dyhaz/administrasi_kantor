@@ -12,6 +12,10 @@ use Session;
 class KotaController extends Controller
 {
     const MODEL = Kota::class;
+
+    protected $validation = [
+        'nama' => 'bail|required|unique:kota|max:255',
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -51,7 +55,7 @@ class KotaController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $this->validate($request, $this->validation);
         $requestData = $request->all();
         
         Kota::create($requestData);
@@ -99,7 +103,7 @@ class KotaController extends Controller
      */
     public function update($id, Request $request)
     {
-        
+        $this->validate($request, $this->validation);
         $requestData = $request->all();
         
         $kotum = Kota::findOrFail($id);

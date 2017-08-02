@@ -8,7 +8,7 @@
             <a href="pages_calendar.html" title="">Calendar</a>
         </li>
     </ul>
-
+<!--
     <ul class="crumb-buttons">
         <li><a href="charts.html" title=""><i class="icon-signal"></i><span>Statistics</span></a></li>
         <li class="dropdown"><a href="#" title="" data-toggle="dropdown"><i class="icon-tasks"></i><span>Users <strong>(+3)</strong></span><i class="icon-angle-down left-padding"></i></a>
@@ -22,6 +22,6 @@
                 <span></span>
                 <i class="icon-angle-down"></i>
             </a></li>
-    </ul>
+    </ul>-->
 </div>
 <!-- /Breadcrumbs line -->

@@ -88,6 +88,24 @@ class SearchController extends BaseController
         return Response::json($results);
     }
 
+    public function searchPegawai(){
+        $term = Input::get('term');
+
+        $results = array();
+
+        $queries = DB::table('pegawai')
+            ->where('nama', 'LIKE', '%'.$term.'%')
+            ->orWhere('nip', 'LIKE', '%'.$term.'%')
+            ->take(5)->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => $query->nama ];
+        }
+
+        return Response::json($results);
+    }
+
     public function searchDivisi(){
         $term = Input::get('term');
 
