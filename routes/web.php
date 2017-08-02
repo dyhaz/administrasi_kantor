@@ -52,6 +52,8 @@ Route::get('surat-keluar/pdf/{id}', 'SuratKeluar\\SuratKeluarController@generate
 
 Route::resource('surat-masuk', 'SuratMasuk\\SuratMasukController');
 Route::resource('surat-keluar', 'SuratKeluar\\SuratKeluarController');
+Route::get('persetujuan-surat-keluar/{id}', 'SuratKeluar\\PersetujuanSuratKeluarController@acc');
+Route::resource('persetujuan-surat-keluar', 'SuratKeluar\\PersetujuanSuratKeluarController');
 Route::resource('admin/pegawai', 'Admin\\Pegawai\\PegawaiController');
 Route::resource('admin/sifat-surat', 'Admin\SifatSurat\\SifatSuratController');
 Route::resource('admin/kota', 'Admin\Kota\\KotaController');

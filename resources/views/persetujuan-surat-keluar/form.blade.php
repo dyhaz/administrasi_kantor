@@ -36,6 +36,12 @@
         {!! Form::select('id_sifat', $sifatsurat, null, ['id' => 'id_sifat', 'class' => 'form-control']) !!}
         {!! $errors->first('id_sifat', '<p class="help-block">:message</p>') !!}
     </div>
+</div><div class="form-group {{ $errors->has('persetujuan') ? 'has-error' : ''}}">
+    {!! Form::label('persetujuan', 'Persetujuan', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::checkbox('persetujuan', null, ['class' => 'form-control']) !!}
+        {!! $errors->first('persetujuan', '<p class="help-block">:message</p>') !!}
+    </div>
 </div><div class="form-group {{ $errors->has('isi') ? 'has-error' : ''}}">
     {!! Form::label('isi', 'Isi', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
@@ -156,6 +162,9 @@
             $('#search_text').val("{{ @$suratkeluar->instansi->nama }}");
             $('#nama_instansi').val("{{ @$suratkeluar->instansi->nama }}");
             $('#search_text_kegiatan_surat').val("{{ @$suratkeluar->kegiatan_surat->klasifikasi_arsip->nomor }}{{ @$suratkeluar->kegiatan_surat->nomor }}");
+            if('{{ $suratkeluar->persetujuan }}' == '1') {
+                $('#persetujuan').attr('checked', 'checked');
+            }
         @endif
     </script>
 @append

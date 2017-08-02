@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Session;
 use PDF;
 
-class SuratKeluarController extends Controller
+class PersetujuanSuratKeluarController extends Controller
 {
     const MODEL = SuratKeluar::class;
 
@@ -48,7 +48,10 @@ class SuratKeluarController extends Controller
             $suratkeluar = SuratKeluar::with('instansi')->paginate($perPage);
         }
 
-        return view('surat-keluar.index', compact('suratkeluar'));
+        $user = Auth::user();
+        $pegawai = Pegawai::where(['id_user' => @$user->id])->with('jabatan')->firstOrFail();
+
+        return view('persetujuan-surat-keluar.index', compact('suratkeluar'))->with('id_pegawai', @$pegawai->id)->with('jabatan', @$pegawai->jabatan->nama);
     }
 
     /**
@@ -108,7 +111,8 @@ class SuratKeluarController extends Controller
     {
         $suratkeluar = SuratKeluar::with('instansi')->findOrFail($id);
         $sifatsurat = SifatSurat::orderBy('id')->pluck('nama','id');
-        return view('surat-keluar.edit', compact('suratkeluar'))->with(compact('sifatsurat'));
+
+        return view('persetujuan-surat-keluar.edit', compact('suratkeluar'))->with(compact('sifatsurat'));
     }
 
     /**
@@ -127,15 +131,6 @@ class SuratKeluarController extends Controller
         
         $suratkeluar = SuratKeluar::findOrFail($id);
         $suratkeluar->update($requestData);
-
-
-        if(@$requestData['persetujuan']) {
-            $user = Auth::user();
-            $pegawai = Pegawai::where(['id_user' => @$user->id])->firstOrFail();
-            if(!$suratkeluar->persetujuan()->where('id', $pegawai->id)->exists()) {
-                $suratkeluar->persetujuan()->attach($pegawai->id);
-            }
-        }
 
         Session::flash('flash_message', 'SuratKeluar updated!');
 
@@ -158,13 +153,23 @@ class SuratKeluarController extends Controller
         return redirect('surat-keluar');
     }
 
+    /**
+     * Acc surat keluar.
+     *
+     * @param  int  $id
+     *
+     * @return \Illuminate\View\View
+     */
+    public function acc($id)
+    {
+        $suratkeluar = SuratKeluar::with('instansi')->findOrFail($id);
+        $sifatsurat = SifatSurat::orderBy('id')->pluck('nama','id');
 
-    public function generate_pdf($id) {
-        $suratkeluar = SuratKeluar::findOrFail($id);
-        $data = [
-            'isi' => $suratkeluar->isi
-        ];
-        $pdf = PDF::loadView('pdf.surat-keluar', $data);
-        return $pdf->stream('document.pdf');
+        $user = Auth::user();
+        $pegawai = Pegawai::where(['id_user' => @$user->id])->firstOrFail();
+        if($suratkeluar->persetujuan()->where('id', $pegawai->id)->exists()) {
+            $suratkeluar->persetujuan = '1';
+        }
+        return view('persetujuan-surat-keluar.edit', compact('suratkeluar'))->with(compact('sifatsurat'));
     }
 }

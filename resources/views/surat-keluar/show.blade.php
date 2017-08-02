@@ -37,6 +37,14 @@
                                 <td> {{ $suratkeluar->nomor }} </td>
                             </tr>
                             <tr>
+                                <th> Masalah Surat </th>
+                                <td> {{ @$kegiatansurat->klasifikasi_arsip->nama }} </td>
+                            </tr>
+                            <tr>
+                                <th> Kegiatan Surat </th>
+                                <td> {{ @$kegiatansurat->kegiatan->nama }} </td>
+                            </tr>
+                            <tr>
                                 <th> Id Instansi </th>
                                 <td> {{ @$suratkeluar->instansi->nama }} </td>
                             </tr>

@@ -27,7 +27,7 @@ class SuratKeluar extends Model
      *
      * @var array
      */
-    protected $fillable = ['nomor', 'id_instansi', 'perihal', 'id_sifat', 'isi', 'id_pegawai', 'status'];
+    protected $fillable = ['nomor', 'id_instansi', 'id_kegiatan_surat', 'perihal', 'id_sifat', 'isi', 'id_pegawai', 'status'];
 
     
 }

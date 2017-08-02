@@ -168,12 +168,13 @@ class SearchController extends BaseController
             ->where('kegiatan_surat.nomor', 'LIKE', '%'.$term.'%')
             ->orWhere('klasifikasi_arsip.nama', 'LIKE', '%'.$term.'%')
             ->orWhere('kegiatan.nama', 'LIKE', '%'.$term.'%')
-            ->select(['kegiatan_surat.id','kegiatan_surat.nomor','klasifikasi_arsip.nama as klasifikasi_arsip','kegiatan.nama as kegiatan'])
+            ->orWhere('klasifikasi_arsip.nomor', 'LIKE', '%'.$term.'%')
+            ->select(['kegiatan_surat.id','kegiatan_surat.nomor','klasifikasi_arsip.nomor as nomor_klasifikasi_arsip','klasifikasi_arsip.nama as klasifikasi_arsip','kegiatan.nama as kegiatan'])
             ->take(5)->get();
 
         foreach ($queries as $query)
         {
-            $results[] = [ 'id' => $query->id, 'value' => $query->nomor.' '.$query->klasifikasi_arsip.' '.$query->kegiatan ];
+            $results[] = [ 'nomor' => $query->nomor_klasifikasi_arsip . $query->nomor, 'id' => $query->id, 'klasifikasi_arsip' => $query->klasifikasi_arsip, 'kegiatan' => $query->kegiatan, 'value' => '<strong>No: </strong>'.$query->nomor_klasifikasi_arsip . $query->nomor.'</br><strong>Masalah: </strong>'.$query->klasifikasi_arsip.'</br><strong>Kegiatan: </strong>'.$query->kegiatan ];
         }
 
         return Response::json($results);
