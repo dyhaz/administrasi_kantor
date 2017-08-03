@@ -23,4 +23,9 @@ trait SuratMasukRelationship
     {
         return $this->hasOne(Instansi::class, 'id', 'id_instansi');
     }
+
+    public function persetujuan()
+    {
+        return $this->belongsToMany('App\Models\Pegawai')->withTimestamps();
+    }
 }

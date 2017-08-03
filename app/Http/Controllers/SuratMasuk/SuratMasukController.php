@@ -8,6 +8,8 @@ use App\Models\SifatSurat;
 use Illuminate\Support\Facades\Response;
 
 use App\Models\SuratMasuk;
+use App\Models\Pegawai;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Session;
 use GrahamCampbell\Flysystem\Facades\Flysystem;
@@ -151,8 +153,9 @@ class SuratMasukController extends Controller
     public function update($id, Request $request)
     {
         $this->validation['nomor'] = '';
-        $this->validate($request, $this->validation);
         $requestData = $request->all();
+        $this->validation['file'] = @$requestData['persetujuan']?'':$this->validation['file'];
+        $this->validate($request, $this->validation);
 
 
         if ($request->file('file')) {
@@ -163,6 +166,14 @@ class SuratMasukController extends Controller
 
         $suratmasuk = SuratMasuk::findOrFail($id);
         $suratmasuk->update($requestData);
+
+        if(@$requestData['persetujuan']) {
+            $user = Auth::user();
+            $pegawai = Pegawai::where(['id_user' => @$user->id])->firstOrFail();
+            if(!$suratmasuk->persetujuan()->where('id', $pegawai->id)->exists()) {
+                $suratmasuk->persetujuan()->attach($pegawai->id);
+            }
+        }
 
         Session::flash('flash_message', 'SuratMasuk updated!');
 

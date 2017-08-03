@@ -60,8 +60,10 @@ Route::get('surat-keluar/persetujuan/{id}', 'SuratKeluar\\PersetujuanSuratKeluar
 Route::get('surat-keluar/terkirim', 'SuratKeluar\\PengirimanSuratKeluarController@terkirim');
 Route::get('surat-keluar/kirim/{id}', 'SuratKeluar\\PengirimanSuratKeluarController@kirim');
 Route::get('persetujuan-surat-keluar/{id}', 'SuratKeluar\\PersetujuanSuratKeluarController@acc');
+Route::get('persetujuan-surat-masuk/{id}', 'SuratMasuk\\PersetujuanSuratMasukController@acc');
 Route::resource('surat-keluar', 'SuratKeluar\\SuratKeluarController');
 Route::resource('persetujuan-surat-keluar', 'SuratKeluar\\PersetujuanSuratKeluarController');
+Route::resource('persetujuan-surat-masuk', 'SuratMasuk\\PersetujuanSuratMasukController');
 
 /**
  * Admin
