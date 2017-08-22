@@ -23,6 +23,8 @@ class KotaController extends Controller
      */
     public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu']);
+
         $keyword = $request->get('search');
         $perPage = 25;
 
@@ -76,7 +78,7 @@ class KotaController extends Controller
     {
         $kotum = Kota::findOrFail($id);
 
-        return view('admin.kota.show', compact('kotum'));
+        return view('admin.kota.show', compact('kotum'))->with('slug', $id);
     }
 
     /**
@@ -90,7 +92,7 @@ class KotaController extends Controller
     {
         $kotum = Kota::findOrFail($id);
 
-        return view('admin.kota.edit', compact('kotum'));
+        return view('admin.kota.edit', compact('kotum'))->with('slug', $id);
     }
 
     /**

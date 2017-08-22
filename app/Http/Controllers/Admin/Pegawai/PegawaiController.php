@@ -31,6 +31,8 @@ class PegawaiController extends Controller
      */
     public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu']);
+
         $keyword = $request->get('search');
         $perPage = 25;
 
@@ -92,7 +94,7 @@ class PegawaiController extends Controller
     {
         $pegawai = Pegawai::with('kota')->with('jabatan')->with('divisi')->findOrFail($id);
 
-        return view('admin/pegawai.show', compact('pegawai'));
+        return view('admin/pegawai.show', compact('pegawai'))->with('slug', $id);
     }
 
     /**
@@ -106,7 +108,7 @@ class PegawaiController extends Controller
     {
         $pegawai = Pegawai::findOrFail($id);
 
-        return view('admin/pegawai.edit', compact('pegawai'));
+        return view('admin/pegawai.edit', compact('pegawai'))->with('slug', $id);
     }
 
     /**

@@ -175,6 +175,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
+        App\Providers\MyServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
@@ -182,6 +183,8 @@ return [
         niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         Yajra\Datatables\ButtonsServiceProvider::class,
+        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
+        'Maatwebsite\Sidebar\SidebarServiceProvider',
     ],
 
     /*
@@ -233,6 +236,7 @@ return [
         'HTML' => Collective\Html\HtmlFacade::class,
         'Flysystem' => GrahamCampbell\Flysystem\Facades\Flysystem::class,
         'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
+        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
     ],
 
 ];

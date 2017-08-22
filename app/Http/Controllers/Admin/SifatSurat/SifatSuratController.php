@@ -23,6 +23,8 @@ class SifatSuratController extends Controller
      */
     public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu']);
+
         $keyword = $request->get('search');
         $perPage = 25;
 
@@ -76,7 +78,7 @@ class SifatSuratController extends Controller
     {
         $sifatsurat = SifatSurat::findOrFail($id);
 
-        return view('admin.sifat-surat.show', compact('sifatsurat'));
+        return view('admin.sifat-surat.show', compact('sifatsurat'))->with('slug', $id);
     }
 
     /**
@@ -90,7 +92,7 @@ class SifatSuratController extends Controller
     {
         $sifatsurat = SifatSurat::findOrFail($id);
 
-        return view('admin.sifat-surat.edit', compact('sifatsurat'));
+        return view('admin.sifat-surat.edit', compact('sifatsurat'))->with('slug', $id);
     }
 
     /**

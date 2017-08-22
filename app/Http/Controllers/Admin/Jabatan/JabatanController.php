@@ -23,6 +23,8 @@ class JabatanController extends Controller
      */
     public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu']);
+
         $keyword = $request->get('search');
         $perPage = 25;
 
@@ -76,7 +78,7 @@ class JabatanController extends Controller
     {
         $jabatan = Jabatan::findOrFail($id);
 
-        return view('admin.jabatan.show', compact('jabatan'));
+        return view('admin.jabatan.show', compact('jabatan'))->with('slug', $id);
     }
 
     /**
@@ -90,7 +92,7 @@ class JabatanController extends Controller
     {
         $jabatan = Jabatan::findOrFail($id);
 
-        return view('admin.jabatan.edit', compact('jabatan'));
+        return view('admin.jabatan.edit', compact('jabatan'))->with('slug', $id);
     }
 
     /**

@@ -12,3 +12,6 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
 </div>
+<script>
+    $('.ajax-form').find('input[type=text]').val('');
+</script>

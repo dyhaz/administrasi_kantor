@@ -23,6 +23,8 @@ class DivisiController extends Controller
      */
     public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu']);
+
         $keyword = $request->get('search');
         $perPage = 25;
 
@@ -76,7 +78,7 @@ class DivisiController extends Controller
     {
         $divisi = Divisi::findOrFail($id);
 
-        return view('admin.divisi.show', compact('divisi'));
+        return view('admin.divisi.show', compact('divisi'))->with('slug', $id);
     }
 
     /**
@@ -90,7 +92,7 @@ class DivisiController extends Controller
     {
         $divisi = Divisi::findOrFail($id);
 
-        return view('admin.divisi.edit', compact('divisi'));
+        return view('admin.divisi.edit', compact('divisi'))->with('slug', $id);
     }
 
     /**

@@ -35,6 +35,8 @@ class SuratMasukController extends Controller
      */
     public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu', 'ka_subbag_tu']);
+
         $keyword = $request->get('search');
         $perPage = 25;
 
@@ -103,7 +105,7 @@ class SuratMasukController extends Controller
     {
         $suratmasuk = SuratMasuk::with('instansi')->with('sifat_surat')->findOrFail($id);
         Flysystem::read($suratmasuk->file);
-        return view('surat-masuk.show', compact('suratmasuk'));
+        return view('surat-masuk.show', compact('suratmasuk'))->with('slug', $id);
     }
 
     /**
@@ -139,7 +141,7 @@ class SuratMasukController extends Controller
     {
         $suratmasuk = SuratMasuk::with('instansi')->findOrFail($id);
         $sifatsurat = SifatSurat::orderBy('id')->pluck('nama','id');
-        return view('surat-masuk.edit', compact('suratmasuk', 'sifatsurat'));
+        return view('surat-masuk.edit', compact('suratmasuk', 'sifatsurat'))->with('slug', $id);
     }
 
     /**

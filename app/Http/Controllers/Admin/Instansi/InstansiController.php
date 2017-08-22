@@ -25,6 +25,8 @@ class InstansiController extends Controller
      */
     public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu']);
+
         $keyword = $request->get('search');
         $perPage = 25;
 
@@ -80,7 +82,7 @@ class InstansiController extends Controller
     {
         $instansi = Instansi::with('kota')->findOrFail($id);
 
-        return view('admin.instansi.show', compact('instansi'));
+        return view('admin.instansi.show', compact('instansi'))->with('slug', $id);
     }
 
     /**
@@ -94,7 +96,7 @@ class InstansiController extends Controller
     {
         $instansi = Instansi::with('kota')->findOrFail($id);
 
-        return view('admin.instansi.edit', compact('instansi'));
+        return view('admin.instansi.edit', compact('instansi'))->with('slug', $id);
     }
 
     /**

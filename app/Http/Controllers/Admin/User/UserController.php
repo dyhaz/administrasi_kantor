@@ -26,6 +26,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu']);
+
         $keyword = $request->get('search');
         $perPage = 25;
 
@@ -88,7 +90,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return view('admin.user.show', compact('user'));
+        return view('admin.user.show', compact('user'))->with('slug', $id);
     }
 
     /**
@@ -103,7 +105,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $pegawai = Pegawai::where(['id_user' => $user->id])->first();
 
-        return view('admin.user.edit', compact('user'))->with('pegawai', $pegawai);
+        return view('admin.user.edit', compact('user'))->with('pegawai', $pegawai)->with('slug', $id);
     }
 
     /**

@@ -20,7 +20,9 @@
         "nicolaslopezj/searchable": "1.*",
         "niklasravnsborg/laravel-pdf": "^1.5",
         "yajra/laravel-datatables-oracle": "^7.5",
-        "yajra/laravel-datatables-buttons": "^2.0"
+        "yajra/laravel-datatables-buttons": "^2.0",
+        "davejamesmiller/laravel-breadcrumbs": "^3.0",
+        "maatwebsite/laravel-sidebar": "~2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -2,7 +2,7 @@
     <div id="sidebar-content">
 
         <!-- Search Input -->
-        <form class="sidebar-search">
+        <!--<form class="sidebar-search">
             <div class="input-box">
                 <button type="submit" class="submit">
                     <i class="icon-search"></i>
@@ -11,7 +11,7 @@
 							<input type="text" placeholder="Search...">
 						</span>
             </div>
-        </form>
+        </form>-->
 
         <!-- Search Results -->
         <div class="sidebar-search-results">
@@ -66,7 +66,8 @@
         </div> <!-- /.sidebar-search-results -->
 
         <!--=== Navigation ===-->
-        <ul id="nav">
+        @include('_partials.sidebar')
+        <!--<ul id="nav">
             <li class="current">
                 <a href="/">
                     <i class="icon-dashboard"></i>
@@ -96,6 +97,12 @@
                         <a href="/persetujuan-surat-keluar">
                             <i class="icon-angle-right"></i>
                             Persetujuan Surat Keluar
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/persetujuan-surat-masuk">
+                            <i class="icon-angle-right"></i>
+                            Persetujuan Surat Masuk
                         </a>
                     </li>
                 </ul>
@@ -294,7 +301,7 @@
                     </li>
                 </ul>
             </li>
-        </ul>
+        </ul>-->
 
         <!-- /Navigation -->
         <div class="sidebar-title">

@@ -24,6 +24,8 @@ class KlasifikasiArsipController extends Controller
      */
     public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu']);
+
         $keyword = $request->get('search');
         $perPage = 25;
 
@@ -78,7 +80,7 @@ class KlasifikasiArsipController extends Controller
     {
         $klasifikasiarsip = KlasifikasiArsip::findOrFail($id);
 
-        return view('admin.klasifikasi-arsip.show', compact('klasifikasiarsip'));
+        return view('admin.klasifikasi-arsip.show', compact('klasifikasiarsip'))->with('slug', $id);
     }
 
     /**
@@ -92,7 +94,7 @@ class KlasifikasiArsipController extends Controller
     {
         $klasifikasiarsip = KlasifikasiArsip::findOrFail($id);
 
-        return view('admin.klasifikasi-arsip.edit', compact('klasifikasiarsip'));
+        return view('admin.klasifikasi-arsip.edit', compact('klasifikasiarsip'))->with('slug', $id);
     }
 
     /**

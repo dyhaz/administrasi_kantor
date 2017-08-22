@@ -100,7 +100,7 @@ class DisposisiController extends Controller
 
         $disposisitujuan = DisposisiTujuan::with('disposisi')->where(['id_disposisi' => $disposisi->id])->get();
 
-        return $dataTable->forIdDisposisi($disposisi->id)->render('disposisi.show', compact('disposisi'));
+        return $dataTable->forIdDisposisi($disposisi->id)->render('disposisi.show', compact('disposisi'))->with('slug', $id);
 
         //return view('disposisi.show', compact('disposisi'))->with(compact('disposisitujuan'));
     }
@@ -123,7 +123,8 @@ class DisposisiController extends Controller
 
         $isidisposisi = IsiDisposisi::orderBy('isi')->pluck('isi','id');
 
-        return view('disposisi.edit', compact('disposisi'))->with(compact('isidisposisi'))->with('disposisi_isi', $disposisi_isi);
+        return view('disposisi.edit', compact('disposisi'))->with(compact('isidisposisi'))
+            ->with('disposisi_isi', $disposisi_isi)->with('slug', $id);
     }
 
     /**

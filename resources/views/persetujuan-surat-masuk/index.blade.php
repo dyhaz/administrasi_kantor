@@ -4,12 +4,8 @@
     <div class="row">
         <div class="col-md-12">
             <div class="widget box">
-                <div class="widget-header">Suratmasuk</div>
+                <div class="widget-header">Persetujuan Suratmasuk</div>
                 <div class="widget-content">
-                    <a href="{{ url('/surat-masuk/create') }}" class="btn btn-success btn-sm" title="Add New SuratMasuk">
-                        <i class="icon-plus" aria-hidden="true"></i> Add New
-                    </a>
-
                     {!! Form::open(['method' => 'GET', 'url' => '/surat-masuk', 'class' => 'navbar-form navbar-right', 'role' => 'search'])  !!}
                     <div class="input-group">
                         <input type="text" class="form-control" name="search" placeholder="Search...">

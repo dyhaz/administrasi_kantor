@@ -23,6 +23,8 @@ class KegiatanController extends Controller
      */
     public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu']);
+
         $keyword = $request->get('search');
         $perPage = 25;
 
@@ -76,7 +78,7 @@ class KegiatanController extends Controller
     {
         $kegiatan = Kegiatan::findOrFail($id);
 
-        return view('admin.kegiatan.show', compact('kegiatan'));
+        return view('admin.kegiatan.show', compact('kegiatan'))->with('slug', $id);
     }
 
     /**
@@ -90,7 +92,7 @@ class KegiatanController extends Controller
     {
         $kegiatan = Kegiatan::findOrFail($id);
 
-        return view('admin.kegiatan.edit', compact('kegiatan'));
+        return view('admin.kegiatan.edit', compact('kegiatan'))->with('slug', $id);
     }
 
     /**

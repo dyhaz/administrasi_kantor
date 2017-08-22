@@ -19,9 +19,15 @@ Route::get('/', function () {
 Route::post('/login', 'Auth\LoginController@login');
 Route::get('/login', 'Auth\LoginController@index');
 
+Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+
 Route::get('/home', function() {
     return view('welcome');
-});
+})->name('home');
+
+Route::get('/profile', 'CobaController@index')->name('profile');
+Route::get('/about', 'CobaController@index')->name('about');
+Route::get('/blog', 'CobaController@index')->name('blog');
 
 /**
  * Autocomplete routes
@@ -86,5 +92,9 @@ Route::resource('disposisi/isi-disposisi', 'Disposisi\\IsiDisposisiController');
 Route::resource('disposisi/disposisi-tujuan', 'Disposisi\\DisposisiTujuanController');
 Route::resource('disposisi', 'Disposisi\\DisposisiController');
 
-Route::resource('tes/test', 'Test\\TestController');
+//Route::resource('tes/test', 'Test\\TestController');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

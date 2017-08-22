@@ -76,7 +76,7 @@ class IsiDisposisiController extends Controller
     {
         $isidisposisi = IsiDisposisi::findOrFail($id);
 
-        return view('admin.isi-disposisi.show', compact('isidisposisi'));
+        return view('admin.isi-disposisi.show', compact('isidisposisi'))->with('slug', $id);
     }
 
     /**
@@ -90,7 +90,7 @@ class IsiDisposisiController extends Controller
     {
         $isidisposisi = IsiDisposisi::findOrFail($id);
 
-        return view('admin.isi-disposisi.edit', compact('isidisposisi'));
+        return view('admin.isi-disposisi.edit', compact('isidisposisi'))->with('slug', $id);
     }
 
     /**

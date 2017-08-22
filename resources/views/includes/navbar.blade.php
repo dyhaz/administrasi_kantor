@@ -230,11 +230,10 @@
                 <i class="icon-caret-down small"></i>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="pages_user_profile.html"><i class="icon-user"></i> My Profile</a></li>
-                <li><a href="pages_calendar.html"><i class="icon-calendar"></i> My Calendar</a></li>
-                <li><a href="#"><i class="icon-tasks"></i> My Tasks</a></li>
+                <li><a href="{{ route('profile') }}"><i class="icon-user"></i> My Profile</a></li>
+                <li><a href="#"><i class="icon-calendar"></i> My Calendar</a></li>
                 <li class="divider"></li>
-                <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
+                <li><a href="#" onclick="$('#logout-form').submit()"><i class="icon-key"></i> Log Out</a></li>
             </ul>
         </li>
         <!-- /user login dropdown -->
@@ -242,3 +241,5 @@
     <!-- /Top Right Menu -->
 </div>
 <!-- /top navigation bar -->
+{!! Form::open(['method' => 'POST', 'route' => 'logout', 'id' => 'logout-form']) !!}
+{!! Form::close() !!}

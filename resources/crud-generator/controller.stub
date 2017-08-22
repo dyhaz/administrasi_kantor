@@ -71,7 +71,7 @@ class DummyClass extends Controller
     {
         ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
 
-        return view('{{viewPath}}{{viewName}}.show', compact('{{crudNameSingular}}'));
+        return view('{{viewPath}}{{viewName}}.show', compact('{{crudNameSingular}}'))->with('slug', $id);
     }
 
     /**
@@ -85,7 +85,7 @@ class DummyClass extends Controller
     {
         ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
 
-        return view('{{viewPath}}{{viewName}}.edit', compact('{{crudNameSingular}}'));
+        return view('{{viewPath}}{{viewName}}.edit', compact('{{crudNameSingular}}'))->with('slug', $id);
     }
 
     /**

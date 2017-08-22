@@ -25,6 +25,8 @@ class KegiatanSuratController extends Controller
      */
     public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu']);
+
         $keyword = $request->get('search');
         $perPage = 25;
 
@@ -79,7 +81,7 @@ class KegiatanSuratController extends Controller
     {
         $kegiatansurat = KegiatanSurat::with('kegiatan')->with('klasifikasi_arsip')->findOrFail($id);
 
-        return view('admin.kegiatan-surat.show', compact('kegiatansurat'));
+        return view('admin.kegiatan-surat.show', compact('kegiatansurat'))->with('slug', $id);
     }
 
     /**
@@ -93,7 +95,7 @@ class KegiatanSuratController extends Controller
     {
         $kegiatansurat = KegiatanSurat::with('kegiatan')->with('klasifikasi_arsip')->findOrFail($id);
 
-        return view('admin.kegiatan-surat.edit', compact('kegiatansurat'));
+        return view('admin.kegiatan-surat.edit', compact('kegiatansurat'))->with('slug', $id);
     }
 
     /**

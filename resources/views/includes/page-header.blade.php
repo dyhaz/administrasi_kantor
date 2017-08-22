@@ -1,14 +1,7 @@
 <!-- Breadcrumbs line -->
 <div class="crumbs">
-    <ul id="breadcrumbs" class="breadcrumb">
-        <li>
-            <i class="icon-home"></i>
-            <a href="/">Dashboard</a>
-        </li>
-        <li class="current">
-            <a href="#" title="">Calendar</a>
-        </li>
-    </ul>
+    {!! Breadcrumbs::renderIfExists(Route::currentRouteName(), $slug) !!}
+
 <!--
     <ul class="crumb-buttons">
         <li><a href="charts.html" title=""><i class="icon-signal"></i><span>Statistics</span></a></li>

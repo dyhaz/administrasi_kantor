@@ -97,7 +97,7 @@ class PersetujuanSuratKeluarController extends Controller
 
         $kegiatansurat = KegiatanSurat::with('kegiatan')->with('klasifikasi_arsip')->find(@$suratkeluar->kegiatan_surat->id);
 
-        return view('surat-keluar.show', compact('suratkeluar', 'kegiatansurat'));
+        return view('surat-keluar.show', compact('suratkeluar', 'kegiatansurat'))->with('slug', $id);
     }
 
     /**

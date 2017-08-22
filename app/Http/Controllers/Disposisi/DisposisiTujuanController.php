@@ -74,7 +74,7 @@ class DisposisiTujuanController extends Controller
     {
         $disposisitujuan = DisposisiTujuan::findOrFail($id);
 
-        return view('disposisi.disposisi-tujuan.show', compact('disposisitujuan'));
+        return view('disposisi.disposisi-tujuan.show', compact('disposisitujuan'))->with('slug', $id);
     }
 
     /**
@@ -88,7 +88,7 @@ class DisposisiTujuanController extends Controller
     {
         $disposisitujuan = DisposisiTujuan::findOrFail($id);
 
-        return view('disposisi.disposisi-tujuan.edit', compact('disposisitujuan'));
+        return view('disposisi.disposisi-tujuan.edit', compact('disposisitujuan'))->with('slug', $id);
     }
 
     /**

@@ -19,7 +19,7 @@
 
     <div id="content">
         <div class="container">
-            @include('includes.page-header')
+            @include('includes.page-header', ['slug' => @$slug])
             @yield('content')
         </div>
         <!-- /.container -->
