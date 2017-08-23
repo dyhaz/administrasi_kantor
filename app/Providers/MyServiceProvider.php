@@ -13,7 +13,12 @@ class MyServiceProvider extends ServiceProvider
      */
     public function boot(SidebarManager $manager)
     {
+        $manager->register('App\Sidebar\ExampleSidebar');
         $manager->register('App\Sidebar\KaUPTSidebar');
+        $manager->register('App\Sidebar\KaSubbagTUSidebar');
+        $manager->register('App\Sidebar\KaSeksiPengujianPengendalianMutuSidebar');
+        $manager->register('App\Sidebar\StafSubbagTUSidebar');
+        $manager->register('App\Sidebar\StafSeksiPengujianPengendalianMutuSidebar');
 
         View::creator(
             '_partials.sidebar',
