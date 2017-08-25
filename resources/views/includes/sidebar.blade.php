@@ -67,7 +67,7 @@
 
         <!--=== Navigation ===-->
         @include('_partials.sidebar')
-        <!--<ul id="nav">
+                <!--<ul id="nav">
             <li class="current">
                 <a href="/">
                     <i class="icon-dashboard"></i>
@@ -308,33 +308,22 @@
             <span>Notifications</span>
         </div>
         <ul class="notifications demo-slide-in"> <!-- .demo-slide-in is just for demonstration purposes. You can remove this. -->
-            <li style="display: none;"> <!-- style-attr is here only for fading in this notification after a specific time. Remove this. -->
-                <div class="col-left">
-                    <span class="label label-danger"><i class="icon-warning-sign"></i></span>
-                </div>
-                <div class="col-right with-margin">
-                    <span class="message">Server <strong>#512</strong> crashed.</span>
-                    <span class="time">few seconds ago</span>
-                </div>
-            </li>
-            <li style="display: none;"> <!-- style-attr is here only for fading in this notification after a specific time. Remove this. -->
-                <div class="col-left">
-                    <span class="label label-info"><i class="icon-envelope"></i></span>
-                </div>
-                <div class="col-right with-margin">
-                    <span class="message"><strong>John</strong> sent you a message</span>
-                    <span class="time">few second ago</span>
-                </div>
-            </li>
-            <li>
-                <div class="col-left">
-                    <span class="label label-success"><i class="icon-plus"></i></span>
-                </div>
-                <div class="col-right with-margin">
-                    <span class="message"><strong>Emma</strong>'s account was created</span>
-                    <span class="time">4 hours ago</span>
-                </div>
-            </li>
+            @if(Auth::user()->hasRole('su'))
+                @php
+                $user = \App\User::orderBy('created_at', 'desc')->limit(10)->get();
+                @endphp
+                @foreach($user as $item)
+                    <li>
+                        <div class="col-left">
+                            <span class="label label-success"><i class="icon-plus"></i></span>
+                        </div>
+                        <div class="col-right with-margin">
+                            <span class="message"><strong>{{ $item->name }}</strong>'s account was created</span>
+                            <span class="time">{{ $item->created_at?$item->created_at->diffForHumans():'' }}</span>
+                        </div>
+                    </li>
+                @endforeach
+            @endif
         </ul>
 
         <div class="sidebar-widget align-center">

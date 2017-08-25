@@ -16,6 +16,7 @@ class SidebarCreator
     protected $sidebar_ka_seksi_pengujian_pengendalian_mutu;
     protected $sidebar_staf_seksi_pengujian_pengendalian_mutu;
     protected $sidebar_staf_subbag_tu;
+    protected $sidebar_superuser;
 
     /**
      * @var SidebarRenderer
@@ -26,7 +27,7 @@ class SidebarCreator
      * @param YourSidebar $sidebar
      * @param SidebarRenderer       $renderer
      */
-    public function __construct(ExampleSidebar $sidebar0, KaUPTSidebar $sidebar1, KaSubbagTUSidebar $sidebar2, KaSeksiPengujianPengendalianMutuSidebar $sidebar3, StafSeksiPengujianPengendalianMutuSidebar $sidebar4, StafSubbagTUSidebar $sidebar5, SidebarRenderer $renderer)
+    public function __construct(ExampleSidebar $sidebar0, KaUPTSidebar $sidebar1, KaSubbagTUSidebar $sidebar2, KaSeksiPengujianPengendalianMutuSidebar $sidebar3, StafSeksiPengujianPengendalianMutuSidebar $sidebar4, StafSubbagTUSidebar $sidebar5, SuperuserSidebar $sidebar6,SidebarRenderer $renderer)
     {
         $this->sidebar_example = $sidebar0;
         $this->sidebar_ka_upt  = $sidebar1;
@@ -34,6 +35,7 @@ class SidebarCreator
         $this->sidebar_ka_seksi_pengujian_pengendalian_mutu  = $sidebar3;
         $this->sidebar_staf_seksi_pengujian_pengendalian_mutu  = $sidebar4;
         $this->sidebar_staf_subbag_tu  = $sidebar5;
+        $this->sidebar_superuser  = $sidebar6;
         $this->renderer = $renderer;
     }
 
@@ -59,6 +61,9 @@ class SidebarCreator
         );
         $view->sidebar_staf_seksi_pengujian_pengendalian_mutu = $this->renderer->render(
             $this->sidebar_staf_seksi_pengujian_pengendalian_mutu
+        );
+        $view->sidebar_superuser = $this->renderer->render(
+            $this->sidebar_superuser
         );
     }
 }

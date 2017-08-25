@@ -34,6 +34,12 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
+    public function pegawai()
+    {
+        return $this
+            ->belongsTo('App\Models\Pegawai', 'id', 'id_user');
+    }
+
     public function authorizeRoles($roles)
     {
         if ($this->hasAnyRole($roles)) {

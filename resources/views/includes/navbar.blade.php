@@ -22,8 +22,23 @@
     <!-- Top Left Menu -->
     <ul class="nav navbar-nav navbar-left hidden-xs hidden-sm">
         <li>
-            <a href="#">
+            <a href="{{ route('home') }}">
                 Dashboard
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                Kontak
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('profile') }}">
+                Profil
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('change_password') }}">
+                Ubah Password
             </a>
         </li>
         <li class="dropdown">
@@ -94,66 +109,6 @@
             </ul>
         </li>
 
-        <!-- Tasks -->
-        <li class="dropdown hidden-xs hidden-sm">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="icon-tasks"></i>
-                <span class="badge">7</span>
-            </a>
-            <ul class="dropdown-menu extended notification">
-                <li class="title">
-                    <p>You have 7 pending tasks</p>
-                </li>
-                <li>
-                    <a href="javascript:void(0);">
-								<span class="task">
-									<span class="desc">Preparing new release</span>
-									<span class="percent">30%</span>
-								</span>
-                        <div class="progress progress-small">
-                            <div style="width: 30%;" class="progress-bar progress-bar-info"></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0);">
-								<span class="task">
-									<span class="desc">Change management</span>
-									<span class="percent">80%</span>
-								</span>
-                        <div class="progress progress-small progress-striped active">
-                            <div style="width: 80%;" class="progress-bar progress-bar-danger"></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0);">
-								<span class="task">
-									<span class="desc">Mobile development</span>
-									<span class="percent">60%</span>
-								</span>
-                        <div class="progress progress-small">
-                            <div style="width: 60%;" class="progress-bar progress-bar-success"></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0);">
-								<span class="task">
-									<span class="desc">Database migration</span>
-									<span class="percent">20%</span>
-								</span>
-                        <div class="progress progress-small">
-                            <div style="width: 20%;" class="progress-bar progress-bar-warning"></div>
-                        </div>
-                    </a>
-                </li>
-                <li class="footer">
-                    <a href="javascript:void(0);">View all tasks</a>
-                </li>
-            </ul>
-        </li>
-
         <!-- Messages -->
         <li class="dropdown hidden-xs hidden-sm">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -204,21 +159,6 @@
                     <a href="javascript:void(0);">View all messages</a>
                 </li>
             </ul>
-        </li>
-
-        <!-- .row .row-bg Toggler -->
-        <li>
-            <a href="#" class="dropdown-toggle row-bg-toggle">
-                <i class="icon-resize-vertical"></i>
-            </a>
-        </li>
-
-        <!-- Project Switcher Button -->
-        <li class="dropdown">
-            <a href="#" class="project-switcher-btn dropdown-toggle">
-                <i class="icon-folder-open"></i>
-                <span>Projects</span>
-            </a>
         </li>
 
         <!-- User Login Dropdown -->

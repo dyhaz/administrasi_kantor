@@ -3,7 +3,9 @@
 <head>
 
     @include('includes.head')
-    <title>Administrasi Kantor | @yield('title')</title>
+    <title>
+        Administrasi Kantor | @if(View::hasSection('title')) @yield('title') @else Laravel @endif
+    </title>
 
 </head>
 

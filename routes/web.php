@@ -13,7 +13,7 @@
 use App\DataTables\DisposisiTujuanDataTable;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.landing');
 });
 
 Route::post('/login', 'Auth\LoginController@login');
@@ -21,13 +21,16 @@ Route::get('/login', 'Auth\LoginController@index');
 
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/home', function() {
-    return view('welcome');
-})->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/profile', 'CobaController@index')->name('profile');
+Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/about', 'CobaController@index')->name('about');
+Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@getReset')->name('reset_password');
+Route::post('/password', 'Auth\ResetPasswordController@postReset');
+Route::get('/password/ubah', 'UbahPasswordController@index')->name('change_password');
+Route::post('/password/ubah', 'UbahPasswordController@post');
 Route::get('/blog', 'CobaController@index')->name('blog');
+Route::post('/profile/foto', 'ProfileController@uploadPhoto')->name('upload_photo');
 
 /**
  * Autocomplete routes

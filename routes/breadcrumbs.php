@@ -27,6 +27,13 @@ Breadcrumbs::register('blog', function($breadcrumbs)
     $breadcrumbs->push('Blog', route('blog'));
 });
 
+// Change Password
+Breadcrumbs::register('change_password', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Ubah Password', route('change_password'));
+});
+
 // Home > Surat Keluar
 Breadcrumbs::register('surat-keluar.index', function($breadcrumbs)
 {
@@ -54,6 +61,14 @@ Breadcrumbs::register('surat-keluar.edit', function($breadcrumbs, $slug)
     $breadcrumbs->parent('surat-keluar.index');
     $breadcrumbs->push('Edit Surat Keluar', route('surat-keluar.edit', $slug));
 });
+
+// Home > Persetujuan Surat Keluar
+Breadcrumbs::register('persetujuan-surat-keluar.index', function($breadcrumbs)
+{
+    $breadcrumbs->parent('surat-keluar.index');
+    $breadcrumbs->push('Persetujuan Surat Keluar', route('persetujuan-surat-keluar.index'));
+});
+
 
 // Home > Surat Masuk
 Breadcrumbs::register('surat-masuk.index', function($breadcrumbs)
@@ -165,4 +180,32 @@ Breadcrumbs::register('jabatan.edit', function($breadcrumbs, $slug)
 {
     $breadcrumbs->parent('jabatan.index');
     $breadcrumbs->push('Edit Jabatan', route('jabatan.edit', $slug));
+});
+
+// Home > Disposisi
+Breadcrumbs::register('disposisi.index', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Disposisi', route('disposisi.index'));
+});
+
+// Home > Disposisi > [Disposisi]
+Breadcrumbs::register('disposisi.show', function($breadcrumbs, $slug)
+{
+    $breadcrumbs->parent('disposisi.index');
+    $breadcrumbs->push($slug, route('disposisi.show', $slug));
+});
+
+// Home > Disposisi > Create
+Breadcrumbs::register('disposisi.create', function($breadcrumbs)
+{
+    $breadcrumbs->parent('disposisi.index');
+    $breadcrumbs->push('Create Disposisi', route('disposisi.create'));
+});
+
+// Home > Edit Disposisi > [Disposisi]
+Breadcrumbs::register('disposisi.edit', function($breadcrumbs, $slug)
+{
+    $breadcrumbs->parent('disposisi.index');
+    $breadcrumbs->push('Edit Disposisi', route('disposisi.edit', $slug));
 });

@@ -19,6 +19,7 @@ class MyServiceProvider extends ServiceProvider
         $manager->register('App\Sidebar\KaSeksiPengujianPengendalianMutuSidebar');
         $manager->register('App\Sidebar\StafSubbagTUSidebar');
         $manager->register('App\Sidebar\StafSeksiPengujianPengendalianMutuSidebar');
+        $manager->register('App\Sidebar\SuperuserSidebar');
 
         View::creator(
             '_partials.sidebar',

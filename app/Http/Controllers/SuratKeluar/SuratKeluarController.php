@@ -32,6 +32,15 @@ class SuratKeluarController extends Controller
      */
     public function index(Request $request)
     {
+        $request->user()->authorizeRoles([
+            'su',
+            'staf_subbag_tu',
+            'ka_subbag_tu',
+            'ka_seksi_pengujian_dan_pengendalian_mutu',
+            'staf_seksi_pengujian_dan_pengendalian_mutu',
+            'ka_upt'
+        ]);
+
         $keyword = $request->get('search');
         $perPage = 25;
 
@@ -56,8 +65,10 @@ class SuratKeluarController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu', 'ka_subbag_tu']);
+
         $sifatsurat = SifatSurat::orderBy('id')->pluck('nama','id');
         return view('surat-keluar.create')->with(compact('sifatsurat'));
     }
@@ -109,8 +120,10 @@ class SuratKeluarController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu', 'ka_subbag_tu']);
+
         $suratkeluar = SuratKeluar::with('instansi')->findOrFail($id);
         $sifatsurat = SifatSurat::orderBy('id')->pluck('nama','id');
         return view('surat-keluar.edit', compact('suratkeluar'))->with(compact('sifatsurat'));

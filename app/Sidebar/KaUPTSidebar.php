@@ -41,18 +41,18 @@ class KaUPTSidebar implements Sidebar
                 $item->route('disposisi.index');
             });
         });
-        $this->menu->group('Laporan Surat Masuk', function(Group $group) {
-            $group->item('asdsaa', function (Item $item) {
+        $this->menu->group('Laporan', function(Group $group) {
+            $group->item('Laporan Surat Masuk', function (Item $item) {
                 $item->icon('icon-user-md');
                 $item->weight(50);
                 $item->route('home');
             });
-            $group->item('Surat Masuk', function (Item $item) {
+            /**$group->item('Surat Masuk', function (Item $item) {
                 $item->icon('icon-user-md');
                 $item->weight(50);
                 $item->route('surat-keluar.index');
             });
-            $group->item('eee');
+            $group->item('eee');*/
         });
     }
 

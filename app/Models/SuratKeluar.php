@@ -51,6 +51,10 @@ class SuratKeluar extends Model
         return $this->disetujui_oleh('Kepala Seksi Pengendalian Mutu');
     }
 
+    public function disetujui_ka_subbag_tu() {
+        return $this->disetujui_oleh('Ka Subbag TU');
+    }
+
     public function disetujui_ka_upt() {
         return $this->disetujui_oleh('Ka UPT');
     }
@@ -58,7 +62,7 @@ class SuratKeluar extends Model
     public function __persetujuan() {
         $jabatan = [];
         foreach($this->persetujuan as $pegawai) {
-            $jabatan[] = $pegawai->jabatan->nama;
+            $jabatan[] = @$pegawai->jabatan->nama;
         }
         return implode(', ', $jabatan);
     }

@@ -35,7 +35,14 @@ class SuratMasukController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['su', 'staf_subbag_tu', 'ka_subbag_tu']);
+        $request->user()->authorizeRoles([
+            'su',
+            'staf_subbag_tu',
+            'ka_subbag_tu',
+            'ka_seksi_pengujian_dan_pengendalian_mutu',
+            'staf_seksi_pengujian_dan_pengendalian_mutu',
+            'ka_upt'
+        ]);
 
         $keyword = $request->get('search');
         $perPage = 25;
@@ -62,8 +69,10 @@ class SuratMasukController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu', 'ka_subbag_tu']);
+
         $sifatsurat = SifatSurat::orderBy('id')->pluck('nama','id');
         return view('surat-masuk.create')->with(compact('sifatsurat'));
     }

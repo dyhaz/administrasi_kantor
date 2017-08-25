@@ -34,7 +34,7 @@
                             @foreach($suratmasuk as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->nomor }}</td><td>{{ $item->tanggal_terima }}</td><td>{{ $item->nomor_naskah_dinas }}</td>
+                                    <td>{{ $item->nomor }}</td><td>{{ date_format(date_create($item->tanggal_terima), 'd/m/Y') }}</td><td>{{ $item->nomor_naskah_dinas }}</td>
                                     <td>
                                         <div class="btn-toolbar">
                                             <div class="btn-group">

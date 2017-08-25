@@ -54,6 +54,8 @@ class DisposisiController extends Controller
      */
     public function create(Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'ka_upt']);
+
         $isidisposisi = IsiDisposisi::orderBy('isi')->pluck('isi','id');
 
         if($request->get('sm')) {
@@ -112,8 +114,10 @@ class DisposisiController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'ka_upt']);
+
         $disposisi = Disposisi::with('surat_masuk')->with('isi_disposisi')->findOrFail($id);
 
         $disposisi_isi = [];
