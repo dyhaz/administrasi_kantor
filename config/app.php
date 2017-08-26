@@ -179,6 +179,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Services\Html\HtmlServiceProvider::class,
         GrahamCampbell\Flysystem\FlysystemServiceProvider::class,
         niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,

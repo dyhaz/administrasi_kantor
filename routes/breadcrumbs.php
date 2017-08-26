@@ -27,6 +27,13 @@ Breadcrumbs::register('blog', function($breadcrumbs)
     $breadcrumbs->push('Blog', route('blog'));
 });
 
+// Home > Contact
+Breadcrumbs::register('contact', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Contact', route('contact'));
+});
+
 // Change Password
 Breadcrumbs::register('change_password', function($breadcrumbs)
 {

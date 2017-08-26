@@ -25,6 +25,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/about', 'CobaController@index')->name('about');
+Route::get('/contact', 'ContactController@index')->name('contact');
+Route::post('/contact', 'ContactController@store');
 Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@getReset')->name('reset_password');
 Route::post('/password', 'Auth\ResetPasswordController@postReset');
 Route::get('/password/ubah', 'UbahPasswordController@index')->name('change_password');
