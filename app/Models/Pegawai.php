@@ -32,7 +32,7 @@ class Pegawai extends Model
     public function __jenis_kelamin() {
         $status = ['Laki-laki', 'Perempuan'];
 
-        if($this->jenis_kelamin != '0' || $this->jenis_kelamin != '1')
+        if($this->jenis_kelamin != '0' && $this->jenis_kelamin != '1')
             return $this->jenis_kelamin == 'L'?$status[0]:$status[1];
 
         $idx = $this->jenis_kelamin;

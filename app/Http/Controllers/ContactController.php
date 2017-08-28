@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kontak;
 use Illuminate\Http\Request;
 use GrahamCampbell\Flysystem\Facades\Flysystem;
 use Illuminate\Support\Facades\Storage;
@@ -20,9 +21,11 @@ class ContactController extends Controller
     }
 
     public function store(Request $request) {
+        $this->validate($request, $this->validation);
+
         $requestData = $request->all();
 
-        $this->validate($request, $this->validation);
+        Kontak::create($requestData);
 
         Session::flash('flash_message', 'Your message has been sent');
 

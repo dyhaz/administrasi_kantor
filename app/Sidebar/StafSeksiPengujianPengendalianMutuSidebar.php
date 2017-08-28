@@ -29,23 +29,23 @@ class StafSeksiPengujianPengendalianMutuSidebar implements Sidebar
     {
         $this->menu->group('Data Surat Masuk', function(Group $group) {
             $group->item('Lihat Surat Masuk', function (Item $item) {
-                $item->icon('icon-user-md');
+                $item->icon('icon-angle-right');
                 $item->route('surat-masuk.index');
             });
         });
         $this->menu->group('Agenda Surat Keluar', function(Group $group) {
             $group->item('Pembuatan Surat Keluar', function (Item $item) {
-                $item->icon('icon-user-md');
+                $item->icon('icon-angle-right');
                 $item->weight(50);
                 $item->route('surat-keluar.create');
             });
             $group->item('Lihat Surat Keluar', function (Item $item) {
-                $item->icon('icon-user-md');
+                $item->icon('icon-angle-right');
                 $item->weight(50);
                 $item->route('surat-keluar.index');
             });
             $group->item('Lihat Persetujuan Surat Keluar', function (Item $item) {
-                $item->icon('icon-user-md');
+                $item->icon('icon-angle-right');
                 $item->weight(50);
                 $item->route('persetujuan-surat-keluar.index');
             });

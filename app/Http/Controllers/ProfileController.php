@@ -4,13 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GrahamCampbell\Flysystem\Facades\Flysystem;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Session;
 
 class ProfileController extends Controller
 {
     public function index() {
-        return view('profile.index');
+        return view('profile.index')->with('pegawai', @Auth::user()->pegawai);
+    }
+
+    public function store(Request $request) {
+        $requestData = $request->all();
+        $pegawai = Auth::user()->pegawai;
+        $pegawai->nama = $requestData['nama'];
+        $pegawai->alamat = $requestData['alamat'];
+        $pegawai->jenis_kelamin = $requestData['jenis_kelamin'];
+        $pegawai->id_kota = $requestData['id_kota'];
+        $pegawai->tanggal_lahir = $requestData['tanggal_lahir'];
+        $pegawai->no_telp = $requestData['no_telp'];
+        $pegawai->save();
+
+        return redirect('/profile');
+
     }
 
     public function uploadPhoto(Request $request) {

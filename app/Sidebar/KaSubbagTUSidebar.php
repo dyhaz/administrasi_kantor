@@ -29,25 +29,25 @@ class KaSubbagTUSidebar implements Sidebar
     {
         $this->menu->group('Data Surat Masuk', function(Group $group) {
             $group->item('Lihat Disposisi Surat', function (Item $item) {
-                $item->icon('icon-user-md');
+                $item->icon('icon-angle-right');
                 $item->route('disposisi.index');
             });
         });
         $this->menu->group('Agenda Surat Keluar', function(Group $group) {
             $group->item('Lihat Surat Keluar', function (Item $item) {
-                $item->icon('icon-user-md');
+                $item->icon('icon-angle-right');
                 $item->weight(50);
                 $item->route('surat-keluar.index');
             });
             $group->item('Persetujuan Surat Keluar', function (Item $item) {
-                $item->icon('icon-user-md');
+                $item->icon('icon-angle-right');
                 $item->weight(50);
                 $item->route('persetujuan-surat-keluar.index');
             });
         });
         $this->menu->group('Laporan', function(Group $group) {
            $group->item('Laporan Surat Masuk', function (Item $item) {
-                $item->icon('icon-user-md');
+                $item->icon('icon-angle-right');
            });
         });
     }

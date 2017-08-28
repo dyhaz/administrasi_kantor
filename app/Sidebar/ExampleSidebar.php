@@ -29,13 +29,13 @@ class ExampleSidebar implements Sidebar
     {
         $this->menu->group('Tes', function(Group $group) {
             $group->item('asddfdf', function (Item $item) {
-                $item->icon('icon-user-md');
+                $item->icon('icon-angle-right');
                 $item->route('surat-masuk.index');
             });
         });
         $this->menu->group('Group 2', function(Group $group) {
             $group->item('asdsaa', function (Item $item) {
-                $item->icon('icon-user-md');
+                $item->icon('icon-angle-right');
                 $item->weight(50);
                 $item->route('home');
             });

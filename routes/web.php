@@ -24,6 +24,7 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::post('/profile/edit', 'ProfileController@store');
 Route::get('/about', 'CobaController@index')->name('about');
 Route::get('/contact', 'ContactController@index')->name('contact');
 Route::post('/contact', 'ContactController@store');

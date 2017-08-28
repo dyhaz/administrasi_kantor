@@ -3,7 +3,7 @@ namespace App\Services\Html;
 
 class FormBuilder extends \Collective\Html\FormBuilder {
 
-    /*public function submit($value = null, $options = [])
+    public function submitButton($value = null, $options = [])
     {
         return sprintf('
 			<div class="form-group %s">
@@ -12,7 +12,7 @@ class FormBuilder extends \Collective\Html\FormBuilder {
             empty($options) ? '' : @$options[0],
             parent::submit($value, ['class' => 'btn btn-default'])
         );
-    }*/
+    }
 
     public function destroy($text, $message, $class = null)
     {

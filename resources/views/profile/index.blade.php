@@ -10,7 +10,7 @@
                 <a href="javascript:void(0);" class="list-group-item">Projects</a>
                 <a href="javascript:void(0);" class="list-group-item">Messages</a>
                 <a href="javascript:void(0);" class="list-group-item"><span class="badge">3</span>Friends</a>
-                <a href="/profile/edit" class="list-group-item"><i class="icon-pencil"></i> Edit Profile</a>
+                <a href="javascript:void(0);" data-toggle="modal" data-target="#profilModal" class="list-group-item"><i class="icon-pencil"></i> Edit Profile</a>
             </div>
         </div>
 
@@ -59,6 +59,17 @@
             </div> <!-- /.row -->
         </div> <!-- /.col-md-9 -->
     </div>
+
+    <div id="profilModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            @include("admin.modal", [
+                "modal_title" => "Edit Profile",
+                "form_url" => "/profile/edit",
+                "form_include" => "profile.form",
+            ])
+        </div>
+    </div>
+
     {!! Form::open(['url' => route('upload_photo'), 'class' => 'form-horizontal', 'files' => true,]) !!}
     {!! Form::file('file', null, ['class' => 'form-control', 'style' => 'display: none', 'id' => 'file']) !!}
     {!! Form::close() !!}
