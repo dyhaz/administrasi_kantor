@@ -27,7 +27,7 @@ class SuratMasuk extends Model
      *
      * @var array
      */
-    protected $fillable = ['nomor', 'tanggal_terima', 'nomor_naskah_dinas', 'id_sifat', 'id_instansi', 'perihal', 'isi_ringkas', 'file'];
+    protected $fillable = ['nomor', 'tanggal_terima', 'tanggal_naskah', 'nomor_naskah_dinas', 'id_sifat', 'id_instansi', 'perihal', 'isi_ringkas', 'file'];
 
     public function __status() {
         $status = ['Belum diproses', 'Dalam proses disposisi', 'Terdisposisi'];

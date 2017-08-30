@@ -23,4 +23,14 @@ trait DisposisiRelationship
     {
         return $this->belongsToMany('App\Models\IsiDisposisi');
     }
+
+    public function persetujuan()
+    {
+        return $this->belongsToMany('App\Models\Pegawai')->withTimestamps();
+    }
+
+    public function disposisi_tujuan()
+    {
+        return $this->belongsTo('App\Models\DisposisiTujuan', 'id', 'id_disposisi');
+    }
 }

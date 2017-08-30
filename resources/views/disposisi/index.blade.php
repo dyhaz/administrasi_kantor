@@ -39,7 +39,15 @@
                                         <div class="btn-toolbar">
                                             <div class="btn-group">
                                                 <button onclick="window.location = '{{ url('/disposisi/' . $item->id) }}'" title="View Disposisi" class="btn btn-info btn-xs"><i class="icon-eye-open" aria-hidden="true"></i> View</button>
-                                                <button onclick="window.location = '{{ url('/disposisi/' . $item->id . '/edit') }}'" title="Edit Disposisi" class="btn btn-primary btn-xs"><i class="icon-edit" aria-hidden="true"></i> Edit</button>
+                                                <!--<button onclick="window.location = '{{ url('/disposisi/' . $item->id . '/edit') }}'" title="Edit Disposisi" class="btn btn-primary btn-xs"><i class="icon-edit" aria-hidden="true"></i> Edit</button>-->
+                                                <button title="Edit Disposisi" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="icon-edit"></i> Edit
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a style="cursor: pointer" onclick="window.location = '{{ url('/disposisi/' . $item->id . '/edit') }}'">Edit</a></li>
+                                                    <li><a style="cursor: pointer" onclick="window.location = '{{ url('/disposisi-tujuan/' . $item->id) }}'">Input Disposisi Tujuan</a></li>
+                                                </ul>
                                                 {!! Form::button('<i class="icon-trash" aria-hidden="true"></i> Delete', array(
                                                         'type' => 'submit',
                                                         'class' => 'btn btn-danger btn-xs',

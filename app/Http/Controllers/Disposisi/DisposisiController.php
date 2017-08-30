@@ -102,7 +102,9 @@ class DisposisiController extends Controller
 
         $disposisitujuan = DisposisiTujuan::with('disposisi')->where(['id_disposisi' => $disposisi->id])->get();
 
-        return $dataTable->forIdDisposisi($disposisi->id)->render('disposisi.show', compact('disposisi'))->with('slug', $id);
+        $slug = $id;
+
+        return $dataTable->forIdDisposisi($disposisi->id)->render('disposisi.show', compact('disposisi', 'slug'));
 
         //return view('disposisi.show', compact('disposisi'))->with(compact('disposisitujuan'));
     }

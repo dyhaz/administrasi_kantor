@@ -45,7 +45,7 @@ class KaUPTSidebar implements Sidebar
             $group->item('Laporan Surat Masuk', function (Item $item) {
                 $item->icon('icon-angle-right');
                 $item->weight(50);
-                $item->route('home');
+                $item->route('laporan.surat-masuk');
             });
             /**$group->item('Surat Masuk', function (Item $item) {
                 $item->icon('icon-angle-right');

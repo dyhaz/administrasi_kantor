@@ -47,7 +47,9 @@ class KaSubbagTUSidebar implements Sidebar
         });
         $this->menu->group('Laporan', function(Group $group) {
            $group->item('Laporan Surat Masuk', function (Item $item) {
-                $item->icon('icon-angle-right');
+               $item->icon('icon-angle-right');
+               $item->weight(50);
+               $item->route('laporan.surat-masuk');
            });
         });
     }

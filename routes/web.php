@@ -54,8 +54,10 @@ Route::get('kegiatan-surat/search/autocomplete', 'SearchController@searchKegiata
  */
 Route::get('disposisi-tujuan/{id}', function($id, DisposisiTujuanDataTable $dataTable)
 {
-    return $dataTable->forIdDisposisi($id)->render('disposisi.disposisi-tujuan.input-tujuan', ['id' => $id]);
-});
+    return $dataTable->forIdDisposisi($id)->render('disposisi.disposisi-tujuan.input-tujuan',
+        ['id' => $id, 'slug' => $id, 'title' => 'Disposisi Tujuan',
+            'description' => 'Input Disposisi Tujuan']);
+})->name('disposisi-tujuan');
 
 /**
  * Surat Masuk
@@ -76,6 +78,12 @@ Route::get('persetujuan-surat-masuk/{id}', 'SuratMasuk\\PersetujuanSuratMasukCon
 Route::resource('surat-keluar', 'SuratKeluar\\SuratKeluarController');
 Route::resource('persetujuan-surat-keluar', 'SuratKeluar\\PersetujuanSuratKeluarController');
 Route::resource('persetujuan-surat-masuk', 'SuratMasuk\\PersetujuanSuratMasukController');
+
+/**
+ * Laporan
+ */
+Route::get('laporan/surat-masuk', 'Laporan\\LaporanSuratMasukController@index')->name('laporan.surat-masuk');
+Route::get('laporan/surat-masuk/pdf', 'Laporan\\LaporanSuratMasukController@pdf')->name('cetak-laporan-surat-masuk');
 
 /**
  * Admin

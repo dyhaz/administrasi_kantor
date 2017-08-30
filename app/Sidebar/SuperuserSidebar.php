@@ -74,12 +74,17 @@ class SuperuserSidebar implements Sidebar
             $group->item('Lihat Surat Masuk', function (Item $item) {
                 $item->icon('icon-angle-right');
                 $item->weight(50);
-                $item->route('surat-masuk.create');
+                $item->route('surat-masuk.index');
             });
             $group->item('Lihat Disposisi Surat', function (Item $item) {
                 $item->icon('icon-angle-right');
                 $item->weight(50);
                 $item->route('disposisi.index');
+            });
+            $group->item('Laporan', function (Item $item) {
+                $item->icon('icon-angle-right');
+                $item->weight(50);
+                $item->route('laporan.surat-masuk');
             });
         });
         $this->menu->group('Surat Keluar', function(Group $group) {
@@ -99,6 +104,7 @@ class SuperuserSidebar implements Sidebar
                 $item->route('persetujuan-surat-keluar.index');
             });
         });
+
     }
 
     /**

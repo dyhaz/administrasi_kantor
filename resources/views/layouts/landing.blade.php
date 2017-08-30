@@ -42,8 +42,12 @@
         <div class="menu-wrap">
             <h1 class="logo"><a href="/#home">MENU</a></h1>
             <i class="icon-remove menu-close"></i>
-            <a href="{{ url('/login') }}" class="smoothScroll">Login</a>
-            <a href="{{ url('/register') }}" class="smoothScroll">Register</a>
+            @if(Auth::user())
+                <a href="{{ url('/home') }}" class="smoothScroll">Home</a>
+            @else
+                <a href="{{ url('/login') }}" class="smoothScroll">Login</a>
+                <a href="{{ url('/register') }}" class="smoothScroll">Register</a>
+            @endif
             <a href="#"><i class="icon-facebook"></i></a>
             <a href="#"><i class="icon-twitter"></i></a>
             <a href="#"><i class="icon-dribbble"></i></a>

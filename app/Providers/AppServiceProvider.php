@@ -16,9 +16,13 @@ class AppServiceProvider extends ServiceProvider
         app('view')->composer('layouts.master', function ($view) {
             $action = app('request')->route()->getAction();
 
-            $controller = class_basename($action['controller']);
+            if(@$action['controller']) {
+                $controller = class_basename($action['controller']);
+                list($controller, $action) = explode('@', $controller);
+            } else {
+                list($controller, $action) = ['asdfds', 'sdd'];
+            }
 
-            list($controller, $action) = explode('@', $controller);
 
             $view->with(compact('controller', 'action'));
         });

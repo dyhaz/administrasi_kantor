@@ -6,6 +6,10 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Input Tujuan</div>
                 <div class="panel-body">
+                    <a href="{{ url('/disposisi') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                    <br />
+                    <br />
+
                     {!! Form::open(['url' => '/disposisi/disposisi-tujuan', 'class' => 'form-horizontal ajax-form', 'files' => true]) !!}
 
                     @include ('disposisi.disposisi-tujuan.form')

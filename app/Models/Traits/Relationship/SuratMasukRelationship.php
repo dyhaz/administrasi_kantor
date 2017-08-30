@@ -24,6 +24,11 @@ trait SuratMasukRelationship
         return $this->hasOne(Instansi::class, 'id', 'id_instansi');
     }
 
+    public function disposisi()
+    {
+        return $this->belongsTo('App\Models\Disposisi', 'id', 'id_surat_masuk');
+    }
+
     public function persetujuan()
     {
         return $this->belongsToMany('App\Models\Pegawai')->withTimestamps();

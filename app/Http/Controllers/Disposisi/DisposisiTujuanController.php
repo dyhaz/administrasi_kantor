@@ -19,6 +19,8 @@ class DisposisiTujuanController extends Controller
      */
     public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'ka_upt']);
+
         $keyword = $request->get('search');
         $perPage = 25;
 
@@ -39,8 +41,9 @@ class DisposisiTujuanController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'ka_upt']);
         return view('disposisi.disposisi-tujuan.create');
     }
 
@@ -84,8 +87,10 @@ class DisposisiTujuanController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'ka_upt']);
+
         $disposisitujuan = DisposisiTujuan::findOrFail($id);
 
         return view('disposisi.disposisi-tujuan.edit', compact('disposisitujuan'))->with('slug', $id);

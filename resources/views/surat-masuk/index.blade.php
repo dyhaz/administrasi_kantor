@@ -40,6 +40,9 @@
                                             <div class="btn-group">
                                                 <button onclick="window.location = '{{ url('/surat-masuk/' . $item->id) }}'" title="View SuratMasuk" class="btn btn-info btn-xs"><i class="icon-eye-open" aria-hidden="true"></i> View</button>
                                                 <button onclick="window.location = '{{ url('/surat-masuk/' . $item->id . '/edit') }}'" title="Edit SuratMasuk" class="btn btn-primary btn-xs"><i class="icon-edit" aria-hidden="true"></i> Edit</button>
+                                                @if(@Auth::user()->hasAnyRole(['su', 'ka_upt']))
+                                                <button onclick="window.location = '{{ url('/disposisi/create?sm=' . $item->id) }}'" title="Edit SuratMasuk" class="btn btn-success btn-xs"><i class="icon-edit" aria-hidden="true"></i> Disposisi</button>
+                                                @endif
                                                 {!! Form::button('<i class="icon-trash" aria-hidden="true"></i> Delete', array(
                                                         'type' => 'submit',
                                                         'class' => 'btn btn-danger btn-xs',

@@ -4,6 +4,12 @@
         {!! Form::text('nomor', null, ['class' => 'form-control']) !!}
         {!! $errors->first('nomor', '<p class="help-block">:message</p>') !!}
     </div>
+</div><div class="form-group {{ $errors->has('tanggal_naskah') ? 'has-error' : ''}}">
+    {!! Form::label('tanggal_naskah', 'Tanggal Naskah', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::date('tanggal_naskah', null, ['class' => 'form-control', 'data-mask' => "9999-99-99"]) !!}
+        {!! $errors->first('tanggal_naskah', '<p class="help-block">:message</p>') !!}
+    </div>
 </div><div class="form-group {{ $errors->has('tanggal_terima') ? 'has-error' : ''}}">
     {!! Form::label('tanggal_terima', 'Tanggal Terima', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
@@ -124,6 +130,7 @@
         @if(isset($suratmasuk))
             $('#search_text').val("{{ @$suratmasuk->instansi->nama }}");
             $('#nama_instansi').val("{{ @$suratmasuk->instansi->nama }}");
+            $('#tanggal_terima').val("{{ $suratmasuk->tanggal_terima }}");
         @endif
     </script>
 @append

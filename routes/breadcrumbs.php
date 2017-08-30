@@ -76,6 +76,12 @@ Breadcrumbs::register('persetujuan-surat-keluar.index', function($breadcrumbs)
     $breadcrumbs->push('Persetujuan Surat Keluar', route('persetujuan-surat-keluar.index'));
 });
 
+// Home > Laporan Surat Masuk
+Breadcrumbs::register('laporan.surat-masuk', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Laporan Surat Masuk', route('laporan.surat-masuk'));
+});
 
 // Home > Surat Masuk
 Breadcrumbs::register('surat-masuk.index', function($breadcrumbs)
@@ -215,4 +221,11 @@ Breadcrumbs::register('disposisi.edit', function($breadcrumbs, $slug)
 {
     $breadcrumbs->parent('disposisi.index');
     $breadcrumbs->push('Edit Disposisi', route('disposisi.edit', $slug));
+});
+
+// Home > Disposisi > Tujuan
+Breadcrumbs::register('disposisi-tujuan', function($breadcrumbs, $slug)
+{
+    $breadcrumbs->parent('disposisi.index');
+    $breadcrumbs->push('Disposisi Tujuan', route('disposisi-tujuan', $slug));
 });
