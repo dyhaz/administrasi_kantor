@@ -36,6 +36,7 @@
                                         <td>
                                             <div class="btn-toolbar">
                                                 <div class="btn-group">
+                                                    @if($item->status_kirim == '0' && $item->disetujui_ka_upt())<button onclick="window.location = '{{ url('/surat-keluar/kirim/' . $item->id ) }}'" title="Kirim SuratKeluar" class="btn btn-success btn-xs"><i class="icon-ok-sign" aria-hidden="true"></i> Kirim</button>@else<button class="btn btn-success btn-xs disabled"><i class="icon-ok-sign" aria-hidden="true"></i> Kirim</button>@endif
                                                     <button onclick="window.location = '{{ url('/surat-keluar/' . $item->id) }}'" title="View SuratKeluar" class="btn btn-info btn-xs"><i class="icon-eye-open" aria-hidden="true"></i> View</button>
                                                 </div>
                                             </div>

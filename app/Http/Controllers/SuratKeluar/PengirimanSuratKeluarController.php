@@ -105,7 +105,7 @@ class PengirimanSuratKeluarController extends Controller
             Session::flash('flash_message', 'Tidak dapat mengirim surat');
         }
 
-        return redirect('surat-keluar/draft');
+        return redirect('/surat-keluar/'.$suratkeluar->id);
 
     }
 }

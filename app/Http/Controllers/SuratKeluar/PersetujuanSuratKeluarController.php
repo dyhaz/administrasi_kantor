@@ -36,16 +36,21 @@ class PersetujuanSuratKeluarController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $suratkeluar = SuratKeluar::with('instansi')->where('nomor', 'LIKE', "%$keyword%")
-				->orWhere('id_instansi', 'LIKE', "%$keyword%")
-				->orWhere('perihal', 'LIKE', "%$keyword%")
-				->orWhere('id_sifat', 'LIKE', "%$keyword%")
-				->orWhere('isi', 'LIKE', "%$keyword%")
-				->orWhere('id_pegawai', 'LIKE', "%$keyword%")
-				->orWhere('status', 'LIKE', "%$keyword%")
+            $suratkeluar = SuratKeluar::with('instansi')->where('status_kirim', '0')
+                ->where(
+                    function($query) use($keyword) {
+                        $query->where('nomor', 'LIKE', "%$keyword%")
+                            ->orWhere('id_instansi', 'LIKE', "%$keyword%")
+                            ->orWhere('perihal', 'LIKE', "%$keyword%")
+                            ->orWhere('id_sifat', 'LIKE', "%$keyword%")
+                            ->orWhere('isi', 'LIKE', "%$keyword%")
+                            ->orWhere('id_pegawai', 'LIKE', "%$keyword%")
+                            ->orWhere('status', 'LIKE', "%$keyword%");
+
+                    })
 				->paginate($perPage);
         } else {
-            $suratkeluar = SuratKeluar::with('instansi')->paginate($perPage);
+            $suratkeluar = SuratKeluar::with('instansi')->where('status_kirim', '0')->paginate($perPage);
         }
 
         $user = Auth::user();
