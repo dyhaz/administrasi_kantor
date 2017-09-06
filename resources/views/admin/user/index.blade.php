@@ -27,7 +27,7 @@
                         <table class="table table-borderless">
                             <thead>
                             <tr>
-                                <th>ID</th><th>Nama</th><th>Email</th><th>Actions</th>
+                                <th>ID</th><th>Nama</th><th>Email</th><th>Role</th><th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -35,6 +35,7 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td><td>{{ $item->email }}</td>
+                                    <td>{!! $item->roles()->count()>0?join('<br />' ,array_values((array) $item->roles()->get()->pluck('name'))[0]):'' !!}</td>
                                     <td>
                                         <div class="btn-toolbar">
                                             <div class="btn-group">

@@ -167,6 +167,62 @@ Breadcrumbs::register('pegawai.edit', function($breadcrumbs, $slug)
     $breadcrumbs->push('Edit Pegawai', route('pegawai.edit', $slug));
 });
 
+// Home > Kota
+Breadcrumbs::register('kota.index', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Kota', route('kota.index'));
+});
+
+// Home > Kota > [Kota]
+Breadcrumbs::register('kota.show', function($breadcrumbs, $slug)
+{
+    $breadcrumbs->parent('kota.index');
+    $breadcrumbs->push($slug, route('kota.show', $slug));
+});
+
+// Home > Kota > Create
+Breadcrumbs::register('kota.create', function($breadcrumbs)
+{
+    $breadcrumbs->parent('kota.index');
+    $breadcrumbs->push('Create Kota', route('kota.create'));
+});
+
+// Home > Edit Kota > [Kota]
+Breadcrumbs::register('kota.edit', function($breadcrumbs, $slug)
+{
+    $breadcrumbs->parent('kota.index');
+    $breadcrumbs->push('Edit Kota', route('kota.edit', $slug));
+});
+
+// Home > User
+Breadcrumbs::register('user.index', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('User', route('user.index'));
+});
+
+// Home > User > [User]
+Breadcrumbs::register('user.show', function($breadcrumbs, $slug)
+{
+    $breadcrumbs->parent('user.index');
+    $breadcrumbs->push($slug, route('user.show', $slug));
+});
+
+// Home > User > Create
+Breadcrumbs::register('user.create', function($breadcrumbs)
+{
+    $breadcrumbs->parent('user.index');
+    $breadcrumbs->push('Create User', route('user.create'));
+});
+
+// Home > Edit User > [User]
+Breadcrumbs::register('user.edit', function($breadcrumbs, $slug)
+{
+    $breadcrumbs->parent('user.index');
+    $breadcrumbs->push('Edit User', route('user.edit', $slug));
+});
+
 // Home > Jabatan
 Breadcrumbs::register('jabatan.index', function($breadcrumbs)
 {

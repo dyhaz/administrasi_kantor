@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Role;
 use App\User;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
@@ -33,9 +34,9 @@ class UserController extends Controller
 
         if (!empty($keyword)) {
             $user = User::where('email', 'LIKE', "%$keyword%")
-                ->join('pegawai', 'pegawai.id_user', '=', 'user.id')
-				->orWhere('password', 'LIKE', "%$keyword%")
+                ->join('pegawai', 'pegawai.id_user', '=', 'users.id')
 				->orWhere('pegawai.nama', 'LIKE', "%$keyword%")
+                ->orWhere('users.name', 'LIKE', "%$keyword%")
 				->paginate($perPage);
         } else {
             $user = User::paginate($perPage);
@@ -51,7 +52,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        $roles = Role::get();
+        $roles = $roles->pluck('name', 'id');
+        return view('admin.user.create', compact('roles'));
     }
 
     /**
@@ -70,6 +73,7 @@ class UserController extends Controller
         $requestData['password'] = bcrypt($requestData['password']);
 
         $user = User::create($requestData);
+        $user->roles()->attach($requestData['id_role']);
 
         $pegawai->id_user = $user->id;
         $pegawai->update();
@@ -103,9 +107,12 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
+        $user_role = $user->roles()->first();
         $pegawai = Pegawai::where(['id_user' => $user->id])->first();
-
-        return view('admin.user.edit', compact('user'))->with('pegawai', $pegawai)->with('slug', $id);
+        $roles = Role::get();
+        $roles = $roles->pluck('name', 'id');
+        return view('admin.user.edit', compact('user'))->with('pegawai', $pegawai)->with('slug', $id)
+            ->with('roles', $roles)->with('user_role', $user_role);
     }
 
     /**
@@ -122,6 +129,8 @@ class UserController extends Controller
         $requestData = $request->all();
         
         $user = User::findOrFail($id);
+        $user->roles()->detach();
+        $user->roles()->attach($requestData['id_role']);
         $pegawai = Pegawai::find($requestData['id_pegawai']);
         $requestData['name'] = $pegawai->nama;
         $requestData['password'] = bcrypt($requestData['password']);

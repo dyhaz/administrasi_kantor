@@ -32,6 +32,10 @@ class SuperuserSidebar implements Sidebar
                 $item->icon('icon-angle-right');
                 $item->route('pegawai.index');
             });
+            $group->item('Data User', function (Item $item) {
+                $item->icon('icon-angle-right');
+                $item->route('user.index');
+            });
             $group->item('Data Kota', function (Item $item) {
                 $item->icon('icon-angle-right');
                 $item->route('kota.index');

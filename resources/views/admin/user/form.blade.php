@@ -17,6 +17,12 @@
         {!! Form::password('password', ['class' => 'form-control']) !!}
         {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
     </div>
+</div><div class="form-group {{ $errors->has('id_role') ? 'has-error' : ''}}">
+    {!! Form::label('id_role', 'Role', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::select('id_role', $roles, null, ['class' => 'form-control']) !!}
+        {!! $errors->first('id_role', '<p class="help-block">:message</p>') !!}
+    </div>
 </div>
 
 <div class="form-group">
@@ -66,6 +72,7 @@
         @if(isset($pegawai))
             $('#id_pegawai').val("{{ @$pegawai->id }}");
             $('#search_text').val("{{ @$pegawai->nama }}");
+            $('#id_role').val({{ @$user_role->id }});
         @endif
     </script>
 @append

@@ -22,7 +22,8 @@
         "yajra/laravel-datatables-oracle": "^7.5",
         "yajra/laravel-datatables-buttons": "^2.0",
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
-        "maatwebsite/laravel-sidebar": "~2.1"
+        "maatwebsite/laravel-sidebar": "~2.1",
+        "orangehill/iseed": "^2.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

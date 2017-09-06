@@ -186,6 +186,7 @@ return [
         Yajra\Datatables\ButtonsServiceProvider::class,
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
         'Maatwebsite\Sidebar\SidebarServiceProvider',
+        Orangehill\Iseed\IseedServiceProvider::class
     ],
 
     /*

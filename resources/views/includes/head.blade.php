@@ -57,19 +57,7 @@
 <!-- Page specific plugins -->
 
 <!-- Forms -->
-<script type="text/javascript" src="/theme/plugins/typeahead/typeahead.min.js"></script> <!-- AutoComplete -->
-<script type="text/javascript" src="/theme/plugins/autosize/jquery.autosize.min.js"></script>
-<script type="text/javascript" src="/theme/plugins/inputlimiter/jquery.inputlimiter.min.js"></script>
-<script type="text/javascript" src="/theme/plugins/uniform/jquery.uniform.min.js"></script> <!-- Styled radio and checkboxes -->
-<script type="text/javascript" src="/theme/plugins/tagsinput/jquery.tagsinput.min.js"></script>
-<script type="text/javascript" src="/theme/plugins/select2/select2.min.js"></script> <!-- Styled select boxes -->
-<script type="text/javascript" src="/theme/plugins/fileinput/fileinput.js"></script>
-<script type="text/javascript" src="/theme/plugins/duallistbox/jquery.duallistbox.min.js"></script>
-<script type="text/javascript" src="/theme/plugins/bootstrap-inputmask/jquery.inputmask.min.js"></script>
-<script type="text/javascript" src="/theme/plugins/bootstrap-wysihtml5/wysihtml5.min.js"></script>
-<script type="text/javascript" src="/theme/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.min.js"></script>
-<script type="text/javascript" src="/theme/plugins/bootstrap-multiselect/bootstrap-multiselect.min.js"></script>
-<script type="text/javascript" src="/theme/plugins/bootstrap-switch/bootstrap-switch.min.js"></script>
+@include('includes.assets.forms')
 
 <!-- Charts -->
 <!--[if lt IE 9]>
@@ -81,7 +69,7 @@
 <script type="text/javascript" src="/theme/plugins/daterangepicker/daterangepicker.js"></script>
 <script type="text/javascript" src="/theme/plugins/blockui/jquery.blockUI.min.js"></script>
 
-<script type="text/javascript" src="/theme/plugins/fullcalendar/fullcalendar.min.js"></script>
+<!--<script type="text/javascript" src="/theme/plugins/fullcalendar/fullcalendar.min.js"></script>-->
 
 <script type="text/javascript" src="/js/waitingfor.js"></script>
 
@@ -118,6 +106,6 @@
 
 <!-- Demo JS -->
 <script type="text/javascript" src="/theme/assets/js/custom.js"></script>
-<script type="text/javascript" src="/theme/assets/js/demo/pages_calendar.js"></script>
+<!--<script type="text/javascript" src="/theme/assets/js/demo/pages_calendar.js"></script>
 <script type="text/javascript" src="/theme/assets/js/demo/charts/chart_filled_blue.js"></script>
-<script type="text/javascript" src="/theme/assets/js/demo/charts/chart_simple.js"></script>
+<script type="text/javascript" src="/theme/assets/js/demo/charts/chart_simple.js"></script>-->

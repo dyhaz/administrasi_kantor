@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e59439ddac390cf3a5fb4c3626b2680f",
-    "content-hash": "674d8f5f9edd81418539faf864de4617",
+    "hash": "3dfebba4bcba42e18eac7b1a46495937",
+    "content-hash": "44c2e952f89633d1820aa0735ddbf7f8",
     "packages": [
         {
             "name": "davejamesmiller/laravel-breadcrumbs",
@@ -1349,6 +1349,58 @@
                 "pdf"
             ],
             "time": "2017-02-08 20:24:49"
+        },
+        {
+            "name": "orangehill/iseed",
+            "version": "v2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orangehill/iseed.git",
+                "reference": "4d635d2d5a33e2135b25a12e26beda059b990e8b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/orangehill/iseed/zipball/4d635d2d5a33e2135b25a12e26beda059b990e8b",
+                "reference": "4d635d2d5a33e2135b25a12e26beda059b990e8b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.3.8",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "illuminate/filesystem": "5.x",
+                "laravel/framework": "^5.3.8",
+                "mockery/mockery": "dev-master",
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Orangehill\\Iseed": "src/"
+                },
+                "classmap": [
+                    "src/Orangehill/Iseed/Exceptions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Tihomir Opacic",
+                    "email": "tihomir.opacic@orangehilldev.com"
+                }
+            ],
+            "description": "Generate a new Laravel database seed file based on data from the existing database table.",
+            "keywords": [
+                "artisan",
+                "generators",
+                "laravel",
+                "seed"
+            ],
+            "time": "2017-07-13 09:57:05"
         },
         {
             "name": "paragonie/random_compat",
