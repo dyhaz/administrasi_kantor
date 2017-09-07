@@ -22,10 +22,11 @@
 
 <!--=== Page Header ===-->
 <div class="page-header">
+    @if(\Request::route()->getName() !== 'home')
     <div class="page-title">
         <h3>{{ @$title?$title:preg_replace('/(?<!\ )[A-Z]/', ' $0',str_replace('Controller', '', $controller)) }}</h3>
         <span>{{ @$description?$description:ucfirst(@$action) . ' ' . preg_replace('/(?<!\ )[A-Z]/', ' $0',str_replace('Controller', '', $controller)) }}</span>
     </div>
-
+    @endif
 </div>
 <!-- /Page Header -->

@@ -41,7 +41,7 @@
                 Ubah Password
             </a>
         </li>
-        <li class="dropdown">
+        <!--<li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Dropdown
                 <i class="icon-caret-down small"></i>
@@ -52,7 +52,7 @@
                 <li class="divider"></li>
                 <li><a href="#"><i class="icon-tasks"></i> Example #3</a></li>
             </ul>
-        </li>
+        </li> -->
     </ul>
     <!-- /Top Left Menu -->
 

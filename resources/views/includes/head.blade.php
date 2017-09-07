@@ -63,7 +63,9 @@
 <!--[if lt IE 9]>
 <script type="text/javascript" src="/theme/plugins/flot/excanvas.min.js"></script>
 <![endif]-->
-<!-- @include('includes.assets.js-charts') -->
+@if(\Request::route()->getName() == 'home')
+@include('includes.assets.js-charts')
+@endif
 
 <script type="text/javascript" src="/theme/plugins/daterangepicker/moment.min.js"></script>
 <script type="text/javascript" src="/theme/plugins/daterangepicker/daterangepicker.js"></script>
@@ -109,3 +111,4 @@
 <!--<script type="text/javascript" src="/theme/assets/js/demo/pages_calendar.js"></script>
 <script type="text/javascript" src="/theme/assets/js/demo/charts/chart_filled_blue.js"></script>
 <script type="text/javascript" src="/theme/assets/js/demo/charts/chart_simple.js"></script>-->
+@yield('demo')

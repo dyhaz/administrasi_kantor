@@ -12,7 +12,7 @@ $(document).ready(function(){
 	var d1 = [[1262304000000, 0], [1264982400000, 500], [1267401600000, 700], [1270080000000, 1300], [1272672000000, 2600], [1275350400000, 1300], [1277942400000, 1700], [1280620800000, 1300], [1283299200000, 1500], [1285891200000, 2000], [1288569600000, 1500], [1291161600000, 1200]];
 
 	var data1 = [
-		{ label: "Total clicks", data: d1, color: App.getLayoutColorCode('blue') }
+		{ label: "Masuk", data: d1, color: App.getLayoutColorCode('blue') }
 	];
 
 	$.plot("#chart_filled_blue", data1, $.extend(true, {}, Plugins.getFlotDefaults(), {
@@ -21,7 +21,7 @@ $(document).ready(function(){
 			max: (new Date(2010, 11, 2)).getTime(),
 			mode: "time",
 			tickSize: [1, "month"],
-			monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+			monthNames: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "10", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],
 			tickLength: 0
 		},
 		series: {

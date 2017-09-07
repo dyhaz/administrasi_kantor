@@ -42,7 +42,7 @@ class DisposisiController extends Controller
             $disposisi = Disposisi::with('surat_masuk')->paginate($perPage);
         }
 
-        $suratmasuk = SuratMasuk::where('status', '!=', 2)->get();
+        $suratmasuk = SuratMasuk::where('status', '!=', 2)->where('status', '!=', 1)->get();
 
         return view('disposisi.index', compact('disposisi','suratmasuk'));
     }
@@ -76,6 +76,10 @@ class DisposisiController extends Controller
     {
         $this->validate($request, $this->validation);
         $requestData = $request->all();
+
+        $surat_masuk = SuratMasuk::findOrFail($requestData['id_surat_masuk']);
+        $surat_masuk->status = '1';
+        $surat_masuk->save();
 
         $disposisi = Disposisi::create($requestData);
 

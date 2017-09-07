@@ -10,9 +10,10 @@ $(document).ready(function(){
 
 	// Sample Data
 	var d_pie = [];
-	var series = Math.floor(Math.random()*10)+1;
+	var series = Math.floor(Math.random()*4)+1;
+	var bagian = ['KA UPT', 'Subbag TU', 'Seksi Pengujian', 'Seksi Pengendalian Mutu'];
 	for (var i = 0; i<series; i++) {
-		d_pie[i] = { label: "Series "+(i+1), data: Math.floor(Math.random()*100)+1 }
+		d_pie[i] = { label: bagian[i], data: Math.floor(Math.random()*100)+1 }
 	}
 
 	$.plot("#chart_pie", d_pie, $.extend(true, {}, Plugins.getFlotDefaults(), {
