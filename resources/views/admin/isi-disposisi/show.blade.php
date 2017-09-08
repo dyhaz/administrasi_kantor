@@ -18,7 +18,7 @@
                     ))!!}
                     {!! Form::open([
                         'method'=>'DELETE',
-                        'url' => ['disposisi/isidisposisi', $isidisposisi->id],
+                        'url' => ['disposisi/isi-disposisi', $isidisposisi->id],
                         'style' => 'display:inline',
                         'id' => 'delete-' . $isidisposisi->id
                     ]) !!}

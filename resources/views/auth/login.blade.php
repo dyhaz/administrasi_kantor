@@ -7,11 +7,13 @@
             <!-- Title -->
     <h3 class="form-title">Sign In to your Account</h3>
 
+    @if($errors->has('email'))
     <!-- Error Message -->
-    <div class="alert fade in alert-danger" style="display: none;">
+    <div class="alert fade in alert-danger">
         <i class="icon-remove close" data-dismiss="alert"></i>
-        Enter any username and password.
+        {{ $errors->first('email') }}
     </div>
+    @endif
 
     <!-- Input Fields -->
     <div class="form-group">
@@ -20,9 +22,9 @@
             <i class="icon-user"></i>
             <input type="text" name="email" class="form-control" placeholder="Email" autofocus="autofocus" data-rule-required="true" data-msg-required="Please enter your username." />
             @if ($errors->has('email'))
-                <span class="help-block">
+                <!--<span class="help-block">
                     <strong>{{ $errors->first('email') }}</strong>
-                </span>
+                </span>-->
             @endif
         </div>
     </div>

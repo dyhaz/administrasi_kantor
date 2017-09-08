@@ -18,7 +18,7 @@
                     ))!!}
                     {!! Form::open([
                         'method'=>'DELETE',
-                        'url' => ['surat-keluar/kegiatansurat', $kegiatansurat->id],
+                        'url' => ['admin/kegiatan-surat', $kegiatansurat->id],
                         'style' => 'display:inline',
                         'id' => 'delete-' . $kegiatansurat->id
                     ]) !!}

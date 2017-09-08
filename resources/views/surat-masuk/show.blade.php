@@ -18,7 +18,7 @@
                     ))!!}
                     {!! Form::open([
                         'method'=>'DELETE',
-                        'url' => ['surat_masuk/suratmasuk', $suratmasuk->id],
+                        'url' => ['surat-masuk', $suratmasuk->id],
                         'style' => 'display:inline',
                         'id' => 'delete-' . $suratmasuk->id
                     ]) !!}

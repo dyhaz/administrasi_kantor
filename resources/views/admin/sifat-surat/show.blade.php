@@ -18,7 +18,7 @@
                     ))!!}
                     {!! Form::open([
                         'method'=>'DELETE',
-                        'url' => ['admin/sifatsurat', $sifatsurat->id],
+                        'url' => ['admin/sifat-surat', $sifatsurat->id],
                         'style' => 'display:inline',
                         'id' => 'delete-' . $sifatsurat->id
                     ]) !!}

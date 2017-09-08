@@ -18,7 +18,7 @@
                     ))!!}
                     {!! Form::open([
                         'method'=>'DELETE',
-                        'url' => ['surat-keluar/suratkeluar', $suratkeluar->id],
+                        'url' => ['surat-keluar', $suratkeluar->id],
                         'style' => 'display:inline',
                         'id' => 'delete-' . $suratkeluar->id
                     ]) !!}

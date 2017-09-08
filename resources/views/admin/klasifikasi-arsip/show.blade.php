@@ -18,7 +18,7 @@
                     ))!!}
                     {!! Form::open([
                         'method'=>'DELETE',
-                        'url' => ['admin/klasifikasiarsip', $klasifikasiarsip->id],
+                        'url' => ['admin/klasifikasi-arsip', $klasifikasiarsip->id],
                         'style' => 'display:inline',
                         'id' => 'delete-' . $klasifikasiarsip->id
                     ]) !!}

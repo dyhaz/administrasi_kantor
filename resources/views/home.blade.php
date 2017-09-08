@@ -110,4 +110,53 @@
             </div> <!-- /.widget -->
         </div>
     </div>
+
+    <script>
+        function getLineChartData() {
+            var data = [];
+            @foreach($surat_masuk as $row)
+                @if(@$row['count'])
+                data.push({{ @$row['count'] }});
+                @endif
+            @endforeach
+            var days = [];
+            @foreach($surat_masuk as $row)
+                @if(@$row['day'])
+                days.push({{ @$row['day'] }});
+            @endif
+            @endforeach
+
+            var d = [];
+            for(var i = 0 ; i < data.length ; i++) {
+                d.push([gd({{ date('Y') }}, {{ date('m') }}, days[i]),  data[i]]);
+            }
+            return d;
+        }
+
+        function getPieChartData() {
+            var data = [];
+            @foreach($surat_masuk_divisi as $row)
+                @if(@$row->count)
+                data.push({{ @$row->count }});
+            @endif
+            @endforeach
+            var total = 0;
+            for(var i = 0 ; i < data.length ; i++) {
+                total += data[i];
+            }
+            for(var i = 0 ; i < data.length ; i++) {
+                data[i] = (data[i] / total) * 100;
+            }
+            return data;
+        }
+        function getDivisi() {
+            var divisi = [];
+            @foreach($surat_masuk_divisi as $row)
+                @if(@$row->nama_divisi)
+                divisi.push('{{ @$row->nama_divisi }}');
+            @endif
+            @endforeach
+            return divisi;
+        }
+    </script>
 @endsection
