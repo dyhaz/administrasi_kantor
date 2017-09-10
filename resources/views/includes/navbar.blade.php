@@ -173,6 +173,7 @@
                 <li><a href="{{ route('profile') }}"><i class="icon-user"></i> My Profile</a></li>
                 <li><a href="#"><i class="icon-calendar"></i> My Calendar</a></li>
                 <li class="divider"></li>
+                <li><a href="/lockscreen"><i class="icon-key"></i> Lock</a></li>
                 <li><a href="#" onclick="$('#logout-form').submit()"><i class="icon-key"></i> Log Out</a></li>
             </ul>
         </li>

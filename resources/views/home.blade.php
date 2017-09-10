@@ -81,11 +81,12 @@
                             <td>{{ date_format(date_create($row['tanggal_terima']), 'd/m/Y') }}</td>
                             <td>{{ @$row->instansi->nama }}</td>
                             <td class="align-center">
-												<span class="btn-group">
+                                <span class="label @if($row->status == '0') label-warning @else label-primary @endif ">{{ @$row->__status() }}</span>
+												<!--<span class="btn-group">
                                                     {!! Form::open(['url' => '/persetujuan-surat-masuk/'.$row['id'], 'method' => 'GET', 'class' => 'form-horizontal ajax-form', 'files' => true,]) !!}
                                                     <a href="#" onclick="$(this).parent().submit();" title="Approve" class="btn btn-xs bs-tooltip"><i class="icon-ok"></i></a>
                                                     {!! Form::close() !!}
-												</span>
+												</span>-->
                             </td>
                         </tr>
                         @endforeach
