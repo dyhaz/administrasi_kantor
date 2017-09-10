@@ -67,7 +67,7 @@ class SuratKeluarController extends Controller
      */
     public function create(Request $request)
     {
-        $request->user()->authorizeRoles(['su', 'staf_subbag_tu', 'ka_subbag_tu']);
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu',]);
 
         $sifatsurat = SifatSurat::orderBy('id')->pluck('nama','id');
         return view('surat-keluar.create')->with(compact('sifatsurat'));
@@ -171,8 +171,14 @@ class SuratKeluarController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
+        $request->user()->authorizeRoles(
+            [
+                'su',
+                'staf_subbag_tu',
+            ]
+        );
         SuratKeluar::destroy($id);
 
         Session::flash('flash_message', 'SuratKeluar deleted!');

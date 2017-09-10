@@ -123,8 +123,9 @@ class SifatSuratController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu']);
         SifatSurat::destroy($id);
 
         Session::flash('flash_message', 'SifatSurat deleted!');

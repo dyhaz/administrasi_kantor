@@ -71,7 +71,7 @@ class SuratMasukController extends Controller
      */
     public function create(Request $request)
     {
-        $request->user()->authorizeRoles(['su', 'staf_subbag_tu', 'ka_subbag_tu']);
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu']);
 
         $sifatsurat = SifatSurat::orderBy('id')->pluck('nama','id');
         return view('surat-masuk.create')->with(compact('sifatsurat'));
@@ -203,8 +203,6 @@ class SuratMasukController extends Controller
         $request->user()->authorizeRoles([
             'su',
             'staf_subbag_tu',
-            'ka_subbag_tu',
-            'ka_upt'
         ]);
 
         SuratMasuk::destroy($id);

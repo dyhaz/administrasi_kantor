@@ -44,7 +44,7 @@
                     @endif
                     {!! Form::open() !!}
                         <div class="input-group">
-                            <input name="password" type="password" class="form-control" placeholder="Enter your password ...">
+                            <input name="password" type="password" class="form-control" placeholder="Masukkan password ...">
                             <span class="input-group-btn"><button type="submit" class="btn btn-primary"><i class="fa fa-arrow-right"></i></button></span>
                         </div>
                     {!! Form::close() !!}
