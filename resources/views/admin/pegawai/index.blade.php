@@ -24,17 +24,17 @@
                     <br/>
                     <br/>
                     <div class="table-responsive">
-                        <table class="table table-borderless">
+                        <table class="table table-borderless table-responsive">
                             <thead>
                             <tr>
-                                <th>ID</th><th>Nip</th><th>Nama</th><th>Kota</th><th>Actions</th>
+                                <th>ID</th><th>Nip</th><th>Nama</th><th class="visible-md visible-lg">Kota</th><th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($pegawai as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->nip }}</td><td>{{ $item->nama }}</td><td>{{ @$item->kota->nama }}</td>
+                                    <td>{{ $item->nip }}</td><td>{{ $item->nama }}</td><td class="visible-md visible-lg">{{ @$item->kota->nama }}</td>
                                     <td>
                                         <div class="btn-toolbar">
                                             <div class="btn-group">

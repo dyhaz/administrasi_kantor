@@ -65,8 +65,8 @@
                             <th class="checkbox-column">
                                 <input type="checkbox" class="uniform">
                             </th>
-                            <th class="hidden-xs">Nomor Surat</th>
-                            <th>Tanggal Masuk</th>
+                            <th>Nomor Surat</th>
+                            <th class="hidden-xs">Tanggal Masuk</th>
                             <th>Pengirim</th>
                             <th class="align-center">Status</th>
                         </tr>
@@ -77,8 +77,8 @@
                             <td class="checkbox-column">
                                 <input type="checkbox" class="uniform">
                             </td>
-                            <td class="hidden-xs"><a href='/surat-masuk/{{ $row['id'] }}'>{{ $row['nomor'] }}</a></td>
-                            <td>{{ date_format(date_create($row['tanggal_terima']), 'd/m/Y') }}</td>
+                            <td><a href='/surat-masuk/{{ $row['id'] }}'>{{ $row['nomor'] }}</a></td>
+                            <td class="hidden-xs">{{ date_format(date_create($row['tanggal_terima']), 'd/m/Y') }}</td>
                             <td>{{ @$row->instansi->nama }}</td>
                             <td class="align-center">
                                 <span class="label @if($row->status == '0') label-warning @else label-primary @endif ">{{ @$row->__status() }}</span>

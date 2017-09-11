@@ -27,14 +27,14 @@
                         <table class="table table-borderless">
                             <thead>
                             <tr>
-                                <th>ID</th><th>Nama</th><th>Kota</th><th>No Telp</th><th>Actions</th>
+                                <th>ID</th><th>Nama</th><th class="visible-md visible-lg">Kota</th><th class="visible-md visible-lg">No Telp</th><th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($instansi as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->nama }}</td><td>{{ @$item->kota->nama }}</td><td>{{ $item->no_telp }}</td>
+                                    <td>{{ $item->nama }}</td><td class="visible-md visible-lg">{{ @$item->kota->nama }}</td><td class="visible-md visible-lg">{{ $item->no_telp }}</td>
                                     <td>
                                         <div class="btn-toolbar">
                                             <div class="btn-group">

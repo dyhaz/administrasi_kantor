@@ -25,14 +25,14 @@
                             @if(Auth::user()->hasAnyRole(['staf_seksi_pengujian_dan_pengendalian_mutu', 'staf_subbag_tu']))
                                 <thead>
                                 <tr>
-                                    <th>ID</th><th>Nomor</th><th>Tujuan</th><th>Perihal</th><th>Seksi Pengujian</th><th>Seksi Pengendalian Mutu</th><th>Subbag TU</th><th>UPT</th><th>Actions</th>
+                                    <th>ID</th><th>Nomor</th><th>Tujuan</th><th class="visible-md visible-lg">Perihal</th><th>Seksi Pengujian</th><th>Seksi Pengendalian Mutu</th><th>Subbag TU</th><th>UPT</th><th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($suratkeluar as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->nomor }}</td><td>{{ @$item->instansi->nama }}</td><td>{{ $item->perihal }}</td><td>{!! $item->disetujui_kasie_pengujian()?'<img width=26 height=26 src="/images/ok-icon-small.png"></img>':'<img width=26 height=26 src="/images/cross-icon-small.png"></img>' !!}</td><td>{!! $item->disetujui_kasie_pengendalian_mutu()?'<img width=26 height=26 src="/images/ok-icon-small.png"></img>':'<img width=26 height=26 src="/images/cross-icon-small.png"></img>' !!}</td><td>{!! $item->disetujui_ka_subbag_tu()?'<img width=26 height=26 src="/images/ok-icon-small.png"></img>':'<img width=26 height=26 src="/images/cross-icon-small.png"></img>' !!}</td><td>{!! $item->disetujui_ka_upt()?'<img width=26 height=26 src="/images/ok-icon-small.png"></img>':'<img width=26 height=26 src="/images/cross-icon-small.png"></img>' !!}</td>
+                                        <td>{{ $item->nomor }}</td><td>{{ @$item->instansi->nama }}</td><td class="visible-md visible-lg">{{ $item->perihal }}</td><td>{!! $item->disetujui_kasie_pengujian()?'<img width=26 height=26 src="/images/ok-icon-small.png"></img>':'<img width=26 height=26 src="/images/cross-icon-small.png"></img>' !!}</td><td>{!! $item->disetujui_kasie_pengendalian_mutu()?'<img width=26 height=26 src="/images/ok-icon-small.png"></img>':'<img width=26 height=26 src="/images/cross-icon-small.png"></img>' !!}</td><td>{!! $item->disetujui_ka_subbag_tu()?'<img width=26 height=26 src="/images/ok-icon-small.png"></img>':'<img width=26 height=26 src="/images/cross-icon-small.png"></img>' !!}</td><td>{!! $item->disetujui_ka_upt()?'<img width=26 height=26 src="/images/ok-icon-small.png"></img>':'<img width=26 height=26 src="/images/cross-icon-small.png"></img>' !!}</td>
                                         <td>
                                             <div class="btn-toolbar">
                                                 <div class="btn-group">
