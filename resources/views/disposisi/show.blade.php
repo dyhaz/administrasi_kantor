@@ -38,7 +38,7 @@
                             </tr>
                             <tr>
                                 <th> Nomor Surat Masuk </th>
-                                <td> {{ @$disposisi->surat_masuk->nomor }} </td>
+                                <td> <a href='/surat-masuk/{{ @$disposisi->surat_masuk->id }}'>{{ @$disposisi->surat_masuk->nomor }}</a> </td>
                             </tr>
                             <tr>
                                 <th> Isi Disposisi </th>

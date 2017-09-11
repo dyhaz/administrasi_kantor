@@ -67,7 +67,7 @@ class SuratKeluarController extends Controller
      */
     public function create(Request $request)
     {
-        $request->user()->authorizeRoles(['su', 'staf_subbag_tu',]);
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu', 'staf_seksi_pengujian_dan_pengendalian_mutu']);
 
         $sifatsurat = SifatSurat::orderBy('id')->pluck('nama','id');
         return view('surat-keluar.create')->with(compact('sifatsurat'));
@@ -122,6 +122,13 @@ class SuratKeluarController extends Controller
      */
     public function edit($id, Request $request)
     {
+        $request->user()->authorizeRoles(
+            [
+                'su',
+                'staf_subbag_tu',
+                'staf_seksi_pengujian_dan_pengendalian_mutu',
+            ]
+        );
         $request->user()->authorizeRoles(['su', 'staf_subbag_tu', 'ka_subbag_tu']);
 
         $suratkeluar = SuratKeluar::with('instansi')->findOrFail($id);
@@ -177,6 +184,7 @@ class SuratKeluarController extends Controller
             [
                 'su',
                 'staf_subbag_tu',
+                'staf_seksi_pengujian_dan_pengendalian_mutu',
             ]
         );
         SuratKeluar::destroy($id);

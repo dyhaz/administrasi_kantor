@@ -37,6 +37,7 @@ class UserController extends Controller
                 ->join('pegawai', 'pegawai.id_user', '=', 'users.id')
 				->orWhere('pegawai.nama', 'LIKE', "%$keyword%")
                 ->orWhere('users.name', 'LIKE', "%$keyword%")
+                ->select('users.*')
 				->paginate($perPage);
         } else {
             $user = User::paginate($perPage);

@@ -146,8 +146,9 @@ class SuratMasukController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
+        $request->user()->authorizeRoles(['su', 'staf_subbag_tu']);
         $suratmasuk = SuratMasuk::with('instansi')->findOrFail($id);
         $sifatsurat = SifatSurat::orderBy('id')->pluck('nama','id');
         return view('surat-masuk.edit', compact('suratmasuk', 'sifatsurat'))->with('slug', $id);

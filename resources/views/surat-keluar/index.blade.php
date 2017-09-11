@@ -6,9 +6,11 @@
             <div class="widget box">
                 <div class="widget-header">Suratkeluar</div>
                 <div class="widget-content">
-                    <a href="{{ url('/surat-keluar/create') }}" class="btn btn-success btn-sm" title="Add New SuratKeluar">
-                        <i class="icon-plus" aria-hidden="true"></i> Add New
-                    </a>
+                    @if(Auth::user()->hasAnyRole(['su', 'staf_subbag_tu', 'staf_seksi_pengujian_dan_pengendalian_mutu']))
+                        <a href="{{ url('/surat-keluar/create') }}" class="btn btn-success btn-sm" title="Add New SuratKeluar">
+                            <i class="icon-plus" aria-hidden="true"></i> Add New
+                        </a>
+                    @endif
 
                     {!! Form::open(['method' => 'GET', 'url' => '/surat-keluar', 'class' => 'navbar-form navbar-right', 'role' => 'search'])  !!}
                     <div class="input-group">
@@ -39,20 +41,22 @@
                                         <div class="btn-toolbar">
                                             <div class="btn-group">
                                                 <button onclick="window.location = '{{ url('/surat-keluar/' . $item->id) }}'" title="View SuratKeluar" class="btn btn-info btn-xs"><i class="icon-eye-open" aria-hidden="true"></i> View</button>
-                                                <button onclick="window.location = '{{ url('/surat-keluar/' . $item->id . '/edit') }}'" title="Edit SuratKeluar" class="btn btn-primary btn-xs"><i class="icon-edit" aria-hidden="true"></i> Edit</button>
-                                                {!! Form::button('<i class="icon-trash" aria-hidden="true"></i> Delete', array(
-                                                        'type' => 'submit',
-                                                        'class' => 'btn btn-danger btn-xs',
-                                                        'title' => 'Delete SuratKeluar',
-                                                        'onclick'=>'bootbox.confirm("Confirm delete?", function(result){ if(result) $("#delete-'.$item->id.'").submit() })'
-                                                )) !!}
-                                                {!! Form::open([
-                                                    'method'=>'DELETE',
-                                                    'url' => ['/surat-keluar', $item->id],
-                                                    'style' => 'display:inline',
-                                                    'id' => 'delete-'.$item->id,
-                                                ]) !!}
-                                                {!! Form::close() !!}
+                                                @if(Auth::user()->hasAnyRole(['su', 'staf_subbag_tu', 'staf_seksi_pengujian_dan_pengendalian_mutu',]))
+                                                    <button onclick="window.location = '{{ url('/surat-keluar/' . $item->id . '/edit') }}'" title="Edit SuratKeluar" class="btn btn-primary btn-xs"><i class="icon-edit" aria-hidden="true"></i> Edit</button>
+                                                    {!! Form::button('<i class="icon-trash" aria-hidden="true"></i> Delete', array(
+                                                            'type' => 'submit',
+                                                            'class' => 'btn btn-danger btn-xs',
+                                                            'title' => 'Delete SuratKeluar',
+                                                            'onclick'=>'bootbox.confirm("Confirm delete?", function(result){ if(result) $("#delete-'.$item->id.'").submit() })'
+                                                    )) !!}
+                                                    {!! Form::open([
+                                                        'method'=>'DELETE',
+                                                        'url' => ['/surat-keluar', $item->id],
+                                                        'style' => 'display:inline',
+                                                        'id' => 'delete-'.$item->id,
+                                                    ]) !!}
+                                                    {!! Form::close() !!}
+                                                @endif
                                             </div>
                                         </div>
                                     </td>

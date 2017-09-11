@@ -24,6 +24,36 @@ class PegawaiController extends Controller
         'id_kota' => 'numeric',
     ];
 
+    public function crypto_rand_secure($min, $max){
+        $range = $max - $min;
+        if ($range < 1) return $min;
+        //not so random...    //
+        $log = ceil(log($range, 2));
+        $bytes = (int) ($log / 8) + 1;
+        //length in bytes    //
+        $bits = (int) $log + 1;
+        //length in bits
+        $filter = (int) (1 << $bits) - 1;
+        //set all lower bits to 1
+        do {
+            $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($bytes)));
+            $rnd = $rnd & $filter;
+            //discard irrelevant bits
+        } while ($rnd >= $range);
+        return $min + $rnd;
+    }
+
+    public function token($length){
+        $token = "";
+        $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $codeAlphabet.= "0123456789";
+        $max = strlen($codeAlphabet) - 1;
+        for ($i=0; $i < $length; $i++) {
+            $token .= $codeAlphabet[$this->crypto_rand_secure(0, $max)];
+        }
+        return $token;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,15 +67,21 @@ class PegawaiController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $pegawai = Pegawai::with('kota')->where('nip', 'LIKE', "%$keyword%")
-				->orWhere('nama', 'LIKE', "%$keyword%")
-				->orWhere('alamat', 'LIKE', "%$keyword%")
-				->orWhere('id_divisi', 'LIKE', "%$keyword%")
-				->orWhere('id_jabatan', 'LIKE', "%$keyword%")
-				->orWhere('jenis_kelamin', 'LIKE', "%$keyword%")
-				->orWhere('no_telp', 'LIKE', "%$keyword%")
-				->orWhere('tanggal_lahir', 'LIKE', "%$keyword%")
-				->paginate($perPage);
+            $pegawai = Pegawai::with('kota')
+                ->join('kota', 'kota.id', '=', 'pegawai.id_kota')
+                ->join('divisi', 'divisi.id', '=', 'pegawai.id_divisi')
+                ->where('nip', 'LIKE', "%$keyword%")
+                ->orWhere('pegawai.nama', 'LIKE', "%$keyword%")
+                ->orWhere('alamat', 'LIKE', "%$keyword%")
+                ->orWhere('id_divisi', 'LIKE', "%$keyword%")
+                ->orWhere('id_jabatan', 'LIKE', "%$keyword%")
+                ->orWhere('jenis_kelamin', 'LIKE', "%$keyword%")
+                ->orWhere('no_telp', 'LIKE', "%$keyword%")
+                ->orWhere('tanggal_lahir', 'LIKE', "%$keyword%")
+                ->orWhere('kota.nama', 'LIKE', "%$keyword%")
+                ->orWhere('divisi.nama', 'LIKE', "%$keyword%")
+                ->select('pegawai.*')
+                ->paginate($perPage);
         } else {
             $pegawai = Pegawai::with('kota')->paginate($perPage);
         }
@@ -60,7 +96,21 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        return view('admin/pegawai.create');
+        $reg_no = $this->token(10);
+
+        $check_random = false;
+        $check_reg_no = Pegawai::where('nip',$reg_no)->count();
+
+        while(!$check_random)
+            if($check_reg_no<1){
+                $check_random = true;
+            }else{
+                $reg_no = $this->toket(10);
+                $check_reg_no = Pegawai::where('nip',$reg_no)->count();
+                $check_random = false;
+            }
+
+        return view('admin/pegawai.create')->with('nip', $reg_no);
     }
 
     /**
@@ -75,7 +125,7 @@ class PegawaiController extends Controller
         $this->validate($request, $this->validation);
 
         $requestData = $request->all();
-        
+
         Pegawai::create($requestData);
 
         Session::flash('flash_message', 'Pegawai added!');
@@ -126,7 +176,7 @@ class PegawaiController extends Controller
         $this->validate($request, $validation);
 
         $requestData = $request->all();
-        
+
         $pegawai = Pegawai::with('kota')->with('jabatan')->with('divisi')->findOrFail($id);
         $pegawai->update($requestData);
 

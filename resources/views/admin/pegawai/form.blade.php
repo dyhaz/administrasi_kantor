@@ -209,5 +209,8 @@
             $('#search_text_jabatan').val("{{ @$pegawai->jabatan->nama }}");
             $('#search_text_divisi').val("{{ @$pegawai->divisi->nama }}");
         @endif
+        @if(isset($nip))
+            $('#nip').val(" {{ $nip }}");
+        @endif
     </script>
 @append

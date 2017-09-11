@@ -48,9 +48,9 @@ class PersetujuanSuratKeluarController extends Controller
                             ->orWhere('status', 'LIKE', "%$keyword%");
 
                     })
-				->paginate($perPage);
+                ->orderBy('created_at', 'desc')->paginate($perPage);
         } else {
-            $suratkeluar = SuratKeluar::with('instansi')->where('status_kirim', '0')->paginate($perPage);
+            $suratkeluar = SuratKeluar::with('instansi')->where('status_kirim', '0')->orderBy('created_at', 'desc')->paginate($perPage);
         }
 
         $user = Auth::user();

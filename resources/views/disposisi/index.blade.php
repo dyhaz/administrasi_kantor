@@ -6,9 +6,11 @@
             <div class="widget box">
                 <div class="widget-header">Disposisi</div>
                 <div class="widget-content">
+                    @if(Auth::user()->hasAnyRole(['su', 'ka_upt']))
                     <a data-toggle="modal" data-target="#suratMasukModal" href="#" class="btn btn-success btn-sm" title="Add New Disposisi">
                         <i class="icon-plus" aria-hidden="true"></i> Add New
                     </a>
+                    @endif
 
                     {!! Form::open(['method' => 'GET', 'url' => '/disposisi', 'class' => 'navbar-form navbar-right', 'role' => 'search'])  !!}
                     <div class="input-group">
@@ -40,6 +42,7 @@
                                             <div class="btn-group">
                                                 <button onclick="window.location = '{{ url('/disposisi/' . $item->id) }}'" title="View Disposisi" class="btn btn-info btn-xs"><i class="icon-eye-open" aria-hidden="true"></i> View</button>
                                                 <!--<button onclick="window.location = '{{ url('/disposisi/' . $item->id . '/edit') }}'" title="Edit Disposisi" class="btn btn-primary btn-xs"><i class="icon-edit" aria-hidden="true"></i> Edit</button>-->
+                                                @if(Auth::user()->hasAnyRole(['su', 'ka_upt']) && @$item->surat_masuk->status != '2')
                                                 <button title="Edit Disposisi" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
                                                     <i class="icon-edit"></i> Edit
                                                     <span class="caret"></span>
@@ -61,6 +64,7 @@
                                                     'id' => 'delete-'.$item->id,
                                                 ]) !!}
                                                 {!! Form::close() !!}
+                                                @endif
                                             </div>
                                         </div>
                                     </td>

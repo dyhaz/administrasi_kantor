@@ -39,7 +39,17 @@ class DisposisiController extends Controller
 				->orWhere('keterangan', 'LIKE', "%$keyword%")
 				->paginate($perPage);
         } else {
-            $disposisi = Disposisi::with('surat_masuk')->paginate($perPage);
+            if($request->user()->roles()->first()->name == 'ka_upt') {
+                $disposisi = Disposisi::with('surat_masuk')->paginate($perPage);
+            } else {
+                $disposisi = Disposisi::join('surat_masuk', 'disposisi.id_surat_masuk', 'surat_masuk.id')
+                    ->join('disposisi_tujuan', 'disposisi_tujuan.id_disposisi', 'disposisi.id')
+                    ->where('disposisi_tujuan.id_divisi', 'LIKE', @$request->user()->pegawai->id_divisi)
+                    ->where('surat_masuk.status', 'LIKE', '2')
+                    ->groupBy('disposisi.id')
+                    ->select('disposisi.*')
+                    ->paginate($perPage);
+            }
         }
 
         $suratmasuk = SuratMasuk::where('status', '!=', 2)->where('status', '!=', 1)->get();
@@ -181,6 +191,19 @@ class DisposisiController extends Controller
 
         Session::flash('flash_message', 'Disposisi deleted!');
 
-        return redirect('disposisi/disposisi');
+        return redirect('disposisi/');
+    }
+
+    public function disposisi_selesai($id, Request $request)
+    {
+
+        $disposisi = Disposisi::with('surat_masuk')->findOrFail($id);
+        $surat_masuk = SuratMasuk::findOrFail(@$disposisi->surat_masuk->id);
+        $surat_masuk->status = '2';
+        $surat_masuk->update();
+
+        Session::flash('flash_message', 'Surat masuk terdisposisi!');
+
+        return redirect('disposisi/');
     }
 }

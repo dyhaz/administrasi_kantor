@@ -106,6 +106,7 @@ Route::group(['middleware' => ['web', 'lock', 'auth']], function () {
     /**
      * Disposisi
      */
+    Route::get('disposisi/disposisi-selesai/{id}', 'Disposisi\\DisposisiController@disposisi_selesai');
     Route::resource('disposisi/isi-disposisi', 'Disposisi\\IsiDisposisiController');
     Route::resource('disposisi/disposisi-tujuan', 'Disposisi\\DisposisiTujuanController');
     Route::resource('disposisi', 'Disposisi\\DisposisiController');

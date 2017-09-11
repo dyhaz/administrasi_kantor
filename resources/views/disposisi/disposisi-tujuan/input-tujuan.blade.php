@@ -6,7 +6,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Input Tujuan</div>
                 <div class="panel-body">
-                    <a href="{{ url('/disposisi') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                    <a href="{{ url('/disposisi') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="icon-arrow-left" aria-hidden="true"></i> Back</button></a>
+                    <a onclick="bootbox.confirm('Proses disposisi?', function(result){ if(result) window.location.href='{{ url('/disposisi/disposisi-selesai/'.$id) }}' })" href="#" title="Selesai"><button class="btn btn-success btn-xs"><i class="icon-ok" aria-hidden="true"></i> Selesai</button></a>
                     <br />
                     <br />
 

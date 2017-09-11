@@ -6,9 +6,11 @@
             <div class="widget box">
                 <div class="widget-header">Suratmasuk</div>
                 <div class="widget-content">
+                    @if(Auth::user()->hasAnyRole(['su', 'staf_subbag_tu']))
                     <a href="{{ url('/surat-masuk/create') }}" class="btn btn-success btn-sm" title="Add New SuratMasuk">
                         <i class="icon-plus" aria-hidden="true"></i> Add New
                     </a>
+                    @endif
 
                     {!! Form::open(['method' => 'GET', 'url' => '/surat-masuk', 'class' => 'navbar-form navbar-right', 'role' => 'search'])  !!}
                     <div class="input-group">
@@ -39,23 +41,25 @@
                                         <div class="btn-toolbar">
                                             <div class="btn-group">
                                                 <button onclick="window.location = '{{ url('/surat-masuk/' . $item->id) }}'" title="View SuratMasuk" class="btn btn-info btn-xs"><i class="icon-eye-open" aria-hidden="true"></i> View</button>
-                                                <button onclick="window.location = '{{ url('/surat-masuk/' . $item->id . '/edit') }}'" title="Edit SuratMasuk" class="btn btn-primary btn-xs"><i class="icon-edit" aria-hidden="true"></i> Edit</button>
-                                                @if(@Auth::user()->hasAnyRole(['su', 'ka_upt']))
-                                                <button onclick="window.location = '{{ url('/disposisi/create?sm=' . $item->id) }}'" title="Edit SuratMasuk" class="btn btn-success btn-xs"><i class="icon-edit" aria-hidden="true"></i> Disposisi</button>
+                                                @if(Auth::user()->hasAnyRole(['su', 'staf_subbag_tu']) && @$item->status != '2')
+                                                    <button onclick="window.location = '{{ url('/surat-masuk/' . $item->id . '/edit') }}'" title="Edit SuratMasuk" class="btn btn-primary btn-xs"><i class="icon-edit" aria-hidden="true"></i> Edit</button>
+                                                    {!! Form::button('<i class="icon-trash" aria-hidden="true"></i> Delete', array(
+                                                                                                            'type' => 'submit',
+                                                                                                            'class' => 'btn btn-danger btn-xs',
+                                                                                                            'title' => 'Delete SuratMasuk',
+                                                                                                            'onclick'=>'bootbox.confirm("Confirm delete?", function(result){ if(result) $("#delete-'.$item->id.'").submit() })'
+                                                                                                    )) !!}
+                                                    {!! Form::open([
+                                                        'method'=>'DELETE',
+                                                        'url' => ['/surat-masuk', $item->id],
+                                                        'style' => 'display:inline',
+                                                        'id' => 'delete-'.$item->id,
+                                                    ]) !!}
+                                                    {!! Form::close() !!}
                                                 @endif
-                                                {!! Form::button('<i class="icon-trash" aria-hidden="true"></i> Delete', array(
-                                                        'type' => 'submit',
-                                                        'class' => 'btn btn-danger btn-xs',
-                                                        'title' => 'Delete SuratMasuk',
-                                                        'onclick'=>'bootbox.confirm("Confirm delete?", function(result){ if(result) $("#delete-'.$item->id.'").submit() })'
-                                                )) !!}
-                                                {!! Form::open([
-                                                    'method'=>'DELETE',
-                                                    'url' => ['/surat-masuk', $item->id],
-                                                    'style' => 'display:inline',
-                                                    'id' => 'delete-'.$item->id,
-                                                ]) !!}
-                                                {!! Form::close() !!}
+                                                @if(@Auth::user()->hasAnyRole(['su', 'ka_upt']) && @$item->status != '2')
+                                                    <button onclick="window.location = '{{ url('/disposisi/create?sm=' . $item->id) }}'" title="Edit SuratMasuk" class="btn btn-success btn-xs"><i class="icon-edit" aria-hidden="true"></i> Disposisi</button>
+                                                @endif
                                             </div>
                                         </div>
                                     </td>
