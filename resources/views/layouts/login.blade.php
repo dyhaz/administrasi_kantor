@@ -18,7 +18,7 @@
 <!-- /Logo -->
 
 <!-- Login Box -->
-<div class="box">
+<div class="box" style="width: 500px">
     <div class="content">
         @yield('content')
     </div>
