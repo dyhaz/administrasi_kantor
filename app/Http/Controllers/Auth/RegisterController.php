@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Divisi;
+use App\Models\Jabatan;
+use App\Models\Kota;
+use App\Models\Pegawai;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Role;
+use Session;
 
 class RegisterController extends Controller
 {
@@ -30,6 +36,17 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/home';
 
+
+    public function showRegistrationForm()
+    {
+        $list_kota = Kota::orderBy('id')->pluck('nama','id');
+        $list_jabatan = Jabatan::orderBy('id')->pluck('nama', 'id');
+        $list_divisi = Divisi::orderBy('id')->pluck('nama', 'id');
+        return view('auth.register')->with('list_kota', $list_kota)->with('list_jabatan', $list_jabatan)
+            ->with('list_divisi', $list_divisi);
+
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -49,9 +66,16 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:100',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'jenis_kelamin' => 'required|max:1',
+            'tanggal_lahir' => 'date',
+            'no_telp' => 'required|max:100',
+            'alamat' => 'required|max:1000',
+            'id_divisi' => 'numeric',
+            'id_jabatan' => 'numeric',
+            'id_kota' => 'numeric'
         ]);
     }
 
@@ -71,6 +95,11 @@ class RegisterController extends Controller
 
         $user->roles()->attach(Role::where('name', 'su')->first());
 
+        $data['id_user'] = $user->id;
+        $data['nama'] = $data['name'];
+        $data['nip'] = time();
+
+        $pegawai = Pegawai::create($data);
         return $user;
     }
 }

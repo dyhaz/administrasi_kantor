@@ -182,3 +182,6 @@
 .login .spacing-top {
   padding-top: 7px !important;
 }
+a .pull-left {
+  cursor: pointer;
+}

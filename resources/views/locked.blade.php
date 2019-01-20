@@ -2,13 +2,13 @@
 <html lang="en" class="fullscreen-bg">
 
 <head>
-    <title>Lockscreen | Klorofil - Free Bootstrap Dashboard Template</title>
+    <title>Lockscreen</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <!-- VENDOR CSS -->
-    <link rel="stylesheet" href="http://demo.cssmoban.com/cssthemes4/tid_5_klorofil/assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://demo.cssmoban.com/cssthemes4/tid_5_klorofil/assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://demo.cssmoban.com/cssthemes4/tid_5_klorofil/assets/vendor/linearicons/style.css">
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="http://demo.cssmoban.com/cssthemes4/tid_5_klorofil/assets/css/main.css">
@@ -29,7 +29,7 @@
             <div class="auth-box lockscreen clearfix">
                 <div class="content">
                     <h1 class="sr-only">Klorofil - Free Bootstrap dashboard</h1>
-                    <div class="logo text-center"><img src="http://wiraharja.com/assets/imgs/logo.png" alt="Wiraharja Graha Software Logo"></div>
+                    {{--<div class="logo text-center"><img src="http://wiraharja.com/assets/imgs/logo.png"></div>--}}
                     <div class="user text-center">
                         <img width="90" height="90" src="storage/{{ @Auth::user()->pegawai->foto }}" class="img-circle" alt="Avatar">
                         <h2 class="name">{{ @Auth::user()->name }}</h2>
@@ -45,7 +45,7 @@
                     {!! Form::open() !!}
                         <div class="input-group">
                             <input name="password" type="password" class="form-control" placeholder="Masukkan password ...">
-                            <span class="input-group-btn"><button type="submit" class="btn btn-primary"><i class="fa fa-arrow-right"></i></button></span>
+                            <span class="input-group-btn"><button type="submit" class="btn btn-primary"><i class="fa fa-chevron-right"></i></button></span>
                         </div>
                     {!! Form::close() !!}
                 </div>

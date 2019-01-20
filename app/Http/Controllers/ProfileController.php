@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use GrahamCampbell\Flysystem\Facades\Flysystem;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,10 @@ use Session;
 class ProfileController extends Controller
 {
     public function index() {
+        if (empty(Auth::user()->pegawai)) {
+            return abort(404);
+        }
+
         return view('profile.index')->with('pegawai', @Auth::user()->pegawai);
     }
 

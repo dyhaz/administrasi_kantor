@@ -18,7 +18,7 @@
         "graham-campbell/flysystem": "^3.7",
         "laracasts/generators": "dev-master as 1.1.4",
         "nicolaslopezj/searchable": "1.*",
-        "niklasravnsborg/laravel-pdf": "^1.5",
+        "niklasravnsborg/laravel-pdf": ">1.5",
         "yajra/laravel-datatables-oracle": "^7.5",
         "yajra/laravel-datatables-buttons": "^2.0",
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
