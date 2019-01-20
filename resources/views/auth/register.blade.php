@@ -87,7 +87,7 @@
                             <div class="form-group {{ $errors->has('tanggal_lahir') ? 'has-error' : ''}}">
                                 {!! Form::label('tanggal_lahir', 'Tanggal Lahir', ['class' => 'col-md-4 control-label']) !!}
                                 <div class="col-md-6">
-                                    {!! Form::text('tanggal_lahir', null, ['class' => 'form-control datepicker']) !!}
+                                    {!! Form::text('tanggal_lahir', null, ['class' => 'form-control datepicker', 'autocomplete' => 'off']) !!}
                                     {!! $errors->first('tanggal_lahir', '<p class="help-block">:message</p>') !!}
                                 </div>
                             </div>
@@ -109,7 +109,7 @@
                             </div>
 
                             <div class="form-group {{ $errors->has('id_jabatan') ? 'has-error' : ''}}">
-                                {!! Form::label('id_jabatan', 'Id Jabatan', ['class' => 'col-md-4 control-label']) !!}
+                                {!! Form::label('id_jabatan', 'Jabatan', ['class' => 'col-md-4 control-label']) !!}
                                 <div class="col-md-6">
                                     {!! Form::select('id_jabatan', $list_jabatan, null, array('class' => 'form-control')) !!}
                                     {!! $errors->first('id_jabatan', '<p class="help-block">:message</p>') !!}

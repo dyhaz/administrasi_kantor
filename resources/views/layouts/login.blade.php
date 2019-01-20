@@ -12,8 +12,8 @@
 <body class="login">
 <!-- Logo -->
 <div class="logo">
-    <img src="/theme/assets/img/logo.png" alt="logo" />
-    <strong>ME</strong>LON
+    {{--<img src="/theme/assets/img/logo.png" alt="logo" />--}}
+    <strong>YOUR</strong>COMPANY
 </div>
 <!-- /Logo -->
 
