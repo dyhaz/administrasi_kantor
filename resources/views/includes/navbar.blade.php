@@ -8,8 +8,8 @@
 
     <!-- Logo -->
     <a class="navbar-brand" href="/">
-        <img src="/theme/assets/img/logo.png" alt="logo" />
-        <strong>ME</strong>LON
+        <img src="/theme/assets/img/blue-logo.png" style="height: 21px" alt="logo" />
+        <strong>YOUR</strong>COMPANY
     </a>
     <!-- /logo -->
 

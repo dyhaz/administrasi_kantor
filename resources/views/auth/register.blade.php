@@ -18,11 +18,19 @@
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                             {{ csrf_field() }}
 
+                            <div class="form-group {{ $errors->has('nip') ? 'has-error' : ''}}">
+                                {!! Form::label('nip', 'NIP', ['class' => 'col-md-4 control-label']) !!}
+                                <div class="col-md-6">
+                                    {!! Form::text('nip', null, ['class' => 'form-control', 'required' => true, 'autofocus' => true]) !!}
+                                    {!! $errors->first('nip', '<p class="help-block">:message</p>') !!}
+                                </div>
+                            </div>
+
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 <label for="name" class="col-md-4 control-label">Nama</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required>
 
                                     @if ($errors->has('name'))
                                         <span class="help-block">
@@ -71,7 +79,7 @@
                             <div class="form-group {{ $errors->has('jenis_kelamin') ? 'has-error' : ''}}">
                                 {!! Form::label('jenis_kelamin', 'Jenis Kelamin', ['class' => 'col-md-4 control-label']) !!}
                                 <div class="col-md-6">
-                                    {!! Form::select('jenis_kelamin', ['Laki-laki', 'Perempuan'], null, ['class' => 'form-control']) !!}
+                                    {!! Form::select('jenis_kelamin', ['L' => 'Laki-laki', 'P' => 'Perempuan'], null, ['class' => 'form-control']) !!}
                                     {!! $errors->first('jenis_kelamin', '<p class="help-block">:message</p>') !!}
                                 </div>
                             </div>

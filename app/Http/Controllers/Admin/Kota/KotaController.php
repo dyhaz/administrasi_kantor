@@ -62,7 +62,7 @@ class KotaController extends Controller
         
         Kota::create($requestData);
 
-        Session::flash('flash_message', 'Kotum added!');
+        Session::flash('flash_message', 'Kota added!');
 
         return redirect('admin/kota');
     }

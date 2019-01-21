@@ -13,7 +13,7 @@
                     {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
                             'type' => 'submit',
                             'class' => 'btn btn-danger btn-xs',
-                            'title' => 'Delete Kotum',
+                            'title' => 'Delete Kota',
                             'onclick'=>'bootbox.confirm("Confirm delete?", function(result){ if(result) $("#delete-' . $kotum->id . '").submit() })'
                     ))!!}
                     {!! Form::open([

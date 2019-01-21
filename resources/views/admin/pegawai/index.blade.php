@@ -2,14 +2,18 @@
 
 @section('content')
     <div class="row">
+        <div class="col-sm-12">
+            <a href="{{ url('/admin/pegawai/create') }}" class="btn btn-success btn-sm" title="Add New Pegawai">
+                <i class="icon-plus" aria-hidden="true"></i> Add New
+            </a>
+        </div>
+    </div>
+    <br />
+    <div class="row">
         <div class="col-md-12">
             <div class="widget box">
                 <div class="widget-header">Pegawai</div>
                 <div class="widget-content">
-                    <a href="{{ url('/admin/pegawai/create') }}" class="btn btn-success btn-sm" title="Add New Pegawai">
-                        <i class="icon-plus" aria-hidden="true"></i> Add New
-                    </a>
-
                     {!! Form::open(['method' => 'GET', 'url' => '/admin/pegawai', 'class' => 'navbar-form navbar-right', 'role' => 'search'])  !!}
                     <div class="input-group">
                         <input type="text" class="form-control" name="search" placeholder="Search...">

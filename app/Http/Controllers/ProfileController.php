@@ -48,6 +48,7 @@ class ProfileController extends Controller
              */
             $count = \DB::table('pegawai')
                 ->where('updated_at', '>=', \Carbon\Carbon::now()->subHour())
+                ->whereNotNull('foto')
                 ->where('id_user', $request->user()->id)->count();
             if($count > 0) {
                 Session::flash('flash_message', 'Please try again later');

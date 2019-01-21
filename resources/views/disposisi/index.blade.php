@@ -1,16 +1,21 @@
 @extends('layouts.master')
 
 @section('content')
+    @if(Auth::user()->hasAnyRole(['su', 'ka_upt']))
+        <div class="row">
+            <div class="col-md-12">
+                <a data-toggle="modal" data-target="#suratMasukModal" href="#" class="btn btn-success btn-sm" title="Add New Disposisi">
+                    <i class="icon-plus" aria-hidden="true"></i> Add New
+                </a>
+            </div>
+        </div>
+        <br />
+    @endif
     <div class="row">
         <div class="col-md-12">
             <div class="widget box">
                 <div class="widget-header">Disposisi</div>
                 <div class="widget-content">
-                    @if(Auth::user()->hasAnyRole(['su', 'ka_upt']))
-                    <a data-toggle="modal" data-target="#suratMasukModal" href="#" class="btn btn-success btn-sm" title="Add New Disposisi">
-                        <i class="icon-plus" aria-hidden="true"></i> Add New
-                    </a>
-                    @endif
 
                     {!! Form::open(['method' => 'GET', 'url' => '/disposisi', 'class' => 'navbar-form navbar-right', 'role' => 'search'])  !!}
                     <div class="input-group">

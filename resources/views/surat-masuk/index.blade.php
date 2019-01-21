@@ -1,17 +1,22 @@
 @extends('layouts.master')
 
 @section('content')
+    @if(Auth::user()->hasAnyRole(['su', 'staf_subbag_tu']))
+    <div class="row">
+        <div class="col-md-12">
+                <a href="{{ url('/surat-masuk/create') }}" class="btn btn-success btn-sm" title="Add New SuratMasuk">
+                    <i class="icon-plus" aria-hidden="true"></i> Add New
+                </a>
+
+        </div>
+    </div>
+    <br />
+    @endif
     <div class="row">
         <div class="col-md-12">
             <div class="widget box">
                 <div class="widget-header">Suratmasuk</div>
                 <div class="widget-content">
-                    @if(Auth::user()->hasAnyRole(['su', 'staf_subbag_tu']))
-                    <a href="{{ url('/surat-masuk/create') }}" class="btn btn-success btn-sm" title="Add New SuratMasuk">
-                        <i class="icon-plus" aria-hidden="true"></i> Add New
-                    </a>
-                    @endif
-
                     {!! Form::open(['method' => 'GET', 'url' => '/surat-masuk', 'class' => 'navbar-form navbar-right', 'role' => 'search'])  !!}
                     <div class="input-group">
                         <input type="text" class="form-control" name="search" placeholder="Search...">

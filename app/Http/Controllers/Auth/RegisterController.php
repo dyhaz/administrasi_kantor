@@ -66,6 +66,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'nip' => 'required|max:100|unique:pegawai',
             'name' => 'required|max:100',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
@@ -87,6 +88,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -95,9 +97,7 @@ class RegisterController extends Controller
 
         $user->roles()->attach(Role::where('name', 'su')->first());
 
-        $data['id_user'] = $user->id;
         $data['nama'] = $data['name'];
-        $data['nip'] = time();
 
         $pegawai = Pegawai::create($data);
         return $user;

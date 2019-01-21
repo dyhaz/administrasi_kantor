@@ -2,13 +2,18 @@
 
 @section('content')
     <div class="row">
+        <div class="col-sm-12">
+            <a href="{{ url('/admin/kota/create') }}" class="btn btn-success btn-sm" title="Add New Kotum">
+                <i class="icon-plus" aria-hidden="true"></i> Add New
+            </a>
+        </div>
+    </div>
+    <br />
+    <div class="row">
         <div class="col-md-12">
             <div class="widget box">
                 <div class="widget-header">Kota</div>
                 <div class="widget-content">
-                    <a href="{{ url('/admin/kota/create') }}" class="btn btn-success btn-sm" title="Add New Kotum">
-                        <i class="icon-plus" aria-hidden="true"></i> Add New
-                    </a>
 
                     {!! Form::open(['method' => 'GET', 'url' => '/admin/kota', 'class' => 'navbar-form navbar-right', 'role' => 'search'])  !!}
                     <div class="input-group">
@@ -43,7 +48,7 @@
                                                 {!! Form::button('<i class="icon-trash" aria-hidden="true"></i> Delete', array(
                                                         'type' => 'submit',
                                                         'class' => 'btn btn-danger btn-xs',
-                                                        'title' => 'Delete Kotum',
+                                                        'title' => 'Delete Kota',
                                                         'onclick'=>'bootbox.confirm("Confirm delete?", function(result){ if(result) $("#delete-'.$item->id.'").submit() })'
                                                 )) !!}
                                                 {!! Form::open([
