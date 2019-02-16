@@ -1,5 +1,11 @@
 @extends('layouts.master')
 
+@section('js')
+    <script>
+        $('#email').attr('disabled', 'disabled');
+    </script>
+@append
+
 @section('content')
 
     <div class="row">

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Collective\Html\FormBuilder;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,12 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with(compact('controller', 'action'));
         });
+
+        // Custom Form Components
+        \Form::component('typeahead', 'components.form.typeahead', ['name', 'value', 'attributes']);
+        //Example: {{ Form::typeahead('instansi', null, ['endpointUrl' => route('searchInstansi') . '?term=%QUERY%' ]) }}
+        \Form::component('selectbox', 'components.form.selectbox', ['name', 'value', 'attributes']);
+        //Example: {{ Form::selectbox('kegiatan_surat', null, ['endpointUrl' => route('searchKegiatanSurat') ]) }}
     }
 
     /**

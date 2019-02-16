@@ -62,7 +62,7 @@ class SearchController extends BaseController
         }
 
         if(sizeof($queries) == 0) {
-            $results[] = [ 'id' => 0, 'value' => '<b>Buat "' . str_replace('%','',htmlentities($term)) . '"</b>'];
+            $results[] = [ /*'id' => 0, 'value' => '<b>Buat "' . str_replace('%','',htmlentities($term)) . '"</b>'*/];
         }
 
         return Response::json($results);

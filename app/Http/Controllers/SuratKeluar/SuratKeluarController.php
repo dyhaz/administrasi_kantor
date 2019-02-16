@@ -88,6 +88,7 @@ class SuratKeluarController extends Controller
             unset($requestData['id_kegiatan_surat']);
 
         $this->validate($request, $this->validation);
+        $requestData['id_pegawai'] = Auth::user()->pegawai->id;
         
         SuratKeluar::create($requestData);
 

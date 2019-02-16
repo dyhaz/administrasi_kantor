@@ -245,7 +245,7 @@ var FormComponents = function() {
 		if ($.fn.wysihtml5) {
 			// Set default options
 			$.extend(true, $.fn.wysihtml5.defaultOptions, {
-				stylesheets: ["./assets/css/plugins/bootstrap-wysihtml5.css"]
+				stylesheets: ["/theme/assets/css/plugins/bootstrap-wysihtml5.css"]
 			});
 
 			$('.wysiwyg').each(function () {

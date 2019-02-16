@@ -31,9 +31,9 @@
         {!! $errors->first('perihal', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('id_sifat') ? 'has-error' : ''}}">
-    {!! Form::label('id_sifat', 'Id Sifat', ['class' => 'col-md-4 control-label']) !!}
+    {!! Form::label('id_sifat', 'Sifat', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::select('id_sifat', $sifatsurat, null, ['id' => 'id_sifat', 'class' => 'form-control']) !!}
+        {!! Form::select('id_sifat', $sifatsurat, null, ['id' => 'id_sifat']) !!}
         {!! $errors->first('id_sifat', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('persetujuan') ? 'has-error' : ''}}">
@@ -73,7 +73,7 @@
 @section('js')
     @parent
     <script type="text/javascript">
-
+        $("#id_sifat").select2();
         $("#search_text").on("click", function () {
             $(this).select();
         });

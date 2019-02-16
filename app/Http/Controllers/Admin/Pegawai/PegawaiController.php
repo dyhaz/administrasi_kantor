@@ -44,12 +44,16 @@ class PegawaiController extends Controller
     }
 
     public function token($length){
-        $token = "";
-        $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        $codeAlphabet.= "0123456789";
-        $max = strlen($codeAlphabet) - 1;
+        $codeAlpha = "123456789";
+        $max = strlen($codeAlpha) - 1;
+        $kode_divisi = '00';
+        $kode_jabatan = '00';
+        $token = $kode_divisi;
+        $token .= $kode_jabatan;
+        $token .= substr(date('Y'), 1);
+
         for ($i=0; $i < $length; $i++) {
-            $token .= $codeAlphabet[$this->crypto_rand_secure(0, $max)];
+            $token .= $codeAlpha[$this->crypto_rand_secure(0, $max)];
         }
         return $token;
     }
@@ -96,7 +100,7 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        $reg_no = $this->token(10);
+        $reg_no = $this->token(4);
 
         $check_random = false;
         $check_reg_no = Pegawai::where('nip',$reg_no)->count();
@@ -105,7 +109,7 @@ class PegawaiController extends Controller
             if($check_reg_no<1){
                 $check_random = true;
             }else{
-                $reg_no = $this->toket(10);
+                $reg_no = $this->token(4);
                 $check_reg_no = Pegawai::where('nip',$reg_no)->count();
                 $check_random = false;
             }

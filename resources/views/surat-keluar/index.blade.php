@@ -33,7 +33,7 @@
                         <table class="table table-borderless">
                             <thead>
                             <tr>
-                                <th>ID</th><th>Nomor</th><th>Id Instansi</th><th>Perihal</th><th>Actions</th>
+                                <th>ID</th><th>Nomor</th><th>Instansi</th><th>Perihal</th><th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>

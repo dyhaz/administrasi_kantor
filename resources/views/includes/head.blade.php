@@ -32,6 +32,7 @@
 <!--=== JavaScript ===-->
 
 <script type="text/javascript" src="/theme/assets/js/libs/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.js"></script>
 <script type="text/javascript" src="/theme/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>
 
 <script type="text/javascript" src="/theme/bootstrap/js/bootstrap.min.js"></script>

@@ -20,7 +20,7 @@
         <!--<label for="username">Username:</label>-->
         <div class="input-icon">
             <i class="icon-user"></i>
-            <input type="text" name="email" class="form-control" placeholder="Email" autofocus="autofocus" data-rule-required="true" data-msg-required="Please enter your username." />
+            <input type="text" name="email" autocomplete="off" class="form-control" placeholder="Email" autofocus="autofocus" data-rule-required="true" data-msg-required="Please enter your username." />
             @if ($errors->has('email'))
                 <span class="help-block">
                     <strong>{{ $errors->first('email') }}</strong>
@@ -46,7 +46,7 @@
     <div class="form-actions">
         <div class="row">
             <div class="col-md-8">
-                <div class="row">
+                <div class="row"  style="height: 32px; display:flex; align-items: center">
                     <div class="col-md-5" style="padding-right: 0px;width: inherit">
                         <a href="/password/reset" class="pull-left" data-toggle="popover">Lupa Password</a>
                     </div>

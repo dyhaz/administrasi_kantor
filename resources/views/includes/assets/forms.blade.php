@@ -10,3 +10,5 @@
 <script type="text/javascript" src="/theme/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.min.js"></script>
 <script type="text/javascript" src="/theme/plugins/bootstrap-multiselect/bootstrap-multiselect.min.js"></script>
 <script type="text/javascript" src="/theme/plugins/bootstrap-switch/bootstrap-switch.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>

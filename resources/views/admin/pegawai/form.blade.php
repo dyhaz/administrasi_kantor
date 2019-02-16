@@ -16,33 +16,11 @@
         {!! Form::textarea('alamat', null, ['class' => 'form-control']) !!}
         {!! $errors->first('alamat', '<p class="help-block">:message</p>') !!}
     </div>
-</div><div class="form-group {{ $errors->has('id_kota') ? 'has-error' : ''}}">
-    {!! Form::label('id_kota', 'Kota', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-        {!! Form::hidden('id_kota', null, ['id' => 'id_kota']) !!}
-        <div class="input-group">
-            {!! Form::text('search_text_kota', null, array('placeholder' => 'Search Text','class' => 'form-control','id'=>'search_text_kota')) !!}
-            <span class="input-group-btn">
-                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#kotaModal"><i class="icon-plus"></i></button>
-            </span>
-        </div>
-        {!! $errors->first('id_kota', '<p class="help-block">:message</p>') !!}
-    </div>
-</div><div class="form-group {{ $errors->has('id_divisi') ? 'has-error' : ''}}">
-    {!! Form::label('id_divisi', 'Id Divisi', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-        {!! Form::hidden('id_divisi', null, ['id' => 'id_divisi']) !!}
-        {!! Form::text('search_text_divisi', null, array('placeholder' => 'Search Text','class' => 'form-control','id'=>'search_text_divisi')) !!}
-        {!! $errors->first('id_divisi', '<p class="help-block">:message</p>') !!}
-    </div>
-</div><div class="form-group {{ $errors->has('id_jabatan') ? 'has-error' : ''}}">
-    {!! Form::label('id_jabatan', 'Id Jabatan', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-        {!! Form::hidden('id_jabatan', null, ['id' => 'id_jabatan']) !!}
-        {!! Form::text('search_text_jabatan', null, array('placeholder' => 'Search Text','class' => 'form-control','id'=>'search_text_jabatan')) !!}
-        {!! $errors->first('id_jabatan', '<p class="help-block">:message</p>') !!}
-    </div>
-</div><div class="form-group {{ $errors->has('jenis_kelamin') ? 'has-error' : ''}}">
+</div>
+{{ Form::selectbox('id_kota', null, ['endpointUrl' => route('searchKota'), 'label' => @$pegawai->kota->nama]) }}
+{{ Form::selectbox('id_divisi', null, ['endpointUrl' => route('searchDivisi'), 'label' => @$pegawai->divisi->nama]) }}
+{{ Form::selectbox('id_jabatan', null, ['endpointUrl' => route('searchJabatan'), 'label' => @$pegawai->jabatan->nama]) }}
+<div class="form-group {{ $errors->has('jenis_kelamin') ? 'has-error' : ''}}">
     {!! Form::label('jenis_kelamin', 'Jenis Kelamin', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::select('jenis_kelamin', ['Laki-laki', 'Perempuan'], null, ['class' => 'form-control']) !!}
@@ -57,7 +35,7 @@
 </div><div class="form-group {{ $errors->has('tanggal_lahir') ? 'has-error' : ''}}">
     {!! Form::label('tanggal_lahir', 'Tanggal Lahir', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::text('tanggal_lahir', null, ['class' => 'form-control datepicker']) !!}
+        {!! Form::text('tanggal_lahir', null, ['class' => 'form-control datepicker', 'autocomplete' => 'off']) !!}
         {!! $errors->first('tanggal_lahir', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

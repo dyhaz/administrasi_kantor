@@ -16,7 +16,7 @@ class UserController extends Controller
     const MODEL = User::class;
 
     protected $validation = [
-        'email' => 'bail|required|max:100',
+        'email' => 'bail|required|max:255|unique:users',
         'id_pegawai' => 'required|numeric',
         'password' => 'required|max:50|min:8',
     ];
@@ -53,7 +53,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::get();
+        $roles = Role::get(['id', 'name']);
         $roles = $roles->pluck('name', 'id');
         return view('admin.user.create', compact('roles'));
     }
@@ -126,6 +126,8 @@ class UserController extends Controller
      */
     public function update($id, Request $request)
     {
+        $this->validation['email'] = '';
+
         $this->validate($request, $this->validation);
         $requestData = $request->all();
         
