@@ -15,6 +15,7 @@ class DivisiController extends Controller
 
     protected $validation = [
         'nama' => 'bail|required|unique:divisi|max:50',
+        'kode' => 'max:2|numeric',
     ];
     /**
      * Display a listing of the resource.

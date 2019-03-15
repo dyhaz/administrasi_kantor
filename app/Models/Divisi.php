@@ -25,7 +25,7 @@ class Divisi extends Model
      *
      * @var array
      */
-    protected $fillable = ['nama'];
+    protected $fillable = ['nama', 'kode'];
 
     
 }

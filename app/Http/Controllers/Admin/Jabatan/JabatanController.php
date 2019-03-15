@@ -15,6 +15,7 @@ class JabatanController extends Controller
 
     protected $validation = [
         'nama' => 'bail|required|unique:jabatan|max:255',
+        'kode' => 'max:2|numeric',
     ];
     /**
      * Display a listing of the resource.

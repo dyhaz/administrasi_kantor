@@ -38,7 +38,7 @@
     $("#{{ $name }}").on('change', function (e) {
         var data = e.added['text'];
         $("#{{ $name }}_text").val(data);
-        console.log($("#{{ $name }}_text").val());
+        console.log($("#{{ $name }}").val());
     });
 
     <?php if(!empty($attributes['label'])) { ?>

@@ -19,9 +19,9 @@ class PegawaiController extends Controller
         'nama' => 'required|max:100',
         'jenis_kelamin' => 'required|max:1',
         'tanggal_lahir' => 'date',
-        'id_divisi' => 'numeric',
-        'id_jabatan' => 'numeric',
-        'id_kota' => 'numeric',
+        'id_divisi' => 'required|numeric',
+        'id_jabatan' => 'required|numeric',
+        'id_kota' => 'required|numeric',
     ];
 
     public function crypto_rand_secure($min, $max){

@@ -117,7 +117,7 @@ class SearchController extends BaseController
 
         foreach ($queries as $query)
         {
-            $results[] = [ 'id' => $query->id, 'value' => $query->nama ];
+            $results[] = [ 'id' => $query->id, 'value' => $query->nama , 'kode' => $query->kode];
         }
 
         return Response::json($results);
