@@ -2,7 +2,7 @@
 
 ## Use-case
 
-![](use case 01.png)
+![](usecase01.png)
 
 ## Fitur
 
