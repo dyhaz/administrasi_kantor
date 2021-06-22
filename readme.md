@@ -10,26 +10,26 @@
 
 ![](Page-1-Image-1.jpg)
 
-1. Fitur Pengelolaan Data Master
+2. Fitur Pengelolaan Data Master
 
 ![](Page-1-Image-2.jpg)
 
-1. Fitur Pencatatan Data Surat Masuk
+3. Fitur Pencatatan Data Surat Masuk
 
 ![](Page-2-Image-3.jpg)
 
-1. Fitur Pembuatan Surat Keluar
+4. Fitur Pembuatan Surat Keluar
 
 ![](Page-2-Image-4.jpg)
 
-1. Fitur Pengiriman Surat Keluar
+5. Fitur Pengiriman Surat Keluar
 
 ![](Page-3-Image-5.jpg)
 
-1. Fitur Disposisi
+6. Fitur Disposisi
 
 ![](Page-3-Image-6.jpg)
 
-1. Fitur Laporan Surat Masuk
+7. Fitur Laporan Surat Masuk
 
 ![](Page-4-Image-7.jpg)
